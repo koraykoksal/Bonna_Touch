@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Headers = () => {
+export const Headers = ({setprompt}) => {
   return (
     
     <form className='w-[50%] m-auto mt-16'>
@@ -33,7 +33,8 @@ export const Headers = () => {
       id="default-search"
       className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       placeholder="Search Your, Images..."
-      required=""
+      required
+      onChange={(e)=>setprompt(e.target.value)}
     />
     <button
       type="submit"
