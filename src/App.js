@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { GlobalStyles } from "./styles/Global.styles";
 import { lightTheme,darktheme } from "./styles/theme";
 import { ThemeContext } from './context/ThemeContext';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
   return (
     <ThemeProvider theme={themes}>
       <GlobalStyles/>
+      <Provider store={store}>
       <AppRouter/>
+      </Provider>
     </ThemeProvider>
 
   )
