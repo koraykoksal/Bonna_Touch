@@ -2,10 +2,10 @@
 
 export const lightTheme = {
   colors: {
-    navbarBgColor: "white",
-    mainColor: "#F7F7F7",
-    logoColor: "darkslategray",
-    linkColor: "#8B7E74",
+    navbarBgColor: "#FFFFFF",
+    mainColor: "#FFFFFF",
+    logoColor: "#000000",
+    linkColor: "#000000",
     detailBgColor: "#e1f1dd",
     detailColor: "rgb(5,5,5)",
     linkHoverColor: "rgb(5,5,5)",
@@ -18,10 +18,10 @@ export const lightTheme = {
 
 export const darktheme = {
   colors: {
-    navbarBgColor: "rgba(255, 255, 255, 0.46)",
+    navbarBgColor: "rgb(15,15,15)",
     mainColor: "rgb(15,15,15)",
-    logoColor: "rgb(5,5,5)",
-    linkColor: "rgb(5,5,5)",
+    logoColor: "#FFFFFF",
+    linkColor: "#FFFFFF",
     detailBgColor: "rgb(15,15,15)",
     detailColor: "white",
     linkHoverColor: "bisque",

@@ -13,8 +13,20 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 body{
-    font-size: 1rem;
+    /* font-size: 1rem; */
     background-color: ${({theme})=> theme.colors.mainColor};
+    
 }
 
+nav{
+    background-color:${({theme})=> theme.colors.navbarBgColor};
+}
+
+span{
+    color:${({theme})=> theme.colors.logoColor};
+}
+
+.navsLink{
+    color:${({theme})=> theme.colors.linkColor};
+}
 `;
