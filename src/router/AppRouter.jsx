@@ -1,6 +1,6 @@
 import React from 'react'
 import { Headers } from '../components/Headers'
-import { NavBar } from '../components/NavBar'
+import {NavBar}  from '../components/NavBar'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Login } from '../pages/Login'
 import { Register } from '../pages/Register'
@@ -16,7 +16,7 @@ export const AppRouter = () => {
     <>
     <BrowserRouter>
     <NavBar/>
-    <Routes>
+      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>

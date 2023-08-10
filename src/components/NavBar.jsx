@@ -6,6 +6,8 @@ import { StyleButton } from './NavBar.style'
 
 export const NavBar = () => {
 
+
+
     const {myTheme,setmyTheme}=useContext(ThemeContext)
 
     const handleChangeSyle=()=>{
@@ -31,9 +33,13 @@ export const NavBar = () => {
         </span>
         </div>
 
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        
 
-        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <div className="hamburger_ul w-full md:block md:w-auto">
+
+   
+
+            <ul className=" navs_ul font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
 
             <li>
             <StyleButton onClick={handleChangeSyle}>
@@ -81,6 +87,10 @@ export const NavBar = () => {
         </div>
     </div>
     </nav>
+
+    
+
+
 
 
 

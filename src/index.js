@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom"
 import { ThemeConsumer } from "react-bootstrap/esm/ThemeProvider"
 import { ThemeContextProvider } from "./context/ThemeContext"
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <ThemeContextProvider>
