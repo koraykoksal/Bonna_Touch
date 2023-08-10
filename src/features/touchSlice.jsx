@@ -4,15 +4,16 @@ import axios from "axios";
 import { useEffect } from "react";
 
 
-const getChatGPT = async ()=>{
+const getChatGPT = async (state)=>{
 
     try {
 
         const apiUrl = 'https://api.openai.com/v1/chat/completions';
         const apiKey =  process.env.REACT_APP_GPT_KEY;
 
+
         const requestBody = {
-            messages: [{ role: 'user', content: initialState.promptGpt }],
+            messages: [{ role: 'user', content: state.promptGpt }],
         }; 
 
         const response = await axios.post(apiUrl, requestBody, {
@@ -22,7 +23,7 @@ const getChatGPT = async ()=>{
             },
         });
 
-        console.log(response)
+        state.responseGPT=response.data
         
     } catch (error) {
         console.log(error)
@@ -31,7 +32,8 @@ const getChatGPT = async ()=>{
 
 
 const initialState={
-    promptGpt:""
+    promptGpt:"",
+    responseGPT:"",
 }
 
 
@@ -43,7 +45,7 @@ const touchSlice=createSlice({
         
         setpromptGpt:(state,action)=>{
             state.promptGpt=action.payload
-            getChatGPT()
+            getChatGPT(state)
         }
 
 
