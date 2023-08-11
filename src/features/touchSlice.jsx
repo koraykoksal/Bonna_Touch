@@ -6,8 +6,10 @@ import { useEffect } from "react";
 
 
 const initialState={
-    promptGpt:"",
-    responseGPT:"",
+    loading:"",
+    error:"",
+    promptsReq:[],
+    propmptsRes:[],
 }
 
 
@@ -17,9 +19,14 @@ const touchSlice=createSlice({
     initialState,
     reducers:{
         
-        setpromptGpt:(state,action)=>{
-            state.promptGpt=action.payload
-            
+       
+        fetchStart:(state)=>{
+            state.loading =true;
+            state.error = false;
+        },
+        fetchFail:(state)=>{
+            state.loading=false;
+            state.error=true;
         }
 
 
@@ -30,7 +37,7 @@ const touchSlice=createSlice({
 })
 
 
-export const {setpromptGpt}=touchSlice.actions
+export const {fetchStart,fetchFail}=touchSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
 export default touchSlice.reducer

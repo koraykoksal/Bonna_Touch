@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//WARN
 export const toastWarnNotify = (msg) => {
   toast.warn(msg, {
     autoClose: 1000,
@@ -12,6 +13,7 @@ export const toastWarnNotify = (msg) => {
   });
 };
 
+//SUCCESS
 export const toastSuccessNotify = (msg) => {
   toast.success(msg, {
     autoClose: 1500,
@@ -23,6 +25,7 @@ export const toastSuccessNotify = (msg) => {
   });
 };
 
+//ERROR
 export const toastErrorNotify = (msg) => {
   toast.error(msg, {
     autoClose: 2000,
@@ -31,5 +34,20 @@ export const toastErrorNotify = (msg) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
+  });
+};
+
+
+//INFO
+export const toastInfoNotify = (msg) => {
+  toast.info(msg, {
+  position: "top-right",
+  autoClose: 10000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "light",
   });
 };

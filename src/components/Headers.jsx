@@ -11,23 +11,20 @@ export const Headers = () => {
   const [finalprompt, setfinalprompt] = useState("")
   const [dalleImage, setDalleImage] = useState("")
 
-  const promptSupport = "and clear white background and show top view";
+  const lastSentenceSupport = "round a plate and clear white background and show top view";
 
   const handleSearch=(e)=>{
     e.preventDefault();
 
-    const data = prompt.concat(" ",promptSupport).toLocaleLowerCase()
+    const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
 
-    console.log("data : ",data)
-
+    console.log("data:",data)
     getImageData(data)
-    //dispatch(setpromptGpt(resultGPT))
   }
 
 
   //Dalle serivsini çalıştır
   const getImageData=(searchData)=>{
-
 
         fetch(`https://api.openai.com/v1/images/generations`,{
 
@@ -49,7 +46,8 @@ export const Headers = () => {
         
             if(!res.ok){
         
-                throw new Error('Get Data Error')
+              throw new Error('Get Data Error')
+              
             }
             else{
 
@@ -62,7 +60,10 @@ export const Headers = () => {
     
 
           setDalleImage(res.data[0].url)
+          
           setfinalprompt(prompt)
+
+          console.log(res)
     
         }).catch(err=>{
     

@@ -6,46 +6,42 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 
-export const Dalle = ({dalleImage,finalprompt}) => {
+export const Dalle = ({dalleImage,finalprompt}) => (
 
 
-  return (
+  <>
 
+    <Card sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+      
+      <Typography textAlign={'center'} color={'#B91C1C'}></Typography>
 
-    <>
-    
-    <Card sx={{ maxWidth: 500 }} style={{margin:"auto",marginTop:"3.5rem",marginBottom:"3.5rem"}}>
-    <Typography textAlign={'center'} color={'#B91C1C'}>Your Imagine - Your Plate</Typography>
+      {/* servisten gelen image state içi dolunca çalışacak */}
+      {dalleImage && (
 
-    {/* servisten gelen image state içi dolunca çalışacak */}
-    { dalleImage && (
+        <CardActionArea>
 
-      <CardActionArea>
-        
-        <CardMedia
-          component="img"
-          height="440"
-          image={dalleImage}
-          alt=""
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{wordWrap:'break-word'}}>
-            {finalprompt}
-          </Typography>
-        </CardContent>
+          <CardMedia
+            component="img"
+            height="440"
+            image={dalleImage}
+            alt="" />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+              {finalprompt}
+            </Typography>
+          </CardContent>
 
-        <Box textAlign={'center'} padding={'0.3rem'}>
-          <Button variant='outlined'>Variation</Button>
-        </Box>
+          <Box textAlign={'center'} padding={'0.3rem'}>
+            <Button variant='outlined'>Variation</Button>
+          </Box>
 
-      </CardActionArea>
+        </CardActionArea>
       )}
-      
-      
 
-      </Card>
-    </>
-   
 
-  )
-}
+
+    </Card>
+  </>
+
+
+)
