@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { ThemeContext } from '../context/ThemeContext'
 import { lightIcon,darkIcon } from '../helper/themeIcon'
 import { StyleButton } from './NavBar.style'
+import bonnaLogo from '../assets/img/bonnaTouchLogo.png'
+import touchLogo from '../assets/img/TouchLogo.svg'
+
 
 export const NavBar = () => {
 
@@ -24,13 +27,11 @@ export const NavBar = () => {
 
         <div className='flex items-center'>
         <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8 mr-3"
-            alt="Flowbite Logo"
+            src={bonnaLogo}
+            className="h-[6rem] mr-3 bonnaLogo hover:cursor-pointer"
+            alt="Bonna Touch"
+            onClick={()=>window.open('https://www.bonna.com.tr','_blank')}
         />
-        <span className="self-center text-xl font-semibold whitespace-nowrap ">
-            Bonna Touch
-        </span>
         </div>
 
         
@@ -51,7 +52,7 @@ export const NavBar = () => {
 
             <li>
             <Link
-                className="navsLink bblock py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="navsLink bblock py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 aria-current="page"
                 to="/"
             >
@@ -61,7 +62,7 @@ export const NavBar = () => {
             </li>
             <li>
             <Link
-                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 to="/history"
             >
                 History
@@ -69,7 +70,7 @@ export const NavBar = () => {
             </li>
             <li>
             <Link
-                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 to="/login"
             >
                 Sign in
@@ -77,7 +78,7 @@ export const NavBar = () => {
             </li>
             <li>
             <Link
-                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="navsLink block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 to="/register"
             >
                 Sign up

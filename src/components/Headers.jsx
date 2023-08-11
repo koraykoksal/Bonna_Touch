@@ -16,7 +16,7 @@ export const Headers = () => {
 
   const handleSearch=(e)=>{
     e.preventDefault();
-    //state içindeki datayı reducer tarafına gönder
+
     getImageData()
     //dispatch(setpromptGpt(resultGPT))
   }
@@ -66,7 +66,7 @@ export const Headers = () => {
         })
   }
 
-
+  console.log(dalleImage)
 
 
   return (
@@ -116,7 +116,7 @@ export const Headers = () => {
         </button>
       </div>
     </form>
-    <Dalle dalleImage={dalleImage}/>
+    <Dalle dalleImage={dalleImage} prompt={prompt}/>
     </>
 
   )

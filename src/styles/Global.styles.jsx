@@ -29,4 +29,12 @@ span{
 .navsLink{
     color:${({theme})=> theme.colors.linkColor};
 }
+
+.bonnaLogo{
+    /* color:${({theme})=> theme.colors.logoColor}; */
+    background-color:white;
+    border-radius:5rem;
+    
+}
+
 `;

@@ -1,17 +1,38 @@
 import React from 'react'
 import { StyleImg } from './Dalle.style'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
-export const Dalle = ({dalleImage}) => {
+export const Dalle = ({dalleImage,prompt}) => {
 
 
   return (
 
 
-    <div className='flex items-center text-center mt-8 mb-12 w-[75%] m-auto'>
-
-        <img src={dalleImage} alt="" className='m-auto max-h-[90%] max-w-[90%] rounded-xl' />
-
-    </div>
+    <>
+    
+    <Card sx={{ maxWidth: 500 }} style={{margin:"auto",marginTop:"3.5rem",marginBottom:"3.5rem"}}>
+    <Typography color={'error'} textAlign={'center'}>Your Imagine - Your Plate</Typography>
+      <CardActionArea>
+        
+        <CardMedia
+          component="img"
+          height="440"
+          image={dalleImage}
+          alt=""
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{wordWrap:'break-word'}}>
+            {prompt}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      </Card>
+    </>
+   
 
   )
 }
