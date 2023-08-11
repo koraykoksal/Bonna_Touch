@@ -72,7 +72,7 @@ export const Headers = () => {
   return (
     
     <>
-    <form className='w-full m-auto mt-16' onSubmit={handleSearch}>
+    <form className='w-full m-auto mt-[1.5rem]' onSubmit={handleSearch}>
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"

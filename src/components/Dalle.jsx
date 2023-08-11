@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Box, Button, CardActionArea } from '@mui/material';
 
 export const Dalle = ({dalleImage,prompt}) => {
 
@@ -15,7 +15,11 @@ export const Dalle = ({dalleImage,prompt}) => {
     <>
     
     <Card sx={{ maxWidth: 500 }} style={{margin:"auto",marginTop:"3.5rem",marginBottom:"3.5rem"}}>
-    <Typography color={'error'} textAlign={'center'}>Your Imagine - Your Plate</Typography>
+    <Typography textAlign={'center'} color={'#B91C1C'}>Your Imagine - Your Plate</Typography>
+
+    {/* servisten gelen image state içi dolunca çalışacak */}
+    { dalleImage && (
+
       <CardActionArea>
         
         <CardMedia
@@ -29,7 +33,16 @@ export const Dalle = ({dalleImage,prompt}) => {
             {prompt}
           </Typography>
         </CardContent>
+
+        <Box textAlign={'center'} padding={'0.3rem'}>
+          <Button variant='outlined'>Variation</Button>
+        </Box>
+
       </CardActionArea>
+      )}
+      
+      
+
       </Card>
     </>
    
