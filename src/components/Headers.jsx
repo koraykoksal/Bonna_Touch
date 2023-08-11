@@ -8,21 +8,25 @@ import { Dalle } from './Dalle'
 export const Headers = () => {
 
   const [prompt, setprompt] = useState("")
-
-  const [resultGPT, setresultGPT] = useState("")
-
+  const [finalprompt, setfinalprompt] = useState("")
   const [dalleImage, setDalleImage] = useState("")
 
+  const promptSupport = "and clear white background and show top view";
 
   const handleSearch=(e)=>{
     e.preventDefault();
 
-    getImageData()
+    const data = prompt.concat(" ",promptSupport).toLocaleLowerCase()
+
+    console.log("data : ",data)
+
+    getImageData(data)
     //dispatch(setpromptGpt(resultGPT))
   }
 
 
-  const getImageData=()=>{
+  //Dalle serivsini çalıştır
+  const getImageData=(searchData)=>{
 
 
         fetch(`https://api.openai.com/v1/images/generations`,{
@@ -33,7 +37,7 @@ export const Headers = () => {
             'Authorization': `Bearer ${process.env.REACT_APP_GPT_KEY}`
         },
         body: JSON.stringify({
-            "prompt": prompt,
+            "prompt": searchData,
             "n": 1,
             "size": "1024x1024"
           }),
@@ -58,6 +62,7 @@ export const Headers = () => {
     
 
           setDalleImage(res.data[0].url)
+          setfinalprompt(prompt)
     
         }).catch(err=>{
     
@@ -66,7 +71,6 @@ export const Headers = () => {
         })
   }
 
-  console.log(dalleImage)
 
 
   return (
@@ -116,7 +120,7 @@ export const Headers = () => {
         </button>
       </div>
     </form>
-    <Dalle dalleImage={dalleImage} prompt={prompt}/>
+    <Dalle dalleImage={dalleImage} finalprompt={finalprompt}/>
     </>
 
   )

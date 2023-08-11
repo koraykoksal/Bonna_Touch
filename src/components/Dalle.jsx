@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 
-export const Dalle = ({dalleImage,prompt}) => {
+export const Dalle = ({dalleImage,finalprompt}) => {
 
 
   return (
@@ -30,7 +30,7 @@ export const Dalle = ({dalleImage,prompt}) => {
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{wordWrap:'break-word'}}>
-            {prompt}
+            {finalprompt}
           </Typography>
         </CardContent>
 
