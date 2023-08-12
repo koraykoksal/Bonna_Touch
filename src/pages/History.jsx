@@ -14,7 +14,7 @@ export default function History() {
 
   return (
 
-    <div className='flex flex-wrap justify-center items-center gap-2'>
+    <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
 
       {dalleData.map((data) =>(
 

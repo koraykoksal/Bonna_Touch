@@ -6,7 +6,8 @@ import {FcGoogle} from 'react-icons/fc'
 export const Register = () => {
   return (
     
-    <div className='flex flex-col items-center my-[50px]'>
+ 
+    <div className='flex flex-col items-center mb-20'>
     <h5 className="flex items-center mb-6 text-2xl font-semibold text-red-700 dark:text-white">Register</h5>
 
 
@@ -129,6 +130,7 @@ export const Register = () => {
       </div>
     </div>
   </div>
+
 
   )
 }

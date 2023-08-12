@@ -5,7 +5,7 @@ import {FcGoogle} from 'react-icons/fc'
 export const Login = () => {
   return (
     
-    <div className='flex flex-col items-center mt-[100px]'>
+    <div className='flex flex-col items-center mt-[50px]'>
 
     
     <h5 className="flex items-center mb-6 text-2xl font-semibold text-red-700 dark:text-white">Login</h5>
