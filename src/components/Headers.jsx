@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setpromptGpt } from '../features/touchSlice'
 import axios from 'axios'
 import { Dalle } from './Dalle'
+import useDalleCall from '../hooks/useDalleCall'
 
 export const Headers = () => {
 
   const [prompt, setprompt] = useState("")
   const [finalprompt, setfinalprompt] = useState("")
   const [dalleImage, setDalleImage] = useState("")
+
+  const {getImageData}=useDalleCall()
 
   const lastSentenceSupport = "round a plate and clear white background and show top view";
 
@@ -18,59 +21,61 @@ export const Headers = () => {
 
     const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
 
-    console.log("data:",data)
+    //getImageData(data)
+
     getImageData(data)
+
   }
 
 
   //Dalle serivsini çalıştır
-  const getImageData=(searchData)=>{
+  // const getImageData=(searchData)=>{
 
-        fetch(`https://api.openai.com/v1/images/generations`,{
+  //       fetch(`https://api.openai.com/v1/images/generations`,{
 
-        method:'post',
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.REACT_APP_GPT_KEY}`
-        },
-        body: JSON.stringify({
-            "prompt": searchData,
-            "n": 1,
-            "size": "1024x1024"
-          }),
-        cache:'default'
+  //       method:'post',
+  //       headers:{
+  //           'Content-Type': 'application/json',
+  //           'Authorization': `Bearer ${process.env.REACT_APP_GPT_KEY}`
+  //       },
+  //       body: JSON.stringify({
+  //           "prompt": searchData,
+  //           "n": 1,
+  //           "size": "1024x1024"
+  //         }),
+  //       cache:'default'
     
         
-        }).then(res=>{  
+  //       }).then(res=>{  
     
         
-            if(!res.ok){
+  //           if(!res.ok){
         
-              throw new Error('Get Data Error')
+  //             throw new Error('Get Data Error')
               
-            }
-            else{
+  //           }
+  //           else{
 
 
-                return  res.json()
+  //               return  res.json()
 
-            }
+  //           }
 
-        }).then(res=>{
+  //       }).then(res=>{
     
 
-          setDalleImage(res.data[0].url)
+  //         setDalleImage(res.data[0].url)
           
-          setfinalprompt(prompt)
+  //         setfinalprompt(prompt)
 
-          console.log(res)
+  //         console.log(res)
     
-        }).catch(err=>{
+  //       }).catch(err=>{
     
-            console.log(err)
+  //           console.log(err)
     
-        })
-  }
+  //       })
+  // }
 
 
 

@@ -40,7 +40,7 @@ export const toastErrorNotify = (msg) => {
 
 //INFO
 export const toastInfoNotify = (msg) => {
-  toast.info(msg, {
+  toast(msg, {
   position: "top-right",
   autoClose: 10000,
   hideProgressBar: false,

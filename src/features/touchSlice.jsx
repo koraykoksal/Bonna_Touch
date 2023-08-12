@@ -8,9 +8,9 @@ import { useEffect } from "react";
 const initialState={
     loading:"",
     error:"",
-    promptsReq:[],
-    propmptsRes:[],
+    dalleData:[],
 }
+
 
 
 const touchSlice=createSlice({
@@ -27,8 +27,18 @@ const touchSlice=createSlice({
         fetchFail:(state)=>{
             state.loading=false;
             state.error=true;
-        }
+        },
+        fetchSuccess:(state,action)=>{
 
+            //state.dalleData=action.payload.searchData
+
+            return {
+                dalleData:[...state.dalleData,{id:new Date().getTime(),prompt:action.payload.searchData,promptImg:action.payload.data.data[0].url}]
+            }
+            
+            //console.log(first)
+
+        }
 
 
     }
@@ -37,7 +47,7 @@ const touchSlice=createSlice({
 })
 
 
-export const {fetchStart,fetchFail}=touchSlice.actions
+export const {fetchStart,fetchFail,fetchSuccess}=touchSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
 export default touchSlice.reducer

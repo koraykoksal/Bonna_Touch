@@ -6,7 +6,7 @@ import { lightTheme,darktheme } from "./styles/theme";
 import { ThemeContext } from './context/ThemeContext';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-
+import { ToastContainer } from "react-toastify";
 
 function App() {
 
@@ -19,6 +19,7 @@ function App() {
       <Provider store={store}>
       <AppRouter/>
       </Provider>
+      <ToastContainer/>
     </ThemeProvider>
 
   )
