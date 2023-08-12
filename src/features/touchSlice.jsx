@@ -8,7 +8,9 @@ import { useEffect } from "react";
 const initialState={
     loading:"",
     error:"",
+    userPrompt:"",
     dalleData:[],
+    dalleImage:"",
 }
 
 
@@ -28,15 +30,15 @@ const touchSlice=createSlice({
             state.loading=false;
             state.error=true;
         },
-        fetchSuccess:(state,action)=>{
-
-            //state.dalleData=action.payload.searchData
+        fetchSuccess:(state,{payload})=>{
 
             return {
-                dalleData:[...state.dalleData,{id:new Date().getTime(),prompt:action.payload.searchData,promptImg:action.payload.data.data[0].url}]
+                dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}]
             }
+
+            // state.dalleImage = payload.data.data[0].url,
+            // state.userPrompt = payload.prompt
             
-            //console.log(first)
 
         }
 
@@ -44,7 +46,8 @@ const touchSlice=createSlice({
     }
 
 
-})
+}) 
+
 
 
 export const {fetchStart,fetchFail,fetchSuccess}=touchSlice.actions

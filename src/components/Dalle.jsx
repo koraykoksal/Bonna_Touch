@@ -7,11 +7,14 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
 
-export const Dalle = ({dalleImage,finalprompt}) => {
 
-  const dalleData = useSelector((state)=>state.touch.dalleData)
+export const Dalle = () => {
 
-  console.log("deger:",dalleData)
+  const {dalleImage} = useSelector((state)=>state.touch)
+  const {userPrompt} = useSelector((state)=>state.touch)
+
+  console.log("dalle image :", dalleImage)
+  console.log("user prompt :",userPrompt)
 
   return(
   <>
@@ -21,18 +24,19 @@ export const Dalle = ({dalleImage,finalprompt}) => {
       <Typography textAlign={'center'} color={'#B91C1C'}></Typography>
 
       {/* servisten gelen image state içi dolunca çalışacak */}
-      {dalleData && (
+      
+      {dalleImage && (
 
         <CardActionArea>
 
           <CardMedia
             component="img"
             height="440"
-            image={dalleData[0]?.promptImg}
+            image={dalleImage}
             alt="" />
           <CardContent>
             <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-              {}
+              {userPrompt}
             </Typography>
           </CardContent>
 

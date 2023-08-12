@@ -10,7 +10,7 @@ const useDalleCall = () => {
     const dispatch=useDispatch()
   
 
-    const getImageData=(searchData)=>{
+    const getImageData=(searchData,prompt)=>{
 
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
         toastInfoNotify('Please Wait Image Generating ')
@@ -44,12 +44,9 @@ const useDalleCall = () => {
         })
         .then((data)=>{
 
-            console.log("api data : ",data,"searcData : ",searchData)
-            
-            dispatch(fetchSuccess({data,searchData}))
+     
+            dispatch(fetchSuccess({data,searchData,prompt}))
 
-            
-            
 
         })
         .catch((err)=>{

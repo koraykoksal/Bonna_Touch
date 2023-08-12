@@ -10,7 +10,6 @@ export const Headers = () => {
 
   const [prompt, setprompt] = useState("")
   const [finalprompt, setfinalprompt] = useState("")
-  const [dalleImage, setDalleImage] = useState("")
 
   const {getImageData}=useDalleCall()
 
@@ -21,62 +20,10 @@ export const Headers = () => {
 
     const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
 
-    //getImageData(data)
 
-    getImageData(data)
+    getImageData(data,prompt)
 
   }
-
-
-  //Dalle serivsini çalıştır
-  // const getImageData=(searchData)=>{
-
-  //       fetch(`https://api.openai.com/v1/images/generations`,{
-
-  //       method:'post',
-  //       headers:{
-  //           'Content-Type': 'application/json',
-  //           'Authorization': `Bearer ${process.env.REACT_APP_GPT_KEY}`
-  //       },
-  //       body: JSON.stringify({
-  //           "prompt": searchData,
-  //           "n": 1,
-  //           "size": "1024x1024"
-  //         }),
-  //       cache:'default'
-    
-        
-  //       }).then(res=>{  
-    
-        
-  //           if(!res.ok){
-        
-  //             throw new Error('Get Data Error')
-              
-  //           }
-  //           else{
-
-
-  //               return  res.json()
-
-  //           }
-
-  //       }).then(res=>{
-    
-
-  //         setDalleImage(res.data[0].url)
-          
-  //         setfinalprompt(prompt)
-
-  //         console.log(res)
-    
-  //       }).catch(err=>{
-    
-  //           console.log(err)
-    
-  //       })
-  // }
-
 
 
   return (
@@ -126,7 +73,7 @@ export const Headers = () => {
         </button>
       </div>
     </form>
-    <Dalle dalleImage={dalleImage} finalprompt={finalprompt}/>
+    <Dalle/>
     </>
 
   )
