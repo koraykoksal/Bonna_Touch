@@ -10,8 +10,6 @@ export default function History() {
 
   const {dalleData} = useSelector((state)=>state.touch)
 
-  console.log("dalle data:",dalleData)
-
   return (
 
     <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
