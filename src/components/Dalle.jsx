@@ -13,9 +13,6 @@ export const Dalle = () => {
   const {dalleImage} = useSelector((state)=>state.touch)
   const {userPrompt} = useSelector((state)=>state.touch)
 
-  console.log("dalle image :", dalleImage)
-  console.log("user prompt :",userPrompt)
-
   return(
   <>
 

@@ -36,10 +36,6 @@ const touchSlice=createSlice({
                 dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}],
                 
             }
-            //state.dalleImage = payload.data.data[0].url
-            // state.userPrompt = payload.prompt
-            
-
         },
         fetchSuccess2:(state,{payload})=>{
             state.dalleImage = payload.data.data[0].url
