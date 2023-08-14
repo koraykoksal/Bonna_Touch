@@ -33,14 +33,19 @@ const touchSlice=createSlice({
         fetchSuccess:(state,{payload})=>{
 
             return {
-                dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}]
+                dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}],
+                
             }
-
-            // state.dalleImage = payload.data.data[0].url,
+            //state.dalleImage = payload.data.data[0].url
             // state.userPrompt = payload.prompt
             
 
+        },
+        fetchSuccess2:(state,{payload})=>{
+            state.dalleImage = payload.data.data[0].url
+            state.userPrompt = payload.prompt
         }
+
 
 
     }
@@ -50,7 +55,7 @@ const touchSlice=createSlice({
 
 
 
-export const {fetchStart,fetchFail,fetchSuccess}=touchSlice.actions
+export const {fetchStart,fetchFail,fetchSuccess,fetchSuccess2}=touchSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
 export default touchSlice.reducer

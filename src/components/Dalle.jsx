@@ -41,7 +41,7 @@ export const Dalle = () => {
           </CardContent>
 
           <Box textAlign={'center'} padding={'0.3rem'}>
-            <Button variant='outlined'>Variation</Button>
+            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
           </Box>
 
         </CardActionArea>

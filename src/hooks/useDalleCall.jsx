@@ -1,9 +1,9 @@
 
 import React from 'react'
-import { fetchFail, fetchStart, fetchSuccess } from '../features/touchSlice'
+import { fetchFail, fetchStart, fetchSuccess,fetchSuccess2 } from '../features/touchSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
-import {toastInfoNotify} from '../helper/ToastNotify'
+import {toastInfoNotify,toastSuccessNotify} from '../helper/ToastNotify'
 
 const useDalleCall = () => {
 
@@ -13,6 +13,7 @@ const useDalleCall = () => {
     const getImageData=(searchData,prompt)=>{
 
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
+        
         toastInfoNotify('Please Wait Image Generating ')
 
         fetch(`${process.env.REACT_APP_DALLE_ADDRESS}`,{
@@ -46,7 +47,8 @@ const useDalleCall = () => {
 
      
             dispatch(fetchSuccess({data,searchData,prompt}))
-
+            dispatch(fetchSuccess2({data,searchData,prompt}))
+            toastSuccessNotify('Image Genereted')
 
         })
         .catch((err)=>{
