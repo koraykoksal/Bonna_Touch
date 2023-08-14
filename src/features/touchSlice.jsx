@@ -26,6 +26,10 @@ const touchSlice=createSlice({
             state.loading =true;
             state.error = false;
         },
+        fetchEnd:(state)=>{
+            state.loading =false;
+            state.error = false;
+        },
         fetchFail:(state)=>{
             state.loading=false;
             state.error=true;
@@ -51,7 +55,7 @@ const touchSlice=createSlice({
 
 
 
-export const {fetchStart,fetchFail,fetchSuccess,fetchSuccess2}=touchSlice.actions
+export const {fetchStart,fetchEnd,fetchFail,fetchSuccess,fetchSuccess2}=touchSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
 export default touchSlice.reducer

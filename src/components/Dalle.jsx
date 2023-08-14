@@ -6,12 +6,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
-
+// import CircularProgress, {
+//   CircularProgressProps,
+// } from '@mui/material/CircularProgress';
 
 export const Dalle = () => {
 
-  const {dalleImage} = useSelector((state)=>state.touch)
-  const {userPrompt} = useSelector((state)=>state.touch)
+  const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
+  //const {userPrompt} = useSelector((state)=>state.touch)
 
   return(
   <>
@@ -22,9 +24,23 @@ export const Dalle = () => {
 
       {/* servisten gelen image state içi dolunca çalışacak */}
       
+
+      {loading && (
+
+        // <div>
+        //   <img src="https://i.giphy.com/media/xTk9ZvMnbIiIew7IpW/giphy.webp" alt="" />
+        // </div>
+
+        // <CircularProgressWithLabel value={loading} />
+        
+        <h1>Loading..</h1>
+        
+
+      )}
+
       {dalleImage && (
 
-        <CardActionArea>
+        <CardActionArea key={dalleData.id}>
 
           <CardMedia
             component="img"
@@ -42,7 +58,9 @@ export const Dalle = () => {
           </Box>
 
         </CardActionArea>
+
       )}
+      
 
 
 
