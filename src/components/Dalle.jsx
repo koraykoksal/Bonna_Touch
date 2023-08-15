@@ -5,15 +5,28 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState,useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import useDalleCall from '../hooks/useDalleCall';
+import imageFile from '../assets/img/img1.png'
+
 
 export const Dalle = () => {
 
+  const dispatch = useDispatch()
+  const {getImageVariationData} = useDalleCall()
   const [progress, setProgress] = useState(0)
-
   const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
+
+  
+  // const handleVariation=(file)=>{
+
+  //   const reader = new FileReader()
+
+  //   getImageVariationData('variations',file)
+
+  // }
 
   
   return( 
@@ -50,7 +63,7 @@ export const Dalle = () => {
       </CardContent>
 
       <Box textAlign={'center'} padding={'0.3rem'}>
-        <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
+        <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}           >Variation</Button>
       </Box>
 
     </CardActionArea>

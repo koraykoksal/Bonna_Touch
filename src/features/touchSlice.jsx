@@ -46,14 +46,6 @@ const touchSlice=createSlice({
         fetchSuccess2:(state,{payload})=>{
             state.dalleImage = payload.res.data[0].url
             state.userPrompt = payload.data.prompt
-        },
-        fetchDownload:(state,payload)=>{
-            
-            const element=document.createElement('a');
-            let file = payload.res.data[0].url
-
-            element.href=URL.createObjectURL(file)
-            element.download('image.png')
         }
 
 

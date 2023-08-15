@@ -2,7 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom'
-import bonnaLogo from '../assets/img/bonnaTouchLogo.png'
+import bonnaLogo from '../assets/img/bonnaTouchLogoW.png'
 import { Typography } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 
@@ -45,7 +45,7 @@ export default function NavBars() {
 
                 <div className=" flex-shrink-0 hidden sm:ml-6 sm:block">
                 <img
-                    className=" h-[75px] w-auto hover:cursor-pointer "
+                    className=" h-[90px] w-auto hover:cursor-pointer "
                     src={bonnaLogo}
                     alt="Your Company"
                     onClick={()=>window.open('https://bonna.com.tr')}
@@ -69,7 +69,7 @@ export default function NavBars() {
                       //   {item.name}
                       // </Link>
 
-                      <NavLink to={item.url} color='#ffff' style={({ isActive }) => ({ color: isActive ? "#000000" :"#FFFFFF",padding:"0.3rem",backgroundColor:isActive ? "#8c837d":"",borderRadius:'0.5rem'})}>
+                      <NavLink key={i} to={item.url} color='#ffff' style={({ isActive }) => ({ color: isActive ? "#000000" :"#FFFFFF",padding:"0.3rem",backgroundColor:isActive ? "#8c837d":"",borderRadius:'0.5rem'})}>
                         {item.name}
                       </NavLink>
                     ))}
