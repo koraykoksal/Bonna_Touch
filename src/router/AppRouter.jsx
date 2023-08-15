@@ -5,7 +5,7 @@ import { Register } from '../pages/Register'
 import { Home } from '../pages/Home'
 import History from '../pages/History'
 import { NotFound } from '../pages/NotFound'
-import NavBars from '../components/NavBar'
+import NavBars from '../components/NavBars'
 
 export const AppRouter = () => {
 

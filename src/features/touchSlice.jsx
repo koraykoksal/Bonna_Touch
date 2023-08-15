@@ -1,7 +1,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useEffect } from "react";
+import { createElement, useEffect } from "react";
 
 
 
@@ -25,6 +25,8 @@ const touchSlice=createSlice({
         fetchStart:(state)=>{
             state.loading =true;
             state.error = false;
+            //fetchStart her başladığında dalleImage de kayıtlı olan url bilgisi silinecek ve generate işlemi yapılırken progress bar çalışacak
+            state.dalleImage = ""
         },
         fetchEnd:(state)=>{
             state.loading =false;
@@ -36,21 +38,22 @@ const touchSlice=createSlice({
         },
         fetchSuccess:(state,{payload})=>{
 
-            console.log(payload)
-            // return {
-            //     dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}],
-                
-            // }
             return {
                 dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url}],
                 
             }
         },
         fetchSuccess2:(state,{payload})=>{
-            // state.dalleImage = payload.data.data[0].url
-            // state.userPrompt = payload.prompt
             state.dalleImage = payload.res.data[0].url
             state.userPrompt = payload.data.prompt
+        },
+        fetchDownload:(state,payload)=>{
+            
+            const element=document.createElement('a');
+            let file = payload.res.data[0].url
+
+            element.href=URL.createObjectURL(file)
+            element.download('image.png')
         }
 
 
@@ -62,7 +65,14 @@ const touchSlice=createSlice({
 
 
 
-export const {fetchStart,fetchEnd,fetchFail,fetchSuccess,fetchSuccess2}=touchSlice.actions
+export const {
+    fetchStart,
+    fetchEnd,
+    fetchFail,
+    fetchSuccess,
+    fetchSuccess2,
+    fetchTemizle,
+    fetchDownload}=touchSlice.actions
 
 //slice oluşturulduktan sonra export default olarak export edilmeli ve reducer ifadesi belirtilmelidir.
 export default touchSlice.reducer

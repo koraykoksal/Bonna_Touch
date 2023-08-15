@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, useNavigate } from 'react-router-dom'
 import bonnaLogo from '../assets/img/bonnaTouchLogo.png'
 import { Typography } from '@mui/material'
-
+import { NavLink } from 'react-router-dom'
 
 const navigation = [
   { name: 'Home', url: '/', current: true },
@@ -45,7 +45,7 @@ export default function NavBars() {
 
                 <div className=" flex-shrink-0 hidden sm:ml-6 sm:block">
                 <img
-                    className="h-16 w-auto hover:cursor-pointer "
+                    className=" h-[75px] w-auto hover:cursor-pointer "
                     src={bonnaLogo}
                     alt="Your Company"
                     onClick={()=>window.open('https://bonna.com.tr')}
@@ -60,14 +60,17 @@ export default function NavBars() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item,i) => (
-                      <Link
-                        key={i}
-                        to={item.url}
-                        className='focus:bg-gray-900 text-white  hover:bg-gray-700 hover:text-white
-                          rounded-md px-3 py-2 text-sm font-medium'
-                      >
+                      // <Link
+                      //   key={i}
+                      //   to={item.url}
+                      //   className='focus:bg-gray-900 text-white  hover:bg-gray-700 hover:text-white
+                      //     rounded-md px-3 py-2 text-sm font-medium'
+                      // >
+                      //   {item.name}
+                      // </Link>
+                      <NavLink to={item.url} color='#ffff' style={({ isActive }) => ({ color: isActive ? "black" :"white",padding:"0.3rem",backgroundColor:isActive ? "gray":"",borderRadius:'0.5rem'})}>
                         {item.name}
-                      </Link>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
