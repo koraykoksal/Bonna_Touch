@@ -68,7 +68,8 @@ export default function NavBars() {
                       // >
                       //   {item.name}
                       // </Link>
-                      <NavLink to={item.url} color='#ffff' style={({ isActive }) => ({ color: isActive ? "black" :"white",padding:"0.3rem",backgroundColor:isActive ? "gray":"",borderRadius:'0.5rem'})}>
+
+                      <NavLink to={item.url} color='#ffff' style={({ isActive }) => ({ color: isActive ? "#000000" :"#FFFFFF",padding:"0.3rem",backgroundColor:isActive ? "#8c837d":"",borderRadius:'0.5rem'})}>
                         {item.name}
                       </NavLink>
                     ))}
