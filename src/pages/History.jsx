@@ -16,7 +16,7 @@ export default function History() {
 
       {dalleData.map((data) =>(
 
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} key={data.id}>
         <CardActionArea>
           <CardMedia
             component="img"

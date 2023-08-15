@@ -20,8 +20,15 @@ export const Headers = () => {
 
     const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
 
+    const generateData={
+      url:'generations',
+      searchData:data,
+      prompt:prompt,
+    }
 
-    getImageData(data,prompt)
+    // getImageData("generations",data,prompt)
+    getImageData(generateData)
+
 
   }
 

@@ -36,14 +36,21 @@ const touchSlice=createSlice({
         },
         fetchSuccess:(state,{payload})=>{
 
+            console.log(payload)
+            // return {
+            //     dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}],
+                
+            // }
             return {
-                dalleData:[...state.dalleData,{id:payload.data.created,prompt:payload.prompt,promptImg:payload.data.data[0].url}],
+                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url}],
                 
             }
         },
         fetchSuccess2:(state,{payload})=>{
-            state.dalleImage = payload.data.data[0].url
-            state.userPrompt = payload.prompt
+            // state.dalleImage = payload.data.data[0].url
+            // state.userPrompt = payload.prompt
+            state.dalleImage = payload.res.data[0].url
+            state.userPrompt = payload.data.prompt
         }
 
 

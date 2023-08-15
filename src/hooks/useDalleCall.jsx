@@ -9,8 +9,8 @@ const useDalleCall = () => {
 
     const dispatch=useDispatch()
   
-
-    const getImageData=(searchData,prompt)=>{
+    // url,searchData,prompt
+    const getImageData=(data)=>{
 
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
         
@@ -19,7 +19,7 @@ const useDalleCall = () => {
 
         try {
             
-            fetch(`${process.env.REACT_APP_DALLE_ADDRESS}`,{
+            fetch(`https://api.openai.com/v1/images/${data.url}`,{
 
                 method:'post',
                 headers:{
@@ -27,7 +27,7 @@ const useDalleCall = () => {
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
                 body: JSON.stringify({
-                    "prompt": searchData,
+                    "prompt": data.searchData,
                     "n": 1,
                     "size": "1024x1024"
                 }),
@@ -46,11 +46,13 @@ const useDalleCall = () => {
                     return res.json()
                 }
             })
-            .then((data)=>{
+            .then((res)=>{
     
          
-                dispatch(fetchSuccess({data,searchData,prompt}))
-                dispatch(fetchSuccess2({data,searchData,prompt}))
+                // dispatch(fetchSuccess({res,searchData,prompt}))
+                // dispatch(fetchSuccess2({res,searchData,prompt}))
+                dispatch(fetchSuccess({res,data}))
+                dispatch(fetchSuccess2({res,data}))
                 toastSuccessNotify('Image Genereted')
                 dispatch(fetchEnd())
     
@@ -62,6 +64,7 @@ const useDalleCall = () => {
                 dispatch(fetchFail())
                 toastErrorNotify(err)
             })
+
 
         } catch (error) {
          console.log("try cath error : ",error)   
