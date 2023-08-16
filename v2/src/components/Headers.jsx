@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Dalle } from './Dalle'
 import useDalleCall from '../hooks/useDalleCall'
 
+
 export const Headers = () => {
 
   const [prompt, setprompt] = useState("")

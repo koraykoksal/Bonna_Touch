@@ -10,32 +10,46 @@ import { useState,useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import useDalleCall from '../hooks/useDalleCall';
 import imageFile from '../assets/img/img1.png'
-
+import {saveAs} from 'file-saver'
 
 export const Dalle = () => {
+
+  
 
   const dispatch = useDispatch()
   const {getImageVariationData} = useDalleCall()
   const [progress, setProgress] = useState(0)
   const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
 
+  let currentTime = new Date().toLocaleTimeString()
   
-  // const handleVariation=(file)=>{
+  let d = new Date()
+  let h = new Date().getHours()
+  d.setHours(h+2)
 
-  //   const reader = new FileReader()
+  console.log(d.toLocaleTimeString())
 
-  //   getImageVariationData('variations',file)
+  const handleVariation=(file)=>{
 
-  // }
+    //const reader = new FileReader()
 
+    getImageVariationData('variations',file)
+
+  }
+
+  const downloadImage=()=>{
+    // saveAs(`${new Date().getTime()}`,`${dalleImage}.png`)
+    saveAs('koray',dalleImage)
+  }
   
   return( 
+
+
   <>
 
 
     {loading && (
 
-    // <h1>Loading..</h1>
     <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
 
      <CircularProgress color="success" sx={{scale:'3'}} />
@@ -47,6 +61,7 @@ export const Dalle = () => {
 
     {dalleImage && (
 
+    
     <CardActionArea key={dalleData.id} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
       <CardMedia
@@ -54,7 +69,9 @@ export const Dalle = () => {
         height="440"
         image={dalleImage}
         alt=""
-        sx={{borderRadius:'0.5rem'}}/>
+        sx={{borderRadius:'0.5rem'}}
+        onClick={downloadImage}
+        />
         
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
@@ -63,12 +80,14 @@ export const Dalle = () => {
       </CardContent>
 
       <Box textAlign={'center'} padding={'0.3rem'}>
-        <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}           >Variation</Button>
+        <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
       </Box>
 
     </CardActionArea>
 
     )}
+
+
   </>
   )
 

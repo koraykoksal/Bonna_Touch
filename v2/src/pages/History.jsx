@@ -10,6 +10,15 @@ export default function History() {
 
   const {dalleData} = useSelector((state)=>state.touch)
 
+  let currentTime = new Date().toLocaleTimeString()
+  
+  let d = new Date()
+  let h = new Date().getHours()
+  d.setHours(h+2)
+
+  console.log(d.toLocaleTimeString())
+
+
   return (
 
     <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
@@ -24,9 +33,12 @@ export default function History() {
             image={data.promptImg}
             
           />
-          <CardContent>
+          <CardContent sx={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
             <Typography variant="body2" color="text.secondary">
               {data.prompt}
+            </Typography>
+            <Typography>
+            Expiry:{data.endtime}
             </Typography>
           </CardContent>
         </CardActionArea>

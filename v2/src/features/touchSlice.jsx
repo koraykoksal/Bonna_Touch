@@ -38,8 +38,12 @@ const touchSlice=createSlice({
         },
         fetchSuccess:(state,{payload})=>{
 
+            let d = new Date()
+            let h = new Date().getHours()
+            d.setHours(h+2)
+
             return {
-                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url}],
+                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,endtime:d.toLocaleTimeString()}],
                 
             }
         },

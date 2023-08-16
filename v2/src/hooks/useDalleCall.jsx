@@ -4,7 +4,7 @@ import { fetchDownload, fetchEnd, fetchFail, fetchStart, fetchSuccess,fetchSucce
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {toastInfoNotify,toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
-
+import img1 from '../assets/img/img1.png'
 
 const useDalleCall = () => {
 
@@ -70,68 +70,70 @@ const useDalleCall = () => {
 
     }
 
-    // const getImageVariationData=(url,file)=>{
+    const getImageVariationData=async (url,file)=>{
 
 
-    //     dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
+        dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
         
-    //     try {
+        try {
 
-    //         fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/${url}`,{
+            const formData = new FormData()
+
+            formData.append('file',img1)
+
+            console.log("formdata: ",formData)
+
+            await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/${url}`,{
              
-    //             method:'post',
-    //             headers:{
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
-    //             },
-    //             body:{
-    //                 "image": (file,'rb'),
-    //                 "n": 2,
-    //                 "size": "1024x1024",
-    //             }
+                method:'post',
+                headers:{
+                    // 'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+                },
+                body:formData
                 
                 
-    //         })
-    //         .then((res)=>{
+            })
+            .then((res)=>{
     
-    //             if(!res.ok){
+                if(!res.ok){
     
-    //                 dispatch(fetchFail())
-    //                 toastInfoNotify('There is something wrong !')
+                    dispatch(fetchFail())
+                    toastInfoNotify('There is something wrong !')
     
-    //             }
-    //             else{
+                }
+                else{
     
-    //                 return res.json()
-    //             }
-    //         })
-    //         .then((res)=>{
+                    return res.json()
+                }
+            })
+            .then((res)=>{
     
-    //             console.log(res)
+                console.log(res)
                 
-    //             dispatch(fetchEnd())
-    //             //toastSuccessNotify('Image Genereted')
+                dispatch(fetchEnd())
+                //toastSuccessNotify('Image Genereted')
                 
     
-    //         })
-    //         .catch((err)=>{
+            })
+            .catch((err)=>{
     
-    //             console.log("hata oluştuuu !!")
-    //             console.log(err)
-    //             dispatch(fetchFail())
-    //             toastErrorNotify(err)
-    //         })
+                console.log("hata oluştuuu !!")
+                console.log(err)
+                dispatch(fetchFail())
+                toastErrorNotify(err)
+            })
 
 
-    //     } catch (error) {
-    //      console.log("try cath error : ",error)   
-    //     }
+        } catch (error) {
+         console.log("try cath error : ",error)   
+        }
 
 
-    // }
+    }
 
 
-    return {getImageData}
+    return {getImageData,getImageVariationData}
 
 }
 
