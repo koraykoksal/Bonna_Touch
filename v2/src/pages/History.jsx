@@ -13,6 +13,7 @@ export default function History() {
   let d = new Date()
   let currentime = d.toLocaleTimeString()
 
+  console.log(dalleData)
 
   return (
 

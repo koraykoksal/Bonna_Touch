@@ -31,17 +31,26 @@ export const Dalle = () => {
 
   const handleVariation=(file)=>{
 
-    //const reader = new FileReader()
-
     getImageVariationData('variations',file)
 
   }
 
-  const downloadImage=()=>{
-    // saveAs(`${new Date().getTime()}`,`${dalleImage}.png`)
-    saveAs('koray',dalleImage)
+  async function downloadImage(dalleImage){
+
+    const image = await fetch(dalleImage)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+  
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'image.png'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
   
+  downloadImage();
+
   return( 
 
 
@@ -64,15 +73,16 @@ export const Dalle = () => {
     
     <CardActionArea key={dalleData.id} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
+      
       <CardMedia
         component="img"
         height="440"
         image={dalleImage}
         alt=""
         sx={{borderRadius:'0.5rem'}}
-        onClick={downloadImage}
         />
-        
+   
+
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
           {userPrompt}

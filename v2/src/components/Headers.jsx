@@ -14,7 +14,8 @@ export const Headers = () => {
 
   const {getImageData}=useDalleCall()
 
-  const lastSentenceSupport = "round a plate and clear white background and show top view";
+  // const lastSentenceSupport = "round a plate and clear white background and show top view";
+  const lastSentenceSupport = "round flat plate and clear white background and show top view";
 
   const handleSearch=(e)=>{
     e.preventDefault();
