@@ -35,21 +35,21 @@ export const Dalle = () => {
 
   }
 
-  async function downloadImage(dalleImage){
 
-    const image = await fetch(dalleImage)
-    const imageBlog = await image.blob()
-    const imageURL = URL.createObjectURL(imageBlog)
   
-    const link = document.createElement('a')
-    link.href = imageURL
-    link.download = 'image.png'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+
+  const downloadImage=(dalleImage)=>{
+
+
+    const link = document.createElement('a');
+    link.href = dalleImage;
+    link.download = dalleData.id;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
   
-  downloadImage();
+
 
   return( 
 
