@@ -51,8 +51,7 @@ const useDalleCall = () => {
                 
                 dispatch(fetchEnd())
                 toastSuccessNotify('Image Genereted')
-                
-    
+                    
             })
             .catch((err)=>{
     

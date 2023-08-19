@@ -22,12 +22,11 @@ export const Dalle = () => {
   const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
 
   let currentTime = new Date().toLocaleTimeString()
-  
+
   let d = new Date()
   let h = new Date().getHours()
-  d.setHours(h+2)
-
-  console.log(d.toLocaleTimeString())
+  d.setHours(h+1.30)
+  
 
   const handleVariation=(file)=>{
 
@@ -35,19 +34,16 @@ export const Dalle = () => {
 
   }
 
+  // useEffect(() => {
 
-  
+  //   const timer = setInterval(() => {
+  //     setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 5));
+  //   }, 800);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
 
-  const downloadImage=(dalleImage)=>{
-
-
-    const link = document.createElement('a');
-    link.href = dalleImage;
-    link.download = dalleData.id;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
+  // }, [loading])
   
 
 
@@ -61,7 +57,24 @@ export const Dalle = () => {
 
     <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
 
-     <CircularProgress color="success" sx={{scale:'3'}} />
+     <CircularProgress color="success" sx={{scale:'3'}} value={progress} />
+
+     <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {`${Math.round(progress)}%`}
+        </Typography>
+      </Box>
       
     </Box>
 
@@ -80,6 +93,7 @@ export const Dalle = () => {
         image={dalleImage}
         alt=""
         sx={{borderRadius:'0.5rem'}}
+        // onClick={()=>downloadImage(dalleImage)}
         />
    
 
