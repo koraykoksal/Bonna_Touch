@@ -9,8 +9,8 @@ import { NavLink } from 'react-router-dom'
 const navigation = [
   { name: 'Home', url: '/', current: true },
   { name: 'History', url: '/history', current: false },
-  { name: 'Login', url: '/login', current: false },
-  { name: 'Register', url: '/register', current: false },
+  // { name: 'Login', url: '/login', current: false },
+  // { name: 'Register', url: '/register', current: false },
 ]
 
 function classNames(...classes) {
@@ -23,7 +23,7 @@ export default function NavBars() {
 
   return (
 
-    <Disclosure as="nav" className="bg-gray-500">
+    <Disclosure as="nav" className="bg-black" >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

@@ -34,19 +34,6 @@ export const Dalle = () => {
 
   }
 
-  // useEffect(() => {
-
-  //   const timer = setInterval(() => {
-  //     setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 5));
-  //   }, 800);
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-
-  // }, [loading])
-  
-
-
   return( 
 
 
@@ -55,11 +42,11 @@ export const Dalle = () => {
 
     {loading && (
 
-    <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
+    <Box sx={{ display: 'flex',justifyContent:'center',mt:'15rem'}} >
 
-     <CircularProgress color="success" sx={{scale:'3'}} value={progress} />
+     <CircularProgress color="success" sx={{scale:'2'}} />
 
-     <Box
+     {/* <Box
         sx={{
           top: 0,
           left: 0,
@@ -71,10 +58,8 @@ export const Dalle = () => {
           justifyContent: 'center',
         }}
       >
-        <Typography variant="caption" component="div" color="text.secondary">
-          {`${Math.round(progress)}%`}
-        </Typography>
-      </Box>
+        
+      </Box> */}
       
     </Box>
 
