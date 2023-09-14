@@ -47,7 +47,6 @@ const useDalleCall = () => {
             .then((res)=>{
     
                 dispatch(fetchSuccess({res,data}))
-                dispatch(fetchSuccess2({res,data}))
                 
                 dispatch(fetchEnd())
                 toastSuccessNotify('Image Genereted')
@@ -69,6 +68,8 @@ const useDalleCall = () => {
 
     }
 
+
+    //! varyasyon oluşturma
     const getImageVariationData=async (url,file)=>{
 
 

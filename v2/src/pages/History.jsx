@@ -12,7 +12,6 @@ export default function History() {
 
   const {dalleData} = useSelector((state)=>state.touch)
 
-  console.log(dalleData)
 
   let d = new Date()
   let currentime = d.toLocaleTimeString()

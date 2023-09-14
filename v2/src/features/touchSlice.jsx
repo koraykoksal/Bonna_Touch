@@ -10,7 +10,7 @@ const initialState={
     error:"",
     userPrompt:"",
     dalleData:[],
-    dalleImage:"",
+    dalleImage:[],
 }
 
 
@@ -44,12 +44,10 @@ const touchSlice=createSlice({
 
             return {
                 dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,endtime:d.toLocaleTimeString()}],
+
+                dalleImage:[...state.dalleImage,{currentImgUrl:payload?.res?.data[0]?.url,ImgTime:d.toLocaleTimeString(),userPrompt:payload?.data?.prompt}]
                 
             }
-        },
-        fetchSuccess2:(state,{payload})=>{
-            state.dalleImage = payload.res.data[0].url
-            state.userPrompt = payload.data.prompt
         }
 
 

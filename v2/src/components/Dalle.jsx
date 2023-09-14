@@ -18,21 +18,13 @@ export const Dalle = () => {
 
   const dispatch = useDispatch()
   const {getImageVariationData} = useDalleCall()
-  const [progress, setProgress] = useState(0)
+
   const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
 
   let currentTime = new Date().toLocaleTimeString()
-
-  let d = new Date()
-  let h = new Date().getHours()
-  d.setHours(h+1.30)
   
 
-  const handleVariation=(file)=>{
-
-    getImageVariationData('variations',file)
-
-  }
+  console.log(dalleImage)
 
   return( 
 
@@ -45,46 +37,31 @@ export const Dalle = () => {
     <Box sx={{ display: 'flex',justifyContent:'center',mt:'15rem'}} >
 
      <CircularProgress color="success" sx={{scale:'2'}} />
-
-     {/* <Box
-        sx={{
-          top: 0,
-          left: 0,
-          bottom: 0,
-          right: 0,
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        
-      </Box> */}
       
     </Box>
 
 
     )}
 
-    {dalleImage && (
 
-    
-    <CardActionArea key={dalleData.id} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+    {dalleImage.filter((item)=>currentTime <= item.ImgTime).map((data,index)=>(
 
-      
+
+      <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+            
       <CardMedia
         component="img"
         height="440"
-        image={dalleImage}
+        image={data?.currentImgUrl}
         alt=""
         sx={{borderRadius:'0.5rem'}}
-        // onClick={()=>downloadImage(dalleImage)}
         />
-   
+
 
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          {userPrompt}
+          {data?.userPrompt}
         </Typography>
       </CardContent>
 
@@ -92,9 +69,11 @@ export const Dalle = () => {
         <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
       </Box>
 
-    </CardActionArea>
+      </CardActionArea>
 
-    )}
+
+    ))}
+
 
 
   </>
