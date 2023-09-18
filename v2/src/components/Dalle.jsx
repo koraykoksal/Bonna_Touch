@@ -33,11 +33,6 @@ export const Dalle = () => {
   })
   
 
-
-  console.log("dalleImage : ",dalleImage)
-  console.log("dalleDate : ",dalleData)
-
-
   return( 
 
 
