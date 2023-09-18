@@ -31,7 +31,9 @@ export const Dalle = () => {
 
     return currentime <= dalleImage.ImgTime
   })
-  
+
+
+
 
   return( 
 

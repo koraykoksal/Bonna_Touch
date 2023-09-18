@@ -6,6 +6,8 @@ import { Home } from '../pages/Home'
 import History from '../pages/History'
 import { NotFound } from '../pages/NotFound'
 import NavBars from '../components/NavBars'
+import Navs from '../components/Navs'
+import ImageDetail from '../pages/ImageDetail'
 
 export const AppRouter = () => {
 
@@ -14,12 +16,14 @@ export const AppRouter = () => {
     
     <>
     <BrowserRouter>
-      <NavBars/>
+      {/* <NavBars/> */}
+      <Navs/>
       <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='history' element={<History/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
+      <Route path='/:id' element={<ImageDetail/>}/>
       <Route path='*' element={<NotFound/>}/>
     </Routes>
     </BrowserRouter>

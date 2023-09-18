@@ -7,10 +7,21 @@ import { Box, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {BiDownload} from 'react-icons/bi'
 import axios from 'axios'
+import ImgModal from '../components/modal/ImgModal';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function History() {
 
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+
+  const navi=useNavigate()
+
   const {dalleData} = useSelector((state)=>state.touch)
+
+  const [choice, setchoice] = useState({})
 
   let d = new Date()
   let currentime = d.toLocaleTimeString()
@@ -39,8 +50,12 @@ export default function History() {
             component="img"
             height="140"
             image={data.promptImg}
-            
+            onClick={()=>{
+              handleOpen()
+              navi(`/${data.id}`,{state:data})
+            }}
           />
+
           </Box>
           
           <CardContent sx={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
@@ -56,13 +71,15 @@ export default function History() {
           </CardContent>
 
         </CardActionArea>
-        </Card>
 
+        <ImgModal open={open} setOpen={setOpen} handleOpen={handleOpen}/>
+       
+        </Card>
 
       ))}
 
-
-
+     
+        
 
     </div>
   );
