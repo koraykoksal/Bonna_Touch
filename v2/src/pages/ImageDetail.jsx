@@ -16,18 +16,20 @@ const ImageDetail = () => {
 
   return (
     
-    <Container>
+    <Container sx={{display:'flex',justifyContent:'center'}}>
     
         <Card sx={{ maxWidth: 545,maxHeight:550 }} key={state.id}>
             <CardActionArea>
             
             <Box>
             
-            <CardMedia
+            {/* <CardMedia
                 component="img"
                 height="140"
                 image={state.promptImg}
-            />
+            /> */}
+
+            <a href={state.promptImg} download={state.promptImg} target='_blank'><img src={state.promptImg}/></a>
 
             </Box>
             
@@ -46,6 +48,7 @@ const ImageDetail = () => {
             </CardActionArea>
 
         </Card>
+
     </Container>
     
 

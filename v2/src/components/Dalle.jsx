@@ -27,12 +27,13 @@ export const Dalle = () => {
   let d = new Date()
   let currentime = d.toLocaleTimeString()
 
-  let imageFiltering=dalleImage.filter(function(dalleImage){
+  // let imageFiltering=dalleImage.filter(function(dalleImage){
 
-    return currentime <= dalleImage.ImgTime
-  })
+  //   return currentime <= dalleImage.ImgTime
+  // })
 
 
+  console.log(dalleImage)
 
 
   return( 
@@ -52,39 +53,17 @@ export const Dalle = () => {
 
     )}
 
-    {imageFiltering.map((data)=>(
-
-      // <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-                                
-      // <CardMedia
-      //   component="img"
-      //   height="440"
-      //   image={dalleImage[0]?.currentImgUrl}
-      //   alt=""
-      //   sx={{borderRadius:'0.5rem'}}
-      //   />
 
 
-      // <CardContent>
-      //   <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-      //     {dalleImage[0]?.userPrompt}
-      //   </Typography>
-      // </CardContent>
-
-      // <Box textAlign={'center'} padding={'0.3rem'}>
-      //   <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
-      // </Box>
-
-      // </CardActionArea>
+    {dalleImage.map((item)=>(
 
       <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
-                                
+                                          
       <CardMedia
         component="img"
         height="440"
-        image={data.currentImgUrl}
+        image={item.currentImgUrl}
         alt=""
         sx={{borderRadius:'0.5rem'}}
         />
@@ -92,7 +71,7 @@ export const Dalle = () => {
 
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          {data.userPrompt}
+          {item.userPrompt}
         </Typography>
       </CardContent>
 
@@ -100,10 +79,9 @@ export const Dalle = () => {
         <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
       </Box>
 
-      </CardActionArea>
+      </CardActionArea> 
 
     ))}
-
 
 
 

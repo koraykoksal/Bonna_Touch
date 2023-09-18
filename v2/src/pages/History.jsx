@@ -7,15 +7,11 @@ import { Box, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {BiDownload} from 'react-icons/bi'
 import axios from 'axios'
-import ImgModal from '../components/modal/ImgModal';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function History() {
 
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
 
   const navi=useNavigate()
 
@@ -46,15 +42,18 @@ export default function History() {
         
           <Box>
           
+
+          <a href={data.promptImg} download={data.promptImg} target='_blank'>
           <CardMedia
             component="img"
             height="140"
             image={data.promptImg}
-            onClick={()=>{
-              handleOpen()
-              navi(`/${data.id}`,{state:data})
-            }}
+            // onClick={()=>{
+            //   handleOpen()
+            //   navi(`/${data.id}`,{state:data})
+            // }}
           />
+          </a>
 
           </Box>
           
@@ -72,7 +71,7 @@ export default function History() {
 
         </CardActionArea>
 
-        <ImgModal open={open} setOpen={setOpen} handleOpen={handleOpen}/>
+       
        
         </Card>
 
