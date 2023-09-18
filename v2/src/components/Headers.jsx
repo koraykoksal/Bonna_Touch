@@ -14,26 +14,30 @@ export const Headers = () => {
 
   const {getImageData}=useDalleCall()
 
-  // const lastSentenceSupport = "round a plate and clear white background and show top view";
-  //const lastSentenceSupport = "round flat plate and clear white background and show top view";
-  const lastSentenceSupport = "round flat plate and clear blurry background and show top view";
+
+  // const lastSentenceSupport = "round flat plate and clear blurry background and show top view";
+
+  const lastSentenceSupport = `A ${prompt} round, flat plate with a clear, blurred background, showcasing a top-down view.`;
 
   const handleSearch=(e)=>{
     e.preventDefault();
 
-    const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
+    //const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
+
+    prompt.toLocaleLowerCase().trim()
 
     const generateData={
       url:'generations',
-      searchData:data,
+      searchData:lastSentenceSupport,
       prompt:prompt,
     }
 
-    // getImageData("generations",data,prompt)
     getImageData(generateData)
 
 
   }
+
+  console.log(lastSentenceSupport)
 
 
   return (

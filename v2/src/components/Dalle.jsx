@@ -17,14 +17,26 @@ export const Dalle = () => {
   
 
   const dispatch = useDispatch()
+
   const {getImageVariationData} = useDalleCall()
 
-  const {dalleImage,userPrompt,loading,dalleData} = useSelector((state)=>state.touch)
+  const {dalleImage,dalleData,loading} = useSelector((state)=>state.touch)
 
-  let currentTime = new Date().toLocaleTimeString()
   
 
-  console.log(dalleImage)
+  let d = new Date()
+  let currentime = d.toLocaleTimeString()
+
+  let imageFiltering=dalleImage.filter(function(dalleImage){
+
+    return currentime <= dalleImage.ImgTime
+  })
+  
+
+
+  console.log("dalleImage : ",dalleImage)
+  console.log("dalleDate : ",dalleData)
+
 
   return( 
 
@@ -43,17 +55,39 @@ export const Dalle = () => {
 
     )}
 
+    {imageFiltering.map((data)=>(
 
-    {dalleImage.filter((item)=>currentTime <= item.ImgTime).map((data,index)=>(
+      // <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                                
+      // <CardMedia
+      //   component="img"
+      //   height="440"
+      //   image={dalleImage[0]?.currentImgUrl}
+      //   alt=""
+      //   sx={{borderRadius:'0.5rem'}}
+      //   />
 
 
-      <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+      // <CardContent>
+      //   <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+      //     {dalleImage[0]?.userPrompt}
+      //   </Typography>
+      // </CardContent>
 
-            
+      // <Box textAlign={'center'} padding={'0.3rem'}>
+      //   <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
+      // </Box>
+
+      // </CardActionArea>
+
+      <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                                
       <CardMedia
         component="img"
         height="440"
-        image={data?.currentImgUrl}
+        image={data.currentImgUrl}
         alt=""
         sx={{borderRadius:'0.5rem'}}
         />
@@ -61,7 +95,7 @@ export const Dalle = () => {
 
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          {data?.userPrompt}
+          {data.userPrompt}
         </Typography>
       </CardContent>
 
@@ -71,8 +105,8 @@ export const Dalle = () => {
 
       </CardActionArea>
 
-
     ))}
+
 
 
 
