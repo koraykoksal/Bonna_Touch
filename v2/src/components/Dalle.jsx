@@ -23,12 +23,26 @@ export const Dalle = () => {
 
   const {loading,dalleImage} = useSelector((state)=>state.touch)
 
-  const [filtering, setfiltering] = useState({})
+  const [filtering, setfiltering] = useState(true)
+
 
   let d = new Date()
   let currentime = d.toLocaleTimeString()
 
+  const {imgEndTime}=dalleImage
+
+  const control=()=>{
+
+    if(currentime <= imgEndTime){
+      setfiltering(false)
+    }
+  }
  
+  useEffect(() => {
+    control();
+  }, [])
+  
+
   
   return( 
 
@@ -50,36 +64,41 @@ export const Dalle = () => {
     )}
 
 
-    {dalleImage.imgUrl ? (
+      {
+        filtering ? (
 
-      <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+          ""
 
-                                                
-      <CardMedia
-        component="img"
-        height="440"
-        image={dalleImage.imgUrl}
-        alt=""
-        sx={{borderRadius:'0.5rem'}}
-        />
+        ):(
+
+          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+                                
+          <CardMedia
+            component="img"
+            height="440"
+            image={dalleImage.imgUrl}
+            alt=""
+            sx={{borderRadius:'0.5rem'}}
+            />
 
 
-      <CardContent>
-        <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          {dalleImage.userPrompt}
-        </Typography>
-      </CardContent>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+              {dalleImage.userPrompt}
+            </Typography>
+          </CardContent>
 
-      {/* <Box textAlign={'center'} padding={'0.3rem'}>
-        <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
-      </Box> */}
+          <Box textAlign={'center'} padding={'0.3rem'}>
+            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
+          </Box>
 
-      </CardActionArea> 
+          </CardActionArea> 
 
-    ):(
+        )
+      }
 
-      ""
-    )}
+
+
 
 
 
