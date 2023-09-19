@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useDalleCall from '../hooks/useDalleCall';
 import imageFile from '../assets/img/img1.png'
 import {saveAs} from 'file-saver'
+import generateGift from '../assets/gift/generateGift.gif'
 
 export const Dalle = () => {
 
@@ -20,22 +21,15 @@ export const Dalle = () => {
 
   const {getImageVariationData} = useDalleCall()
 
-  const {dalleImage,dalleData,loading} = useSelector((state)=>state.touch)
+  const {loading,dalleImage} = useSelector((state)=>state.touch)
 
-  
+  const [filtering, setfiltering] = useState({})
 
   let d = new Date()
   let currentime = d.toLocaleTimeString()
 
-  // let imageFiltering=dalleImage.filter(function(dalleImage){
-
-  //   return currentime <= dalleImage.ImgTime
-  // })
-
-
-  console.log(dalleImage)
-
-
+ 
+  
   return( 
 
 
@@ -44,26 +38,27 @@ export const Dalle = () => {
 
     {loading && (
 
-    <Box sx={{ display: 'flex',justifyContent:'center',mt:'15rem'}} >
+    <Box sx={{ display: 'flex',justifyContent:'center',mt:'10rem'}} >
 
-     <CircularProgress color="success" sx={{scale:'2'}} />
-      
+     {/* <CircularProgress color="success" sx={{scale:'2'}} /> */}
+
+      <img src={generateGift} alt="" />
+
     </Box>
 
 
     )}
 
 
-
-    {dalleImage.map((item)=>(
+    {dalleImage.imgUrl ? (
 
       <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
-                                          
+                                                
       <CardMedia
         component="img"
         height="440"
-        image={item.currentImgUrl}
+        image={dalleImage.imgUrl}
         alt=""
         sx={{borderRadius:'0.5rem'}}
         />
@@ -71,17 +66,20 @@ export const Dalle = () => {
 
       <CardContent>
         <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          {item.userPrompt}
+          {dalleImage.userPrompt}
         </Typography>
       </CardContent>
 
-      <Box textAlign={'center'} padding={'0.3rem'}>
+      {/* <Box textAlign={'center'} padding={'0.3rem'}>
         <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}}>Variation</Button>
-      </Box>
+      </Box> */}
 
       </CardActionArea> 
 
-    ))}
+    ):(
+
+      ""
+    )}
 
 
 

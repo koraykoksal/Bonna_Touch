@@ -5,7 +5,6 @@ import { Register } from '../pages/Register'
 import { Home } from '../pages/Home'
 import History from '../pages/History'
 import { NotFound } from '../pages/NotFound'
-import NavBars from '../components/NavBars'
 import Navs from '../components/Navs'
 import ImageDetail from '../pages/ImageDetail'
 
@@ -16,7 +15,6 @@ export const AppRouter = () => {
     
     <>
     <BrowserRouter>
-      {/* <NavBars/> */}
       <Navs/>
       <Routes>
       <Route path='/' element={<Home/>}/>

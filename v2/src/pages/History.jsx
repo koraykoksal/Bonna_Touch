@@ -22,24 +22,17 @@ export default function History() {
   let d = new Date()
   let currentime = d.toLocaleTimeString()
 
-  let imageFiltering=dalleData.filter(function(dalleData){
-
-    return currentime <= dalleData.endtime
-  })
-
-
-
 
   return ( 
 
     <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
 
-      {imageFiltering.map((data)=>(
+      {dalleData.filter(item=>currentime <= item.endtime).map((data)=>(
 
-        <Card sx={{ maxWidth: 345,maxHeight:450 }} key={data.id}>
+      <Card sx={{ maxWidth: 345,maxHeight:450 }} key={data.id}>
         <CardActionArea>
           
-        
+
           <Box>
           
 
@@ -71,9 +64,7 @@ export default function History() {
 
         </CardActionArea>
 
-       
-       
-        </Card>
+      </Card>
 
       ))}
 

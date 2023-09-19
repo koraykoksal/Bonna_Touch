@@ -21,9 +21,8 @@ export const Headers = () => {
   const lastSentenceSupport = `A ${prompt} round, flat plate with a clear, blurred background, showcasing a top-down view.`;
 
   const handleSearch=(e)=>{
+    
     e.preventDefault();
-
-    //const data = prompt.concat(" ",lastSentenceSupport).toLocaleLowerCase().trim()
 
     prompt.toLocaleLowerCase().trim()
 
@@ -38,7 +37,6 @@ export const Headers = () => {
 
   }
 
-  console.log(lastSentenceSupport)
 
 
   return (

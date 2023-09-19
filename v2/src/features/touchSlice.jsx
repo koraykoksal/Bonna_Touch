@@ -26,7 +26,7 @@ const touchSlice=createSlice({
             state.loading =true;
             state.error = false;
             //fetchStart her başladığında dalleImage de kayıtlı olan url bilgisi silinecek ve generate işlemi yapılırken progress bar çalışacak
-            state.dalleImage = []
+            state.dalleImage = {}
         },
         fetchEnd:(state)=>{
             state.loading =false;
@@ -44,14 +44,11 @@ const touchSlice=createSlice({
 
             return {
 
+                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgEndTime:d.toLocaleTimeString(),status:true},
+
                 dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,endtime:d.toLocaleTimeString()}],
 
-                dalleImage:[...state.dalleImage,{id:new Date().getTime(),currentImgUrl:payload.res.data[0].url,ImgTime:d.toLocaleTimeString(),userPrompt:payload.data.prompt}],
-
-                // dalleImage:[payload.res.data[0].url,d.toLocaleTimeString(),payload.data.prompt],
-
-                
-
+      
 
             }
         }
