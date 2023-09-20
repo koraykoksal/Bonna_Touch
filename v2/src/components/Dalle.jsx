@@ -23,26 +23,25 @@ export const Dalle = () => {
 
   const {loading,dalleImage} = useSelector((state)=>state.touch)
 
-  const [filtering, setfiltering] = useState(true)
+  const [filtering, setfiltering] = useState(false)
 
 
-  let d = new Date()
-  let currentime = d.toLocaleTimeString()
+  let currentime = new Date().getHours()
 
-  const {imgEndTime}=dalleImage
+  const {imgEndTime,status}=dalleImage
 
   const control=()=>{
 
     if(currentime <= imgEndTime){
-      setfiltering(false)
+      setfiltering(true)
     }
+
   }
  
   useEffect(() => {
     control();
-  }, [])
+  }, [loading])
   
-
   
   return( 
 
@@ -52,11 +51,12 @@ export const Dalle = () => {
 
     {loading && (
 
-    <Box sx={{ display: 'flex',justifyContent:'center',mt:'10rem'}} >
+    <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
 
-     {/* <CircularProgress color="success" sx={{scale:'2'}} /> */}
+     <CircularProgress color="success" sx={{scale:'2'}} />
 
-      <img src={generateGift} alt="" />
+      {/* <img src={generateGift} alt="" /> */}
+      
 
     </Box>
 
@@ -64,12 +64,8 @@ export const Dalle = () => {
     )}
 
 
-      {
+    {
         filtering ? (
-
-          ""
-
-        ):(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 
@@ -94,8 +90,12 @@ export const Dalle = () => {
 
           </CardActionArea> 
 
+        ):(
+
+          ""
+
         )
-      }
+    }
 
 
 

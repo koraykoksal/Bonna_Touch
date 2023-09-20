@@ -19,8 +19,8 @@ export default function History() {
 
   const [choice, setchoice] = useState({})
 
-  let d = new Date()
-  let currentime = d.toLocaleTimeString()
+ 
+  let currentime = new Date().getHours()
 
 
 

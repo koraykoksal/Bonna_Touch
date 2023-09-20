@@ -88,7 +88,7 @@ const handleDrawerToggle = () => {
           </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-          <img src={bonnaTouchLogo} style={{maxHeight:'90px'}} />
+          <img src={bonnaTouchLogo} style={{maxHeight:'75px'}} />
           </Box>
 
           
@@ -129,12 +129,5 @@ const handleDrawerToggle = () => {
   );
 }
 
-// Navs.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * You won't need it on your project.
-//    */
-//   window: PropTypes.func,
-// };
 
 export default Navs;
