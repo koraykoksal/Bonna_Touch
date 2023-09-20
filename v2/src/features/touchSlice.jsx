@@ -13,8 +13,6 @@ const initialState={
     dalleImage:{},
 }
 
-
-
 const touchSlice=createSlice({
 
     name:"touch",
@@ -38,15 +36,18 @@ const touchSlice=createSlice({
         },
         fetchSuccess:(state,{payload})=>{
 
-            // let d = new Date()
-            let h = new Date().getHours()+2
-            // d.setHours(h+1.5)
+            // const d = new Date()
+            // const time = d.setHours(d.getHours()+2)
+
+            const time = new Date().getHours()+1
+            const min = new Date().getMinutes()
+     
 
             return {
 
-                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgEndTime:h,status:true},
+                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:time,status:true},
 
-                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,endtime:h}],
+                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:time,imgMin:min}],
 
       
 

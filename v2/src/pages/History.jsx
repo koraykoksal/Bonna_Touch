@@ -18,9 +18,8 @@ export default function History() {
   const {dalleData} = useSelector((state)=>state.touch)
 
   const [choice, setchoice] = useState({})
-
  
-  let currentime = new Date().getHours()
+  const currentTime = new Date().getHours()
 
 
 
@@ -28,7 +27,7 @@ export default function History() {
 
     <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
 
-      {dalleData.filter(item=>currentime <= item.endtime).map((data)=>(
+      {dalleData.filter(item=>currentTime <= item.imgTime).map((data)=>(
 
       <Card sx={{ maxWidth: 345,maxHeight:450 }} key={data.id}>
         <CardActionArea>
@@ -58,7 +57,7 @@ export default function History() {
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-            Expiry:{data.endtime}
+            Expiry:{data.imgTime}:{data.imgMin}
             </Typography>
 
           </CardContent>

@@ -23,16 +23,16 @@ export const Dalle = () => {
 
   const {loading,dalleImage} = useSelector((state)=>state.touch)
 
+  const {imgTime,status}=dalleImage
+
   const [filtering, setfiltering] = useState(false)
 
+  const currentime = new Date().getHours()
 
-  let currentime = new Date().getHours()
-
-  const {imgEndTime,status}=dalleImage
-
+  
   const control=()=>{
 
-    if(currentime <= imgEndTime){
+    if(currentime <= imgTime){
       setfiltering(true)
     }
 
@@ -42,7 +42,12 @@ export const Dalle = () => {
     control();
   }, [loading])
   
+
+  console.log(currentime)
+  console.log(imgTime)
+  console.log(dalleImage)
   
+
   return( 
 
 
