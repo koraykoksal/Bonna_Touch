@@ -46,11 +46,6 @@ const touchSlice=createSlice({
 
             const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
-            
-
-            // const time = new Date().getHours()+1
-            // const min = new Date().getMinutes()
-     
 
             return {
 

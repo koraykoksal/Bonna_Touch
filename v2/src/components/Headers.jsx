@@ -5,9 +5,9 @@ import { setpromptGpt } from '../features/touchSlice'
 import axios from 'axios'
 import { Dalle } from './Dalle'
 import useDalleCall from '../hooks/useDalleCall'
-import { Box, Button, Container, FormControl, Input, TextField } from '@mui/material'
-import { Form } from "formik"
-
+import { Box, Button, Container, Input, TextField } from '@mui/material'
+import { Form, Formik } from "formik"
+import FormControl from '@mui/material/FormControl';
 
 export const Headers = () => {
 
@@ -45,8 +45,15 @@ export const Headers = () => {
 
     <Container>
 
-      <Box sx={{display:'flex',justifyContent:'center',padding:2}}>
+
+      
+      <Box >
+
+        <form onSubmit={handleSearch} style={{display:'flex',justifyContent:'center',padding:2}}>
+
+   
         <TextField
+        required
         fullWidth
         label="Prompt"
         name='prompt'
@@ -54,13 +61,17 @@ export const Headers = () => {
         type='text'
         variant='outlined'
         multiline
-        required
+        value={prompt}
         onChange={(e)=>setprompt(e.target.value)}
         />
 
-        <Button variant='contained' type='submit' onClick={handleSearch}>
+
+        <Button variant='contained' type='submit'>
           Generate
         </Button>
+
+        </form>
+   
       </Box>
       
     </Container>
