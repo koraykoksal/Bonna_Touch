@@ -23,7 +23,7 @@ export const Dalle = () => {
 
   const {loading,dalleImage} = useSelector((state)=>state.touch)
 
-  const {imgTime,status}=dalleImage
+  // const {imgTime,status}=dalleImage
 
   const [filtering, setfiltering] = useState(false)
 
@@ -35,25 +35,25 @@ export const Dalle = () => {
   const minute = d.getMinutes()
   const year = d.getFullYear()
   const month = d.getMonth()+1
-  const day = d.getDay()
+  const day = d.getDate()
 
   const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
   
-  const control=()=>{
+  // const control=()=>{
 
-    if(new Date(datetime) <= new Date(imgTime)){
-      setfiltering(true)
-    }
+  //   if(new Date(datetime) <= new Date(imgTime)){
+  //     setfiltering(true)
+  //   }
 
-  }
+  // }
  
-  useEffect(() => {
-    control();
-  }, [loading])
+  // useEffect(() => {
+  //   control();
+  // }, [loading])
 
 
-
+  console.log(dalleImage)
 
   return( 
 
@@ -76,15 +76,16 @@ export const Dalle = () => {
     )}
 
 
+
     {
-        filtering ? (
+        dalleImage.filter(item => new Date(datetime) <= new Date(item.imgTime)).map((data)=>(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 
           <CardMedia
             component="img"
             height="440"
-            image={dalleImage.imgUrl}
+            image={data.imgUrl}
             alt=""
             sx={{borderRadius:'0.5rem'}}
             />
@@ -92,7 +93,7 @@ export const Dalle = () => {
 
           <CardContent>
             <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-              {dalleImage.userPrompt}
+              {data.userPrompt}
             </Typography>
           </CardContent>
 
@@ -101,13 +102,10 @@ export const Dalle = () => {
           </Box>
 
           </CardActionArea> 
-
-        ):(
-
-          ""
-
-        )
+        
+        ))
     }
+
 
 
 

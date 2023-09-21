@@ -10,7 +10,7 @@ const initialState={
     error:"",
     userPrompt:"",
     dalleData:[],
-    dalleImage:{},
+    dalleImage:[],
 }
 
 const touchSlice=createSlice({
@@ -24,7 +24,7 @@ const touchSlice=createSlice({
             state.loading =true;
             state.error = false;
             //fetchStart her başladığında dalleImage de kayıtlı olan url bilgisi silinecek ve generate işlemi yapılırken progress bar çalışacak
-            state.dalleImage = {}
+            state.dalleImage = []
         },
         fetchEnd:(state)=>{
             state.loading =false;
@@ -42,7 +42,7 @@ const touchSlice=createSlice({
             const minute = d.getMinutes()
             const year = d.getFullYear()
             const month = d.getMonth()+1
-            const day = d.getDay()
+            const day = d.getDate()
 
             const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
@@ -54,9 +54,9 @@ const touchSlice=createSlice({
 
             return {
 
-                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:datetime,status:true},
+                dalleImage:[{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:datetime,status:true}],
 
-                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:d}],
+                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:datetime}],
 
       
 
