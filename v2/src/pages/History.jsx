@@ -29,14 +29,14 @@ export default function History() {
 
   const toplamImg=()=>{
     
-    dalleData.forEach((e,i) => {
+    dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).forEach((e,i)=>{
       sum = i++
     });
 
     return sum+1
   }
 
-  
+
 
   return ( 
 

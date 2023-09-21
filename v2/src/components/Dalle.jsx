@@ -53,7 +53,6 @@ export const Dalle = () => {
   // }, [loading])
 
 
-  console.log(dalleImage)
 
   return( 
 
