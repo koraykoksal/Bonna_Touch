@@ -36,18 +36,27 @@ const touchSlice=createSlice({
         },
         fetchSuccess:(state,{payload})=>{
 
-            // const d = new Date()
-            // const time = d.setHours(d.getHours()+2)
+            const d = new Date()
 
-            const time = new Date().getHours()+1
-            const min = new Date().getMinutes()
+            const hour = d.getHours()+1
+            const minute = d.getMinutes()
+            const year = d.getFullYear()
+            const month = d.getMonth()+1
+            const day = d.getDay()
+
+            const datetime = `${year}-${month}-${day} ${hour}:${minute}`
+
+            
+
+            // const time = new Date().getHours()+1
+            // const min = new Date().getMinutes()
      
 
             return {
 
-                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:time,status:true},
+                dalleImage:{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:datetime,status:true},
 
-                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:time,imgMin:min}],
+                dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:d}],
 
       
 

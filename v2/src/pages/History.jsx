@@ -7,7 +7,7 @@ import { Box, CardActionArea } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {BiDownload} from 'react-icons/bi'
 import axios from 'axios'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function History() {
@@ -21,13 +21,24 @@ export default function History() {
  
   const currentTime = new Date().getHours()
 
+  const d = new Date()
 
+  const hour = d.getHours()
+  const minute = d.getMinutes()
+  const year = d.getFullYear()
+  const month = d.getMonth()+1
+  const day = d.getDay()
+
+  const datetime = `${year}-${month}-${day} ${hour}:${minute}`
+
+  console.log(dalleData)
+  
 
   return ( 
 
     <div className='flex flex-wrap justify-center items-center gap-5 my-12'>
 
-      {dalleData.filter(item=>currentTime <= item.imgTime).map((data)=>(
+      {dalleData.filter(item=>new Date(datetime) <= new Date(item.imgTime)).map((data)=>(
 
       <Card sx={{ maxWidth: 345,maxHeight:450 }} key={data.id}>
         <CardActionArea>
@@ -57,7 +68,7 @@ export default function History() {
             </Typography>
 
             <Typography variant="body2" color="text.secondary">
-            Expiry:{data.imgTime}:{data.imgMin}
+            Expiry:{data.imgTime}
             </Typography>
 
           </CardContent>

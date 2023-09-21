@@ -27,12 +27,22 @@ export const Dalle = () => {
 
   const [filtering, setfiltering] = useState(false)
 
-  const currentime = new Date().getHours()
+  const currentime = new Date().toLocaleString()
+
+  const d = new Date()
+
+  const hour = d.getHours()
+  const minute = d.getMinutes()
+  const year = d.getFullYear()
+  const month = d.getMonth()+1
+  const day = d.getDay()
+
+  const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
   
   const control=()=>{
 
-    if(currentime <= imgTime){
+    if(new Date(datetime) <= new Date(imgTime)){
       setfiltering(true)
     }
 
@@ -41,12 +51,9 @@ export const Dalle = () => {
   useEffect(() => {
     control();
   }, [loading])
-  
 
-  console.log(currentime)
-  console.log(imgTime)
-  console.log(dalleImage)
-  
+
+
 
   return( 
 
@@ -58,9 +65,9 @@ export const Dalle = () => {
 
     <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
 
-     <CircularProgress color="success" sx={{scale:'2'}} />
+     {/* <CircularProgress color="success" sx={{scale:'2'}} /> */}
 
-      {/* <img src={generateGift} alt="" /> */}
+      <img src={generateGift} alt="" />
       
 
     </Box>
