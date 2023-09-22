@@ -26,29 +26,28 @@ export default function History() {
   const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
   let sum = 0;
+  const [status, setstatus] = useState(true)
 
   const toplamImg=()=>{
+
+    sum = dalleData.reduce((n,item)=>new Date(datetime) < new Date(item.imgTime) ? n+1:n,0)
+
+    return sum
     
-    dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).forEach((e,i)=>{
-      sum = i++
-    });
-
-    return sum+1
   }
-
 
 
   return ( 
 
-    <>
+    <div style={{flexDirection:'column'}}>
 
-      <Container sx={{padding:2,marginBottom:5,textAlign:'center'}}>
-      <Typography variant='subtitle1' color="text.secondary">Total AI Images : {toplamImg()}</Typography>
-      </Container>
+        {/* <Container sx={{padding:2,marginBottom:5,textAlign:'center'}}>
+        <Typography variant='subtitle1' color="text.secondary">Total AI Images  {toplamImg()}</Typography>
+        </Container> */}
       
 
       <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',alignItems:'center',gap:2,marginBottom:5}}>
-        {dalleData.filter(item => new Date(datetime).toString() < new Date(item.imgTime).toString()).map((data)=>(
+        {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
 
           <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
 
@@ -90,6 +89,6 @@ export default function History() {
      
         
 
-    </>
+    </div>
   );
 }
