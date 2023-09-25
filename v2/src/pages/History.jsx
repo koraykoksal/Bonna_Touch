@@ -26,7 +26,6 @@ export default function History() {
   const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
   let sum = 0;
-  const [status, setstatus] = useState(true)
 
   const toplamImg=()=>{
 
@@ -36,6 +35,7 @@ export default function History() {
     
   }
 
+  
 
   return ( 
 

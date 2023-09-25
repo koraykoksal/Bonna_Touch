@@ -8,6 +8,7 @@ import useDalleCall from '../hooks/useDalleCall'
 import { Box, Button, Container, Input, TextField } from '@mui/material'
 import { Form, Formik } from "formik"
 import FormControl from '@mui/material/FormControl';
+import SendIcon from '@mui/icons-material/Send';
 
 export const Headers = () => {
 
@@ -52,6 +53,7 @@ export const Headers = () => {
         <form onSubmit={handleSearch} style={{display:'flex',justifyContent:'center',padding:2}}>
 
    
+        
         <TextField
         required
         fullWidth
@@ -63,7 +65,9 @@ export const Headers = () => {
         multiline
         value={prompt}
         onChange={(e)=>setprompt(e.target.value)}
+        
         />
+
 
 
         <Button variant='contained' type='submit'>
