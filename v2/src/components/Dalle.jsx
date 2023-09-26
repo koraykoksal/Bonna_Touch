@@ -178,9 +178,9 @@ export const Dalle = () => {
             </Typography>
           </CardContent>
 
-          <Box textAlign={'center'} padding={'0.3rem'}>
+          {/* <Box textAlign={'center'} padding={'0.3rem'}>
             <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
-          </Box>
+          </Box> */}
 
           </CardActionArea> 
         
