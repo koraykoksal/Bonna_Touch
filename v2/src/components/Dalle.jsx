@@ -40,31 +40,56 @@ export const Dalle = () => {
   const [imgg, setimg] = useState()
   const [sizee, setsize] = useState("1024x1024")
 
+
+  let myData=""
+
   const handleChange=(e)=>{
 
-    let imgName= ""
-    const input = e.target;
+    // let imgName= ""
+    // const input = e.target;
 
-    for (let i = 0; i < input.files.length; i++) {
-      console.log(input.files[i]);
-      imgName=input.files[i]
+    // for (let i = 0; i < input.files.length; i++) {
+    //   console.log(input.files[i]);
+    //   imgName=input.files[i]
+
+    //   console.log(input)
+    // }
+
+    const file = e.target.files[0]
+
+    if(file){
+      
+      //setimg({...imgg,image:new Blob([file], 'image',{ type:file.type })})
+
+      const data = new Blob([file],{ type:file.type })
+      readFile(data)
+      
     }
 
-    setimg({...imgg,image:imgName,n:2,size:'1024x1024'})
+    function readFile(input){
 
-    // setimg({...imgg,[e.target.files]:e.target.files[0],n:2,size:'1024x1024'})
+      const fr = new FileReader();
+
+      fr.readAsDataURL(input)
+
+      fr.addEventListener('load',()=>{
+        const res = fr.result;
+        myData = res
+        console.log(res)
+      })
+    }
+   
+    // setimg({...imgg,image:imgName,n:2,size:'1024x1024'})
+
 
   }
   
 
 
-
   const handleVariation=(e)=>{
     e.preventDefault();
 
-    //setformD({...formD,image:imgg,n:nn,size:sizee})
-
-    getImageVariationData('variations',imgg)
+    getImageVariationData('variations',myData)
 
   }
 
@@ -75,7 +100,7 @@ export const Dalle = () => {
 
   <>
 
-    <Container sx={{padding:5}}>
+    {/* <Container sx={{padding:5}}>
     <form id="formElem" onChange={handleChange} onSubmit={handleVariation}>
 
       Picture : <input type="file" id='file-input' name="image" accept="image/*"  />
@@ -83,7 +108,7 @@ export const Dalle = () => {
       <input type="submit" />
 
     </form>
-    </Container>
+    </Container> */}
     
 
     {loading && (
@@ -100,7 +125,7 @@ export const Dalle = () => {
 
 
 
-    {/* {
+    {
         dalleImage.filter(item => new Date(datetime) <= new Date(item.imgTime)).map((data)=>(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
@@ -129,7 +154,7 @@ export const Dalle = () => {
           </CardActionArea> 
         
         ))
-    } */}
+    }
 
 
 

@@ -4,6 +4,7 @@ import { fetchDownload, fetchEnd, fetchFail, fetchStart, fetchSuccess, fetchTemi
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {toastInfoNotify,toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
+import img1 from '../assets/img/img1.png'
 
 
 const useDalleCall = () => {
@@ -68,6 +69,8 @@ const useDalleCall = () => {
     }
 
 
+  
+
     //! varyasyon oluşturma
     const getImageVariationData=async (url,data)=>{
 
@@ -81,13 +84,14 @@ const useDalleCall = () => {
              
                 method:'post',
                 headers:{
-                    'Content-Type': 'multipart/form-data',
+                    // 'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
+                // body:data
                 body:{
-                    "image":data.image.name,
-                    "n": data.n,
-                    "size":data.size
+                    "image":data,
+                    "n": '2',
+                    "size":'1024x1024'
                 }
                 
             })
