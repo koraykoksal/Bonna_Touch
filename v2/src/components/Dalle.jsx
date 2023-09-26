@@ -85,7 +85,6 @@ export const Dalle = () => {
   }
   
 
-
   const handleVariation=(e)=>{
     e.preventDefault();
 
@@ -93,7 +92,7 @@ export const Dalle = () => {
 
   }
 
-  
+  console.log(dalleImage)
 
   return( 
 
@@ -125,7 +124,7 @@ export const Dalle = () => {
 
 
 
-    {
+    {/* {
         dalleImage.filter(item => new Date(datetime) <= new Date(item.imgTime)).map((data)=>(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
@@ -147,16 +146,46 @@ export const Dalle = () => {
             </Typography>
           </CardContent>
 
-          {/* <Box textAlign={'center'} padding={'0.3rem'}>
+          <Box textAlign={'center'} padding={'0.3rem'}>
             <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
-          </Box> */}
+          </Box>
+
+          </CardActionArea> 
+        
+        ))
+    } */}
+
+
+{
+        dalleImage.map((data)=>(
+
+          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+                                
+          <CardMedia
+            component="img"
+            height="440"
+            image={data.imgUrl}
+            alt=""
+            sx={{borderRadius:'0.5rem'}}
+            />
+
+
+
+
+          <CardContent>
+            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+              {data.userPrompt}
+            </Typography>
+          </CardContent>
+
+          <Box textAlign={'center'} padding={'0.3rem'}>
+            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
+          </Box>
 
           </CardActionArea> 
         
         ))
     }
-
-
 
 
 

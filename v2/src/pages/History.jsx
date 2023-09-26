@@ -35,7 +35,7 @@ export default function History() {
     
   }
 
-  
+
 
   return ( 
 
@@ -47,7 +47,7 @@ export default function History() {
       
 
       <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',alignItems:'center',gap:2,marginBottom:5}}>
-        {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
+        {/* {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
 
           <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
 
@@ -81,7 +81,43 @@ export default function History() {
 
           </Card>
 
-          ))}
+          ))} */}
+
+        {dalleData.map((data)=>(
+
+        <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
+
+          <CardActionArea>
+            
+            <Box sx={{padding:0.5}}>
+            <Typography variant="body2" color="text.secondary">
+              Expiry : {data.imgTime}
+            </Typography>
+            </Box>
+            
+            <Box>
+            
+            <a href={data.promptImg} download={data.promptImg} target='_blank'>
+            <CardMedia
+              component="img"
+              height="140"
+              image={data.promptImg}
+            />
+            </a>
+
+            </Box>
+            
+            <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
+            <Typography variant="body2" color="text.secondary">
+                    {data.prompt}
+              </Typography>
+            </CardContent>
+
+          </CardActionArea>
+
+        </Card>
+
+        ))}
       </Container>
 
     
