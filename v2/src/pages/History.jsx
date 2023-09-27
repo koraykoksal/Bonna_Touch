@@ -43,8 +43,10 @@ export default function History() {
 
   const filtrelenmisData=handleFiltre(dalleData,datetime)
 
+  console.log("ham data : ",dalleData)
+  console.log("filtrelenmis data : ",filtrelenmisData)
 
-
+  
   return ( 
 
     <div style={{flexDirection:'column'}}>
