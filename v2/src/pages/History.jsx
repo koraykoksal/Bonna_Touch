@@ -35,6 +35,14 @@ export default function History() {
     
   }
 
+  const handleFiltre=(data,currenttime)=>{
+
+    const filtrelenmisDizi = data.filter(item => new Date(currenttime) < new Date(item.imgTime))
+    return filtrelenmisDizi
+  }
+
+  const filtrelenmisData=handleFiltre(dalleData,datetime)
+
 
 
   return ( 
@@ -83,7 +91,7 @@ export default function History() {
 
           ))} */}
 
-        {dalleData.map((data)=>(
+        {filtrelenmisData.map((data)=>(
 
         <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
 
@@ -118,6 +126,8 @@ export default function History() {
         </Card>
 
         ))}
+
+
       </Container>
 
     

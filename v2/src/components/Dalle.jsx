@@ -92,14 +92,13 @@ export const Dalle = () => {
 
   }
 
-  console.log(dalleImage)
 
   return( 
 
 
   <>
 
-    {/* <Container sx={{padding:5}}>
+    <Container sx={{padding:5}}>
     <form id="formElem" onChange={handleChange} onSubmit={handleVariation}>
 
       Picture : <input type="file" id='file-input' name="image" accept="image/*"  />
@@ -107,7 +106,7 @@ export const Dalle = () => {
       <input type="submit" />
 
     </form>
-    </Container> */}
+    </Container>
     
 
     {loading && (
@@ -156,36 +155,6 @@ export const Dalle = () => {
     } */}
 
 
-{
-        dalleImage.map((data)=>(
-
-          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-                                
-          <CardMedia
-            component="img"
-            height="440"
-            image={data.imgUrl}
-            alt=""
-            sx={{borderRadius:'0.5rem'}}
-            />
-
-
-
-
-          <CardContent>
-            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-              {data.userPrompt}
-            </Typography>
-          </CardContent>
-
-          {/* <Box textAlign={'center'} padding={'0.3rem'}>
-            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
-          </Box> */}
-
-          </CardActionArea> 
-        
-        ))
-    }
 
 
 
