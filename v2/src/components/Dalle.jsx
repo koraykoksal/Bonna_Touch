@@ -87,11 +87,17 @@ export const Dalle = () => {
 
   const handleVariation=(e)=>{
     e.preventDefault();
-
     getImageVariationData('variations',myData)
-
   }
 
+  const handleFilter=(data,currentDate)=>{
+    const filtrelenmisDizi = data.filter((item)=>new Date(currentDate) < new Date(item.imgTime))
+    return filtrelenmisDizi
+  }
+
+  const filtrelenmisData = handleFilter(dalleImage,datetime)
+
+  console.log(filtrelenmisData)
 
   return( 
 
@@ -153,6 +159,37 @@ export const Dalle = () => {
         
         ))
     } */}
+
+    {
+        filtrelenmisData.map((data)=>(
+
+          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+                                
+          <CardMedia
+            component="img"
+            height="440"
+            image={data.imgUrl}
+            alt=""
+            sx={{borderRadius:'0.5rem'}}
+            />
+
+
+
+
+          <CardContent>
+            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+              {data.userPrompt}
+            </Typography>
+          </CardContent>
+
+          <Box textAlign={'center'} padding={'0.3rem'}>
+            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
+          </Box>
+
+          </CardActionArea> 
+        
+        ))
+    }
 
 
 

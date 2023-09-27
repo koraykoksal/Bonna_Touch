@@ -37,24 +37,21 @@ const touchSlice=createSlice({
         fetchSuccess:(state,{payload})=>{
 
             const d = new Date()
-
             const hour = d.getHours()+1
             const minute = d.getMinutes()
             const year = d.getFullYear()
             const month = d.getMonth()+1
             const day = d.getDate()
-
             const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
-
+            
             return {
 
                 dalleImage:[{...state.dalleImage,imgUrl:payload.res.data[0].url,userPrompt:payload.data.prompt,imgTime:datetime,status:true}],
 
                 dalleData:[...state.dalleData,{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:datetime}],
 
-      
-
+    
             }
         }
 

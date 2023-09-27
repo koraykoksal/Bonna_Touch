@@ -25,36 +25,29 @@ export default function History() {
 
   const datetime = `${year}-${month}-${day} ${hour}:${minute}`
 
-  let sum = 0;
+  // let sum = 0;
 
-  const toplamImg=()=>{
+  // const toplamImg=()=>{
 
-    sum = dalleData.reduce((n,item)=>new Date(datetime) < new Date(item.imgTime) ? n+1:n,0)
+  //   sum = dalleData.reduce((n,item)=>new Date(datetime) < new Date(item.imgTime) ? n+1:n,0)
 
-    return sum
+  //   return sum
     
-  }
+  // }
 
-  const handleFiltre=(data,currenttime)=>{
-
-    const filtrelenmisDizi = data.filter(item => new Date(currenttime) < new Date(item.imgTime))
+  const handleFilter=(data,currentDate)=>{
+    const filtrelenmisDizi = data.filter((item)=>new Date(currentDate) < new Date(item.imgTime))
     return filtrelenmisDizi
   }
 
-  const filtrelenmisData=handleFiltre(dalleData,datetime)
+  const filtrelenmisData = handleFilter(dalleData,datetime)
 
   console.log("ham data : ",dalleData)
-  console.log("filtrelenmis data : ",filtrelenmisData)
+  console.log("filtrelenmis data : ", filtrelenmisData)
 
-  
   return ( 
 
     <div style={{flexDirection:'column'}}>
-
-        {/* <Container sx={{padding:2,marginBottom:5,textAlign:'center'}}>
-        <Typography variant='subtitle1' color="text.secondary">Total AI Images  {toplamImg()}</Typography>
-        </Container> */}
-      
 
       <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',alignItems:'center',gap:2,marginBottom:5}}>
         {/* {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
@@ -92,7 +85,6 @@ export default function History() {
           </Card>
 
           ))} */}
-
         {filtrelenmisData.map((data)=>(
 
         <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
@@ -128,14 +120,7 @@ export default function History() {
         </Card>
 
         ))}
-
-
       </Container>
-
-    
-
-     
-        
 
     </div>
   );
