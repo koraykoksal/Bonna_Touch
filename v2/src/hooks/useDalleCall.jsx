@@ -84,7 +84,7 @@ const useDalleCall = () => {
              
                 method:'post',
                 headers:{
-                    // 'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
                 // body:data

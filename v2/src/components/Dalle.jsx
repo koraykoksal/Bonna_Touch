@@ -41,7 +41,8 @@ export const Dalle = () => {
   const [sizee, setsize] = useState("1024x1024")
 
 
-  let myData=""
+  
+  const formData = new FormData()
 
   const handleChange=(e)=>{
 
@@ -57,27 +58,8 @@ export const Dalle = () => {
 
     const file = e.target.files[0]
 
-    if(file){
-      
-      //setimg({...imgg,image:new Blob([file], 'image',{ type:file.type })})
-
-      const data = new Blob([file],{ type:file.type })
-      readFile(data)
-      
-    }
-
-    function readFile(input){
-
-      const fr = new FileReader();
-
-      fr.readAsDataURL(input)
-
-      fr.addEventListener('load',()=>{
-        const res = fr.result;
-        myData = res
-        console.log(res)
-      })
-    }
+   
+    formData.append("user-file",file,"user-file.png")
    
     // setimg({...imgg,image:imgName,n:2,size:'1024x1024'})
 
@@ -87,7 +69,16 @@ export const Dalle = () => {
 
   const handleVariation=(e)=>{
     e.preventDefault();
-    getImageVariationData('variations',myData)
+
+    fetch("https://httpbin.org/post",{
+      method:"POST",
+      body:formData,
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+
+    getImageVariationData('variations',formData)
   }
 
   const handleFilter=(data,currentDate)=>{

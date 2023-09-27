@@ -47,9 +47,18 @@ export default function History() {
 
   return ( 
 
-    <div style={{flexDirection:'column'}}>
+    <div>
 
-      <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',alignItems:'center',gap:2,marginBottom:5}}>
+      <Box padding={3} mb={5}>
+      <Typography align='center' color='#FF6969' variant='h5'>
+        History
+      </Typography>
+      </Box>
+
+      <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
+
+     
+
         {/* {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
 
           <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
@@ -85,14 +94,15 @@ export default function History() {
           </Card>
 
           ))} */}
+
         {filtrelenmisData.map((data)=>(
 
-        <Card sx={{ maxWidth: 350,maxHeight:450 }} key={data.id}>
+        <Card sx={{ maxWidth: 380,maxHeight:450,boxShadow:3 }} key={data.id}>
 
           <CardActionArea>
             
             <Box sx={{padding:0.5}}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="subtitle2" color="text.secondary">
               Expiry : {data.imgTime}
             </Typography>
             </Box>
@@ -110,7 +120,7 @@ export default function History() {
             </Box>
             
             <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="subtitle2" color="text.secondary">
                     {data.prompt}
               </Typography>
             </CardContent>
