@@ -45,19 +45,19 @@ export default function History() {
   console.log("ham data : ",dalleData)
   console.log("filtrelenmis data : ", filtrelenmisData)
 
+  //flex flex-wrap justify-center items-center gap-5 my-12
+
   return ( 
 
-    <div>
+    <>
 
-      <Box padding={3} mb={5}>
-      <Typography align='center' color='#FF6969' variant='h5'>
-        History
-      </Typography>
-      </Box>
+    <Box padding={2}>
+    <Typography variant='h5' align='center' mb={5} color='#FF6969'>
+      AI Image History
+    </Typography>
+    </Box>
 
-      <Container sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
-
-     
+      <Box sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
 
         {/* {dalleData.filter(item => new Date(datetime) < new Date(item.imgTime)).map((data)=>(
 
@@ -97,41 +97,41 @@ export default function History() {
 
         {filtrelenmisData.map((data)=>(
 
-        <Card sx={{ maxWidth: 380,maxHeight:450,boxShadow:3 }} key={data.id}>
+          <Card sx={{ maxWidth: 380,boxShadow:3 }} key={data.id}>
 
-          <CardActionArea>
+            <CardActionArea>
+              
             
-            <Box sx={{padding:0.5}}>
-            <Typography variant="subtitle2" color="text.secondary">
-              Expiry : {data.imgTime}
-            </Typography>
-            </Box>
-            
-            <Box>
-            
-            <a href={data.promptImg} download={data.promptImg} target='_blank'>
-            <CardMedia
-              component="img"
-              height="140"
-              image={data.promptImg}
-            />
-            </a>
-
-            </Box>
-            
-            <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
-            <Typography variant="subtitle2" color="text.secondary">
-                    {data.prompt}
+              <Typography variant="subtitle2" color="text.secondary" p={0.5}>
+                Expiry : {data.imgTime}
               </Typography>
-            </CardContent>
+             
+              
+              <Box>
+              
+              <a href={data.promptImg} download={data.promptImg} target='_blank'>
+              <CardMedia
+                component="img"
+                height="140"
+                image={data.promptImg}
+              />
+              </a>
 
-          </CardActionArea>
+              </Box>
+              
+              <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
+              <Typography variant="subtitle2" color="text.secondary">
+                      {data.prompt}
+                </Typography>
+              </CardContent>
 
-        </Card>
+            </CardActionArea>
+
+          </Card>
 
         ))}
-      </Container>
+      </Box>
 
-    </div>
+    </>
   );
 }
