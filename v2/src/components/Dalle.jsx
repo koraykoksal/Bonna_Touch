@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, Container, filledInputClasses } from '@mui/material';
+import { Box, Button, CardActionArea, Container, adaptV4Theme, filledInputClasses } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState,useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -31,16 +31,6 @@ export const Dalle = () => {
   const day = d.getDate()
 
   const datetime = `${year}-${month}-${day} ${hour}:${minute}`
-
-
-  const [formD, setformD] = useState({})
-
-
-  const [nn, setn] = useState("2")
-  const [imgg, setimg] = useState()
-  const [sizee, setsize] = useState("1024x1024")
-
-
   
   const formData = new FormData()
 
@@ -57,7 +47,6 @@ export const Dalle = () => {
     // }
 
     const file = e.target.files[0]
-
    
     formData.append("user-file",file,"user-file.png")
    
@@ -69,16 +58,7 @@ export const Dalle = () => {
 
   const handleVariation=(e)=>{
     e.preventDefault();
-
-    fetch("https://httpbin.org/post",{
-      method:"POST",
-      body:formData,
-    })
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-
-    getImageVariationData('variations',formData)
+    getImageVariationData('variations')
   }
 
   const handleFilter=(data,currentDate)=>{
@@ -88,7 +68,22 @@ export const Dalle = () => {
 
   const filtrelenmisData = handleFilter(dalleImage,datetime)
 
-  console.log(filtrelenmisData)
+  const handleDownload=(e)=>{
+
+    const a = document.querySelector('a')
+    const data = filtrelenmisData[0].imgUrl
+    //const blob = new Blob([data],{type:'image/png'})
+    const url = URL.createObjectURL({data})
+    
+
+    console.log(data)
+    // console.log(blob)
+    console.log(url)
+
+    a.href = data;
+    a.download = "tt.png"
+
+  }
 
   return( 
 
@@ -118,51 +113,30 @@ export const Dalle = () => {
 
     )}
 
-
-
-    {/* {
-        dalleImage.filter(item => new Date(datetime) <= new Date(item.imgTime)).map((data)=>(
-
-          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-                                
-          <CardMedia
-            component="img"
-            height="440"
-            image={data.imgUrl}
-            alt=""
-            sx={{borderRadius:'0.5rem'}}
-            />
-
-
-
-
-          <CardContent>
-            <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-              {data.userPrompt}
-            </Typography>
-          </CardContent>
-
-          <Box textAlign={'center'} padding={'0.3rem'}>
-            <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
-          </Box>
-
-          </CardActionArea> 
-        
-        ))
-    } */}
-
     {
         filtrelenmisData.map((data)=>(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 
-          <CardMedia
+          {/* <CardMedia
             component="img"
             height="440"
             image={data.imgUrl}
             alt=""
             sx={{borderRadius:'0.5rem'}}
+            onClick={handleDownload}
+          /> */}
+
+            <a>
+            <CardMedia
+            component="img"
+            height="440"
+            image={data.imgUrl}
+            alt=""
+            sx={{borderRadius:'0.5rem'}}
+            onClick={handleDownload}
             />
+            </a>
 
 
 
