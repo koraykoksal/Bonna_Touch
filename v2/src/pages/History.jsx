@@ -16,18 +16,6 @@ export default function History() {
 
   const {dalleData} = useSelector((state)=>state.touch)
 
-  const d = new Date()
-
-  const hour = d.getHours()
-  const minute = d.getMinutes()
-  const year = d.getFullYear()
-  const month = d.getMonth()+1
-  const day = d.getDate()
-
-  //const datetime = `${year}-${month}-${day} ${hour}:${minute}`
-
-  const datetime = moment().format('MMMM Do YYYY, h:mm:ss a')
-
   // let sum = 0;
 
   // const toplamImg=()=>{
@@ -38,22 +26,6 @@ export default function History() {
     
   // }
 
-  // const handleFilter=(data,currentDate)=>{
-  //   const filtrelenmisDizi = data.filter((item)=>currentDate < item.imgTime)
-  
-  //   filtrelenmisDizi.forEach(element => {
-  //     console.log(element.imgTime)
-  //   });
-
-  //   return filtrelenmisDizi
-  // }
-
-  // const filtrelenmisData = handleFilter(dalleData,datetime)
-
-  console.log("ham data : ",dalleData)
-  
-
-  console.log(moment().add(1,'hours').format('MMMM Do YYYY, h:mm:ss a'))
 
   return ( 
 
@@ -66,44 +38,6 @@ export default function History() {
     </Box>
 
       <Box sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
-
-
-
-        {/* {filtrelenmisData.map((data)=>(
-
-          <Card sx={{ maxWidth: 380,boxShadow:3 }} key={data.id}>
-
-            <CardActionArea>
-              
-            
-              <Typography variant="subtitle2" color="text.secondary" p={0.5}>
-                Expiry : {data.imgTime}
-              </Typography>
-             
-              
-              <Box>
-              
-              <a href={data.promptImg} download={data.promptImg} target='_blank'>
-              <CardMedia
-                component="img"
-                height="140"
-                image={data.promptImg}
-              />
-              </a>
-
-              </Box>
-              
-              <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
-              <Typography variant="subtitle2" color="text.secondary">
-                      {data.prompt}
-                </Typography>
-              </CardContent>
-
-            </CardActionArea>
-
-          </Card>
-
-        ))} */}
 
         {dalleData.map((data)=>(
 
