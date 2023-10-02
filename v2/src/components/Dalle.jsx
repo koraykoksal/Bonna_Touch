@@ -27,13 +27,14 @@ export const Dalle = () => {
 
   const formdata=new FormData()
 
+// getImageVariationData('variations',formdata)
 
   // const handleVariation=(e)=>{
   //   e.preventDefault();
   //   getImageVariationData('variations')
   // }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit=async(e)=>{
 
     e.preventDefault();
 
@@ -41,7 +42,42 @@ export const Dalle = () => {
 
     formdata.append('file',yakala.files[0])
 
-    getImageVariationData('variations',formdata)
+    console.log(formdata.get('file'))
+
+    try {
+
+      await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/variations`,{
+       
+          method:'post',
+          headers:{
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
+          },
+          body:formdata
+          
+      })
+      .then((res)=>{
+
+          if(!res.ok){
+             
+              console.log('There is something wrong !')
+          }
+          else{
+
+              return res.json()
+          }
+      })
+      .then((res)=>{
+          console.log(res)
+          
+      })
+      .catch((err)=>{
+          console.log("hata oluştuuu !!")
+          console.log(err)
+      })
+  } catch (error) {
+   console.log("try cath error : ",error)   
+  }
 
   }
 
@@ -51,7 +87,7 @@ export const Dalle = () => {
 
   <>
 
-    {/* <Container sx={{padding:5}}>
+    <Container sx={{padding:5}}>
     <form id="formElem"  onSubmit={handleSubmit}>
 
       Picture : <input type="file" id='file-input' name="image" accept="image/*"  />
@@ -59,7 +95,7 @@ export const Dalle = () => {
       <input type="submit" />
 
     </form>
-    </Container> */}
+    </Container>
     
 
     {loading && (

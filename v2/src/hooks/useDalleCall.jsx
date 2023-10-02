@@ -74,12 +74,12 @@ const useDalleCall = () => {
     //! varyasyon oluşturma
     const getImageVariationData=async (data)=>{
 
-
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
 
         const formdata = new FormData()
         formdata.append('image',data)
 
+        console.log(data)
 
         try {
 
