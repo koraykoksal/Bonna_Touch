@@ -14,6 +14,7 @@ import {saveAs} from 'file-saver'
 import generateGift from '../assets/gift/generateGift.gif'
 import imgV from '../assets/img/imgV.png'
 import axios from 'axios';
+import moment from 'moment';
 
 
 export const Dalle = () => {
@@ -21,7 +22,7 @@ export const Dalle = () => {
 
   const {getImageVariationData} = useDalleCall()
   const {loading,dalleImage} = useSelector((state)=>state.touch)
-
+  const currentTime = moment().format()
 
 
   const formdata=new FormData()
@@ -40,10 +41,8 @@ export const Dalle = () => {
 
     formdata.append('file',yakala.files[0])
 
-    getImageVariationData('variations',formdata.get('file'))
-  
-    console.log(formdata.get('file'))
-    console.log(formdata.has('file'))
+    getImageVariationData('variations',formdata)
+
   }
 
 
@@ -52,7 +51,7 @@ export const Dalle = () => {
 
   <>
 
-    <Container sx={{padding:5}}>
+    {/* <Container sx={{padding:5}}>
     <form id="formElem"  onSubmit={handleSubmit}>
 
       Picture : <input type="file" id='file-input' name="image" accept="image/*"  />
@@ -60,7 +59,7 @@ export const Dalle = () => {
       <input type="submit" />
 
     </form>
-    </Container>
+    </Container> */}
     
 
     {loading && (
@@ -76,7 +75,7 @@ export const Dalle = () => {
     )}
 
     {
-        dalleImage.map((data)=>(
+        dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data)=>(
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 

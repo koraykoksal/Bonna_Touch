@@ -15,6 +15,7 @@ export default function History() {
 
 
   const {dalleData} = useSelector((state)=>state.touch)
+  const currentTime = moment().format()
 
   // let sum = 0;
 
@@ -39,7 +40,7 @@ export default function History() {
 
       <Box sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
 
-        {dalleData.map((data)=>(
+        {dalleData.filter(item => moment(currentTime) < moment(item.imgTime)).map((data)=>(
 
         <Card sx={{ maxWidth: 380,boxShadow:3 }} key={data.id}>
 
@@ -47,7 +48,7 @@ export default function History() {
             
           
             <Typography variant="subtitle2" color="text.secondary" p={0.5}>
-              Expiry : {data.imgTime}
+              Expiry : {moment(data.imgTime).format('LT')}
             </Typography>
           
             
@@ -65,7 +66,7 @@ export default function History() {
             
             <CardContent sx={{maxHeight:'50px',overflow:'auto'}}>
             <Typography variant="subtitle2" color="text.secondary">
-                    {moment(data.prompt).format('dddd')}
+                    {data.prompt}
               </Typography>
             </CardContent>
 

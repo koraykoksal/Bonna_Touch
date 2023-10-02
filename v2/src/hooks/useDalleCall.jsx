@@ -72,27 +72,25 @@ const useDalleCall = () => {
   
 
     //! varyasyon oluşturma
-    const getImageVariationData=async (url,data)=>{
+    const getImageVariationData=async (data)=>{
 
-        console.log(data)
 
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
 
+        const formdata = new FormData()
+        formdata.append('image',data)
+
+
         try {
 
-            await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/${url}`,{
+            await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/variations`,{
              
                 method:'post',
                 headers:{
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
-                // body:data
-                body:{
-                    "image":data,
-                    "n": '2',
-                    "size":'1024x1024'
-                }
+                body:formdata
                 
             })
             .then((res)=>{
