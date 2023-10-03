@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { fetchDownload, fetchEnd, fetchFail, fetchStart, fetchSuccess, fetchTemizle } from '../features/touchSlice'
+import { fetchDownload, fetchEnd, fetchFail, fetchStart, fetchSuccess, fetchVariantSuccess } from '../features/touchSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {toastInfoNotify,toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
@@ -48,6 +48,7 @@ const useDalleCall = () => {
             .then((res)=>{
     
                 dispatch(fetchSuccess({res,data}))
+
                 dispatch(fetchEnd())
                 toastSuccessNotify('Image Genereted')
                     
@@ -72,51 +73,34 @@ const useDalleCall = () => {
   
 
     //! varyasyon oluşturma
-    const getImageVariationData=async (data)=>{
+    const getImageVariationData=async (url,formdata,userdata)=>{
 
         dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
 
-        const formdata = new FormData()
-        formdata.append('image',data)
-
-        console.log(data)
-
         try {
-
-            await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/variations`,{
-             
-                method:'post',
-                headers:{
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
-                },
-                body:formdata
-                
-            })
-            .then((res)=>{
-    
-                if(!res.ok){
-                    dispatch(fetchFail())
-                    toastInfoNotify('There is something wrong !')
-                }
-                else{
-    
-                    return res.json()
-                }
-            })
-            .then((res)=>{
-                console.log(res)
-                dispatch(fetchEnd())
-            })
-            .catch((err)=>{
-                console.log("hata oluştuuu !!")
-                console.log(err)
-                dispatch(fetchFail())
-                toastErrorNotify(err)
-            })
-        } catch (error) {
-         console.log("try cath error : ",error)   
+            
+        axios.post(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/${url}`,formdata,{
+        headers:{
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
         }
+        })
+        .then(response => {
+        //   console.log('İstek başarılı:', response.data.data[0].url);
+          dispatch(fetchVariantSuccess({response,userdata}))
+          dispatch(fetchEnd())
+        })
+        .catch(err => {
+            console.log("hata oluştuuu !!")
+            console.log(err)
+            dispatch(fetchFail())
+            toastErrorNotify(err)
+        });
+        } catch (error) {
+            toastErrorNotify(error)
+        }
+
+
     }
 
 

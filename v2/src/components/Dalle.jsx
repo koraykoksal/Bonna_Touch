@@ -25,59 +25,22 @@ export const Dalle = () => {
   const currentTime = moment().format()
 
 
-  const formdata=new FormData()
-
-// getImageVariationData('variations',formdata)
-
-  // const handleVariation=(e)=>{
-  //   e.preventDefault();
-  //   getImageVariationData('variations')
-  // }
+  let formdata=new FormData()
 
   const handleSubmit=async(e)=>{
 
     e.preventDefault();
 
-    const yakala = document.getElementById('file-input')
+    getImageVariationData('variations',formdata)
 
-    formdata.append('file',yakala.files[0])
-
-    console.log(formdata.get('file'))
-
-    try {
-
-      await fetch(`${process.env.REACT_APP_DALLE_GENERATE_ADDRESS}/variations`,{
-       
-          method:'post',
-          headers:{
-              'Content-Type': 'multipart/form-data',
-              'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
-          },
-          body:formdata
-          
-      })
-      .then((res)=>{
-
-          if(!res.ok){
-             
-              console.log('There is something wrong !')
-          }
-          else{
-
-              return res.json()
-          }
-      })
-      .then((res)=>{
-          console.log(res)
-          
-      })
-      .catch((err)=>{
-          console.log("hata oluştuuu !!")
-          console.log(err)
-      })
-  } catch (error) {
-   console.log("try cath error : ",error)   
   }
+
+  const onFileChange=(e)=>{
+
+    console.log(e.target.files[0])
+    if(e.target && e.target.files[0]){
+      formdata.append("image",e.target.files[0])
+    }
 
   }
 
@@ -88,9 +51,9 @@ export const Dalle = () => {
   <>
 
     <Container sx={{padding:5}}>
-    <form id="formElem"  onSubmit={handleSubmit}>
+    <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
 
-      Picture : <input type="file" id='file-input' name="image" accept="image/*"  />
+      Picture : <input type="file" id='file-input' name="image" onChange={onFileChange} />
 
       <input type="submit" />
 

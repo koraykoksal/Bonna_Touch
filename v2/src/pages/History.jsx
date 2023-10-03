@@ -54,7 +54,7 @@ export default function History() {
             
             <Box>
             
-            <a href={data.promptImg} download={data.promptImg} target='_blank'>
+            <a href={data.promptImg} download='koray' target='_blank'>
             <CardMedia
               component="img"
               height="140"
