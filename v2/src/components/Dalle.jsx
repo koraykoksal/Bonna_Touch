@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, Container, adaptV4Theme, filledInputClasses } from '@mui/material';
+import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState,useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -20,29 +20,29 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const {getImageVariationData} = useDalleCall()
+  // const {getImageVariationData} = useDalleCall()
   const {loading,dalleImage} = useSelector((state)=>state.touch)
   const currentTime = moment().format()
 
 
-  let formdata=new FormData()
+  // let formdata=new FormData()
 
-  const handleSubmit=async(e)=>{
+  // const handleSubmit=async(e)=>{
 
-    e.preventDefault();
+  //   e.preventDefault();
 
-    getImageVariationData('variations',formdata)
+  //   getImageVariationData('variations',formdata)
 
-  }
+  // }
 
-  const onFileChange=(e)=>{
+  // const onFileChange=(e)=>{
 
-    console.log(e.target.files[0])
-    if(e.target && e.target.files[0]){
-      formdata.append("image",e.target.files[0])
-    }
+  //   console.log(e.target.files[0])
+  //   if(e.target && e.target.files[0]){
+  //     formdata.append("image",e.target.files[0])
+  //   }
 
-  }
+  // }
 
 
   return( 
@@ -50,15 +50,6 @@ export const Dalle = () => {
 
   <>
 
-    <Container sx={{padding:5}}>
-    <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
-
-      Picture : <input type="file" id='file-input' name="image" onChange={onFileChange} />
-
-      <input type="submit" />
-
-    </form>
-    </Container>
     
 
     {loading && (
@@ -78,20 +69,15 @@ export const Dalle = () => {
 
           <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 
-
-            <a>
+            
+            <a href={data.imgUrl} target='_blank'>
             <CardMedia
             component="img"
             height="440"
-            image={data.imgUrl}
-            alt=""
+            src={data.imgUrl}
             sx={{borderRadius:'0.5rem'}}
-            
             />
             </a>
-
-
-
 
           <CardContent>
             <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>

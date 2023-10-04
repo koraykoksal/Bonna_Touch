@@ -28,7 +28,11 @@ const navItems = [
     {
         title:'History',
         url:'/history'
-    }
+    },
+    {
+      title:'Variation',
+      url:'/variation'
+  }
 ];
 
 function Navs(props) {
@@ -88,7 +92,7 @@ const handleDrawerToggle = () => {
           </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-          <img src={bonnaTouchLogo} style={{maxHeight:'75px'}} />
+          <img src={bonnaTouchLogo} style={{maxHeight:'75px',objectFit:'cover',scale:'1.3'}} />
           </Box>
 
           

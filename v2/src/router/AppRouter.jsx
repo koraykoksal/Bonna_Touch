@@ -7,6 +7,7 @@ import History from '../pages/History'
 import { NotFound } from '../pages/NotFound'
 import Navs from '../components/Navs'
 import ImageDetail from '../pages/ImageDetail'
+import Variation from '../pages/Variation'
 
 export const AppRouter = () => {
 
@@ -19,9 +20,7 @@ export const AppRouter = () => {
       <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='history' element={<History/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/:id' element={<ImageDetail/>}/>
+      <Route path='variation' element={<Variation/>}/>
       <Route path='*' element={<NotFound/>}/>
     </Routes>
     </BrowserRouter>
