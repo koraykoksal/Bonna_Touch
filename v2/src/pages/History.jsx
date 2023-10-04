@@ -27,6 +27,7 @@ export default function History() {
     
   // }
 
+  console.log(dalleData)
 
   return ( 
 
@@ -40,7 +41,7 @@ export default function History() {
 
       <Box sx={{display:'flex',flexWrap:'wrap-reverse',justifyContent:'center',gap:2,marginBottom:5}}>
 
-        {dalleData.filter(item => moment(currentTime) < moment(item.imgTime)).map((data)=>(
+        {dalleData?.filter(item => moment(currentTime) < moment(item.imgTime)).map((data)=>(
 
         <Card sx={{ maxWidth: 380,boxShadow:3 }} key={data.id}>
 

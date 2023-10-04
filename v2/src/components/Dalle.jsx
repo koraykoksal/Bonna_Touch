@@ -20,31 +20,13 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  // const {getImageVariationData} = useDalleCall()
-  const {loading,dalleImage} = useSelector((state)=>state.touch)
+  const {loadingGeneration,dalleImage} = useSelector((state)=>state.touch)
   const currentTime = moment().format()
 
 
-  // let formdata=new FormData()
-
-  // const handleSubmit=async(e)=>{
-
-  //   e.preventDefault();
-
-  //   getImageVariationData('variations',formdata)
-
-  // }
-
-  // const onFileChange=(e)=>{
-
-  //   console.log(e.target.files[0])
-  //   if(e.target && e.target.files[0]){
-  //     formdata.append("image",e.target.files[0])
-  //   }
-
-  // }
-
-
+  console.log(dalleImage)
+  //filter(item => moment(currentTime) < moment(item.imgTime))
+  
   return( 
 
 
@@ -52,7 +34,7 @@ export const Dalle = () => {
 
     
 
-    {loading && (
+    {loadingGeneration && (
 
     <Box sx={{ display: 'flex',justifyContent:'center',mt:'5rem'}} >
 

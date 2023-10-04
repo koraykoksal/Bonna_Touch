@@ -6,11 +6,13 @@ import moment from "moment";
 
 
 const initialState={
-    loading:"",
+    loadingGeneration:"",
+    loadingVariation:"",
     error:"",
     userPrompt:"",
     dalleData:[],
     dalleImage:[],
+    imgVariation:[],
 }
 
 const touchSlice=createSlice({
@@ -20,21 +22,33 @@ const touchSlice=createSlice({
     reducers:{
         
        
-        fetchStart:(state)=>{
-            state.loading =true;
+        fetchStartGeneration:(state)=>{
+            state.loadingGeneration =true;
             state.error = false;
-            //fetchStart her başladığında dalleImage de kayıtlı olan url bilgisi silinecek ve generate işlemi yapılırken progress bar çalışacak
             state.dalleImage = []
         },
-        fetchEnd:(state)=>{
-            state.loading =false;
+        fetchStartVariation:(state)=>{
+            state.loadingVariation =true;
+            state.error = false;
+            state.ImageVariation=[]
+        },
+        fetchEndGeneration:(state)=>{
+            state.loadingGeneration =false;
             state.error = false;
         },
-        fetchFail:(state)=>{
-            state.loading=false;
+        fetchEndVariation:(state)=>{
+            state.loadingVariation =false;
+            state.error = false;
+        },
+        fetchFailGeneration:(state)=>{
+            state.loadingGeneration=false;
             state.error=true;
         },
-        fetchSuccess:(state,{payload})=>{
+        fetchFailVariation:(state)=>{
+            state.loadingVariation=false;
+            state.error=true;
+        },
+        fetchSuccessGeneration:(state,{payload})=>{
 
             const datetime = moment().add(1,'hours').format()
             const currenttime = moment().format()
@@ -47,14 +61,15 @@ const touchSlice=createSlice({
                 dalleData:[...state.dalleData.filter(item=>moment(currenttime) < moment(item.imgTime)),{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:datetime}],
             }
         },
-        fetchVariantSuccess:(state,{payload})=>{
+        fetchSuccessVariation:(state,{payload})=>{
 
             console.log(payload)
+            
             const datetime = moment().add(1,'hours').format()
             const currenttime = moment().format()
 
             return{
-                dalleImage:[...state.dalleImage.filter(item=>moment(currenttime) < moment(item.imgTime)),{imgUrl:payload.response.data.data[0].url,userPrompt:payload.userdata,imgTime:datetime,status:true}]
+                imgVariation:[...state.imgVariation.filter(item=>moment(currenttime) < moment(item.imgTime)),{imgUrl:payload.response.data.data[0].url,imgTime:datetime,status:true}]
             }
         }
 
@@ -68,11 +83,14 @@ const touchSlice=createSlice({
 
 
 export const {
-    fetchStart,
-    fetchEnd,
-    fetchFail,
-    fetchSuccess,
-    fetchVariantSuccess,
+    fetchStartGeneration,
+    fetchStartVariation,
+    fetchEndGeneration,
+    fetchEndVariation,
+    fetchFailGeneration,
+    fetchFailVariation,
+    fetchSuccessGeneration,
+    fetchSuccessVariation,
     
     }=touchSlice.actions
 

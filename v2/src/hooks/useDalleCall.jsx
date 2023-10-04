@@ -1,10 +1,19 @@
 
 import React from 'react'
-import { fetchDownload, fetchEnd, fetchFail, fetchStart, fetchSuccess, fetchVariantSuccess } from '../features/touchSlice'
+import { 
+    fetchStartGeneration,
+    fetchStartVariation,
+    fetchEndGeneration,
+    fetchEndVariation,
+    fetchFailGeneration,
+    fetchFailVariation,
+    fetchSuccessGeneration,
+    fetchSuccessVariation
+ } from '../features/touchSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {toastInfoNotify,toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'
-import img1 from '../assets/img/img1.png'
+
 
 
 const useDalleCall = () => {
@@ -14,7 +23,7 @@ const useDalleCall = () => {
     const getImageData=(data)=>{
 
    
-        dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
+        dispatch(fetchStartGeneration())    //api isteği öncesi çalışacan reducer
         
         try {
 
@@ -36,7 +45,7 @@ const useDalleCall = () => {
     
                 if(!res.ok){
     
-                    dispatch(fetchFail())
+                    dispatch(fetchFailGeneration())
                     toastInfoNotify('There is something wrong !')
     
                 }
@@ -47,9 +56,9 @@ const useDalleCall = () => {
             })
             .then((res)=>{
     
-                dispatch(fetchSuccess({res,data}))
+                dispatch(fetchSuccessGeneration({res,data}))
 
-                dispatch(fetchEnd())
+                dispatch(fetchEndGeneration())
                 toastSuccessNotify('Image Genereted')
                     
             })
@@ -57,7 +66,7 @@ const useDalleCall = () => {
     
                 console.log("hata oluştuuu !!")
                 console.log(err)
-                dispatch(fetchFail())
+                dispatch(fetchFailGeneration())
                 toastErrorNotify(err)
             })
 
@@ -73,9 +82,9 @@ const useDalleCall = () => {
   
 
     //! varyasyon oluşturma
-    const getImageVariationData=async (url,formdata,userdata)=>{
+    const getImageVariationData=async (url,formdata)=>{
 
-        dispatch(fetchStart())    //api isteği öncesi çalışacan reducer
+        dispatch(fetchStartVariation())    //api isteği öncesi çalışacan reducer
 
         try {
             
@@ -86,14 +95,14 @@ const useDalleCall = () => {
         }
         })
         .then(response => {
-        //   console.log('İstek başarılı:', response.data.data[0].url);
-          dispatch(fetchVariantSuccess({response,userdata}))
-          dispatch(fetchEnd())
+          dispatch(fetchSuccessVariation({response}))
+          dispatch(fetchEndVariation())
+          toastSuccessNotify('Variation Successful')
         })
         .catch(err => {
             console.log("hata oluştuuu !!")
             console.log(err)
-            dispatch(fetchFail())
+            dispatch(fetchFailVariation())
             toastErrorNotify(err)
         });
         } catch (error) {
