@@ -20,12 +20,13 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const {loadingGeneration,dalleImage} = useSelector((state)=>state.touch)
+  const {loadingGeneration,loadingVariation,dalleImage,imgVariation} = useSelector((state)=>state.touch)
   const currentTime = moment().format()
 
 
-  console.log(dalleImage)
-  //filter(item => moment(currentTime) < moment(item.imgTime))
+  console.log("img dalle :",dalleImage)
+  console.log("img variation :",imgVariation)
+  console.log("load variation :",loadingVariation)
   
   return( 
 
@@ -47,9 +48,9 @@ export const Dalle = () => {
     )}
 
     {
-        dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data)=>(
+        dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data,index)=>(
 
-          <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+          <CardActionArea key={index}  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                 
             
             <a href={data.imgUrl} target='_blank'>

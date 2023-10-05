@@ -10,7 +10,7 @@ import moment from 'moment'
 const Variation = () => {
 
     const {getImageVariationData} = useDalleCall()
-    const {loadingVariation,imgVariation} = useSelector((state)=>state.touch)
+    const {loadingVariation,loadingGeneration,imgVariation,dalleImage} = useSelector((state)=>state.touch)
 
     const currentTime = moment().format()
 
@@ -33,8 +33,9 @@ const Variation = () => {
   
     }
 
-    console.log(imgVariation)
-    //filter((item) => moment(currentTime) < moment(item.imgTime))
+    console.log("imgVariation :",imgVariation)
+    console.log("img generation :",dalleImage)
+    console.log("load generation :",loadingGeneration)
 
   return (
     
@@ -55,7 +56,7 @@ const Variation = () => {
                 <Box sx={{padding:5}}>
                 <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
 
-                Picture : <input type="file" id='file-input' name="image" onChange={onFileChange} />
+                Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} />
 
                 <Button variant='contained' type='submit'>Varitaion</Button>
 
@@ -64,9 +65,9 @@ const Variation = () => {
             )
         }
 
-        {imgVariation.map((data)=>(
+        {imgVariation.filter((item) => moment(currentTime) < moment(item.imgTime)).map((data,index)=>(
 
-            <CardActionArea  sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+            <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
                                                
             <a href={data.imgUrl} target='_blank'>
             <CardMedia

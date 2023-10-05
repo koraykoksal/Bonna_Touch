@@ -6,9 +6,9 @@ import moment from "moment";
 
 
 const initialState={
-    loadingGeneration:"",
-    loadingVariation:"",
-    error:"",
+    loadingGeneration:false,
+    loadingVariation:false,
+    error:false,
     userPrompt:"",
     dalleData:[],
     dalleImage:[],
@@ -30,7 +30,7 @@ const touchSlice=createSlice({
         fetchStartVariation:(state)=>{
             state.loadingVariation =true;
             state.error = false;
-            state.ImageVariation=[]
+            state.imgVariation=[]
         },
         fetchEndGeneration:(state)=>{
             state.loadingGeneration =false;
@@ -63,8 +63,6 @@ const touchSlice=createSlice({
         },
         fetchSuccessVariation:(state,{payload})=>{
 
-            console.log(payload)
-            
             const datetime = moment().add(1,'hours').format()
             const currenttime = moment().format()
 
