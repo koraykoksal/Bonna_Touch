@@ -2,14 +2,15 @@
 import React from 'react'
 import { 
     fetchStartGeneration,
-    fetchStartVariation,
+    // fetchStartVariation,
     fetchEndGeneration,
-    fetchEndVariation,
+    // fetchEndVariation,
     fetchFailGeneration,
-    fetchFailVariation,
+    // fetchFailVariation,
     fetchSuccessGeneration,
-    fetchSuccessVariation
+    // fetchSuccessVariation
  } from '../features/touchSlice'
+ import { fetchStartVariation,fetchSuccessVariation,fetchEndVariation,fetchFailVariation } from '../features/variationSlice'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import {toastInfoNotify,toastSuccessNotify,toastErrorNotify} from '../helper/ToastNotify'

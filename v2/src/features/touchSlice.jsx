@@ -7,12 +7,12 @@ import moment from "moment";
 
 const initialState={
     loadingGeneration:false,
-    loadingVariation:false,
+    // loadingVariation:false,
     error:false,
     userPrompt:"",
     dalleData:[],
     dalleImage:[],
-    imgVariation:[],
+    // imgVariation:[],
 }
 
 const touchSlice=createSlice({
@@ -27,27 +27,27 @@ const touchSlice=createSlice({
             state.error = false;
             state.dalleImage = []
         },
-        fetchStartVariation:(state)=>{
-            state.loadingVariation =true;
-            state.error = false;
-            state.imgVariation=[]
-        },
+        // fetchStartVariation:(state)=>{
+        //     state.loadingVariation =true;
+        //     state.error = false;
+        //     state.imgVariation=[]
+        // },
         fetchEndGeneration:(state)=>{
             state.loadingGeneration =false;
             state.error = false;
         },
-        fetchEndVariation:(state)=>{
-            state.loadingVariation =false;
-            state.error = false;
-        },
+        // fetchEndVariation:(state)=>{
+        //     state.loadingVariation =false;
+        //     state.error = false;
+        // },
         fetchFailGeneration:(state)=>{
             state.loadingGeneration=false;
             state.error=true;
         },
-        fetchFailVariation:(state)=>{
-            state.loadingVariation=false;
-            state.error=true;
-        },
+        // fetchFailVariation:(state)=>{
+        //     state.loadingVariation=false;
+        //     state.error=true;
+        // },
         fetchSuccessGeneration:(state,{payload})=>{
 
             const datetime = moment().add(1,'hours').format()
@@ -61,15 +61,15 @@ const touchSlice=createSlice({
                 dalleData:[...state.dalleData.filter(item=>moment(currenttime) < moment(item.imgTime)),{id:payload.res.created,prompt:payload.data.prompt,promptImg:payload.res.data[0].url,imgTime:datetime}],
             }
         },
-        fetchSuccessVariation:(state,{payload})=>{
+        // fetchSuccessVariation:(state,{payload})=>{
 
-            const datetime = moment().add(1,'hours').format()
-            const currenttime = moment().format()
+        //     const datetime = moment().add(1,'hours').format()
+        //     const currenttime = moment().format()
 
-            return{
-                imgVariation:[...state.imgVariation.filter(item=>moment(currenttime) < moment(item.imgTime)),{imgUrl:payload.response.data.data[0].url,imgTime:datetime,status:true}]
-            }
-        }
+        //     return{
+        //         imgVariation:[...state.imgVariation.filter(item=>moment(currenttime) < moment(item.imgTime)),{imgUrl:payload.response.data.data[0].url,imgTime:datetime,status:true}]
+        //     }
+        // }
 
 
 
@@ -82,13 +82,13 @@ const touchSlice=createSlice({
 
 export const {
     fetchStartGeneration,
-    fetchStartVariation,
+    // fetchStartVariation,
     fetchEndGeneration,
-    fetchEndVariation,
+    // fetchEndVariation,
     fetchFailGeneration,
-    fetchFailVariation,
+    // fetchFailVariation,
     fetchSuccessGeneration,
-    fetchSuccessVariation,
+    // fetchSuccessVariation,
     
     }=touchSlice.actions
 

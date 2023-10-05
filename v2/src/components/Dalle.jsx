@@ -20,13 +20,11 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const {loadingGeneration,loadingVariation,dalleImage,imgVariation} = useSelector((state)=>state.touch)
+  const {loadingGeneration,dalleImage} = useSelector((state)=>state.touch)
   const currentTime = moment().format()
 
 
   console.log("img dalle :",dalleImage)
-  console.log("img variation :",imgVariation)
-  console.log("load variation :",loadingVariation)
   
   return( 
 

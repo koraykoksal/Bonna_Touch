@@ -10,7 +10,7 @@ import moment from 'moment'
 const Variation = () => {
 
     const {getImageVariationData} = useDalleCall()
-    const {loadingVariation,loadingGeneration,imgVariation,dalleImage} = useSelector((state)=>state.touch)
+    const {loadingVariation,imgVariation} = useSelector((state)=>state.variation)
 
     const currentTime = moment().format()
 
@@ -25,7 +25,7 @@ const Variation = () => {
     }
   
     const onFileChange=(e)=>{
-  
+      
       console.log(e.target.files[0])
       if(e.target && e.target.files[0]){
         formdata.append("image",e.target.files[0])
@@ -34,8 +34,6 @@ const Variation = () => {
     }
 
     console.log("imgVariation :",imgVariation)
-    console.log("img generation :",dalleImage)
-    console.log("load generation :",loadingGeneration)
 
   return (
     
