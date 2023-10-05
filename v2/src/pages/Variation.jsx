@@ -5,12 +5,15 @@ import CardMedia from '@mui/material/CardMedia';
 import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generateGift.gif'
 import moment from 'moment'
-
+import { useState } from 'react';
+import { useRef } from 'react';
 
 const Variation = () => {
 
     const {getImageVariationData} = useDalleCall()
     const {loadingVariation,imgVariation} = useSelector((state)=>state.variation)
+
+    const check = useRef(true)
 
     const currentTime = moment().format()
 
@@ -25,15 +28,28 @@ const Variation = () => {
     }
   
     const onFileChange=(e)=>{
+
+      //* inputdan yüklenen dosya gösterilir
+      let chosenImage = document.getElementById('chosen-image')
       
-      console.log(e.target.files[0])
+      let reader = new FileReader()
+      reader.readAsDataURL(e.target.files[0])
+      reader.onload=()=>{
+        
+        chosenImage.setAttribute('src',reader.result)
+        check.current(false)
+      }
+      
+      //* yüklenen dosya yakalanır
       if(e.target && e.target.files[0]){
         formdata.append("image",e.target.files[0])
       }
-  
+      
+
     }
 
-    console.log("imgVariation :",imgVariation)
+    
+
 
   return (
     
@@ -51,7 +67,7 @@ const Variation = () => {
                 <img src={generateGift} alt="" />
                 </Box>
             ):(
-                <Box sx={{padding:5}}>
+                <Box sx={{padding:3,border:'1px solid #EEEEEE',borderRadius:'10px'}}>
                 <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
 
                 Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} />
@@ -63,22 +79,49 @@ const Variation = () => {
             )
         }
 
-        {imgVariation.filter((item) => moment(currentTime) < moment(item.imgTime)).map((data,index)=>(
+        <Box sx={{display:'flex',justifyContent:'center',alignItems:'center',gap:3}}>
 
-            <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-                                               
-            <a href={data.imgUrl} target='_blank'>
+        <CardActionArea sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+            <Typography variant='subtitle2' sx={{letterSpacing:3}}>Original Image</Typography>
+
+            <a href="" target='_blank'>
             <CardMedia
+            id='chosen-image'
             component="img"
             height="440"
-            src={data.imgUrl}
             sx={{borderRadius:'0.5rem'}}
             />
             </a>
 
-            </CardActionArea> 
+          </CardActionArea> 
+
+        {imgVariation.filter((item) => moment(currentTime) < moment(item.imgTime)).map((data,index)=>(
+
+        <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+        <Typography variant='subtitle2' sx={{letterSpacing:3}}>Variation Image</Typography>
+
+        <a href={data.imgUrl} target='_blank'>
+        <CardMedia
+        component="img"
+        height="440"
+        src={data.imgUrl}
+        sx={{borderRadius:'0.5rem'}}
+        />
+        </a>
+
+        </CardActionArea> 
 
         ))}
+
+        </Box>
+        
+
+
+
+
+        
     
     
     </Container>
