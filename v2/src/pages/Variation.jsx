@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generateGift.gif'
 import moment from 'moment'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRef } from 'react';
 
 const Variation = () => {
@@ -13,31 +13,26 @@ const Variation = () => {
     const {getImageVariationData} = useDalleCall()
     const {loadingVariation,imgVariation} = useSelector((state)=>state.variation)
 
-    const check = useRef(true)
 
     const currentTime = moment().format()
 
     let formdata=new FormData()
 
+
+
     const handleSubmit=async(e)=>{
-  
       e.preventDefault();
-  
       getImageVariationData('variations',formdata)
-  
     }
   
     const onFileChange=(e)=>{
 
       //* inputdan yüklenen dosya gösterilir
       let chosenImage = document.getElementById('chosen-image')
-      
       let reader = new FileReader()
       reader.readAsDataURL(e.target.files[0])
       reader.onload=()=>{
-        
         chosenImage.setAttribute('src',reader.result)
-        check.current(false)
       }
       
       //* yüklenen dosya yakalanır
@@ -45,7 +40,6 @@ const Variation = () => {
         formdata.append("image",e.target.files[0])
       }
       
-
     }
 
     
@@ -85,14 +79,12 @@ const Variation = () => {
 
             <Typography variant='subtitle2' sx={{letterSpacing:3}}>Original Image</Typography>
 
-            <a href="" target='_blank'>
             <CardMedia
             id='chosen-image'
             component="img"
             height="440"
             sx={{borderRadius:'0.5rem'}}
             />
-            </a>
 
           </CardActionArea> 
 
@@ -100,16 +92,14 @@ const Variation = () => {
 
         <CardActionArea key={index} sx={{maxWidth: 500}} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
-        <Typography variant='subtitle2' sx={{letterSpacing:3}}>Variation Image</Typography>
+          <Typography variant='subtitle2' sx={{letterSpacing:3}}>Variation Image</Typography>
 
-        <a href={data.imgUrl} target='_blank'>
-        <CardMedia
-        component="img"
-        height="440"
-        src={data.imgUrl}
-        sx={{borderRadius:'0.5rem'}}
-        />
-        </a>
+          <CardMedia
+          component="img"
+          height="440"
+          src={data.imgUrl}
+          sx={{borderRadius:'0.5rem'}}
+          />
 
         </CardActionArea> 
 
