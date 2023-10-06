@@ -32,7 +32,7 @@ const Variation = () => {
 
       const control = document.getElementById('file-input')
 
-      if(e.target.files[0].size > 2900000){
+      if(e.target.files[0].size > 3900000){
         alert('File size is too high. The max should be 3.9MB')
         control.value = ""
         setimgStatus(false)
