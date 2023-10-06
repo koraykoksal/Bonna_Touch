@@ -64,7 +64,7 @@ const Variation = () => {
                 <Box sx={{padding:3,border:'1px solid #EEEEEE',borderRadius:'10px'}}>
                 <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
 
-                Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} />
+                Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} accept='image/png' size='1900000'/>
 
                 <Button variant='contained' type='submit'>Varitaion</Button>
 
