@@ -12,7 +12,7 @@ const Variation = () => {
 
     const {getImageVariationData} = useDalleCall()
     const {loadingVariation,imgVariation} = useSelector((state)=>state.variation)
-
+    const [imgStatus, setimgStatus] = useState(true)
 
     const currentTime = moment().format()
 
@@ -22,22 +22,34 @@ const Variation = () => {
 
     const handleSubmit=async(e)=>{
       e.preventDefault();
-      getImageVariationData('variations',formdata)
+      if(imgStatus){
+        getImageVariationData('variations',formdata)
+      }
+      
     }
   
     const onFileChange=(e)=>{
 
-      //* inputdan yüklenen dosya gösterilir
-      let chosenImage = document.getElementById('chosen-image')
-      let reader = new FileReader()
-      reader.readAsDataURL(e.target.files[0])
-      reader.onload=()=>{
-        chosenImage.setAttribute('src',reader.result)
-      }
-      
-      //* yüklenen dosya yakalanır
-      if(e.target && e.target.files[0]){
-        formdata.append("image",e.target.files[0])
+      const control = document.getElementById('file-input')
+
+      if(e.target.files[0].size > 2900000){
+        alert('File size is too high. The max should be 3.9MB')
+        control.value = ""
+        setimgStatus(false)
+
+      }else{
+        //* inputdan yüklenen dosya gösterilir
+        let chosenImage = document.getElementById('chosen-image')
+        let reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload=()=>{
+          chosenImage.setAttribute('src',reader.result)
+        }
+        
+        //* yüklenen dosya yakalanır
+        if(e.target && e.target.files[0]){
+          formdata.append("image",e.target.files[0])
+        }
       }
       
     }
@@ -64,7 +76,7 @@ const Variation = () => {
                 <Box sx={{padding:3,border:'1px solid #EEEEEE',borderRadius:'10px'}}>
                 <form id="formElem"  encType='multipart/form-data' onSubmit={handleSubmit}>
 
-                Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} accept='image/png' size='1900000'/>
+                Picture : <input type="file" required id='file-input' name="image" onChange={onFileChange} accept='image/png' />
 
                 <Button variant='contained' type='submit'>Varitaion</Button>
 
