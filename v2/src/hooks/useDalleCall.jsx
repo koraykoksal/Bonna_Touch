@@ -38,7 +38,9 @@ const useDalleCall = () => {
                 body: JSON.stringify({
                     "prompt": data.searchData,
                     "n": 1,
-                    "size": "1024x1024"
+                    // "size": "1024x1024"
+                    "size":"1792x1024",
+                    "model": "dall-e-3"
                 }),
                 cache:'default'
             })
