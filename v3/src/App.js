@@ -16,7 +16,7 @@ function App() {
 
   return (
     <ThemeProvider theme={themes}>
-      {/* <GlobalStyles/> */}
+      <GlobalStyles/>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
         <AppRouter/>

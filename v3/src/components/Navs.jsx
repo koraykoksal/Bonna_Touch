@@ -21,18 +21,18 @@ import { useNavigate } from 'react-router';
 
 const drawerWidth = 240;
 const navItems = [
-    {
-        title:'Home',
-        url:'/'
-    },
-    {
-        title:'History',
-        url:'/history'
-    },
-    {
-      title:'Variation',
-      url:'/variation'
-  }
+  {
+    title: 'Home',
+    url: '/'
+  },
+  {
+    title: 'History',
+    url: '/history'
+  },
+  // {
+  //   title: 'Variation',
+  //   url: '/variation'
+  // }
 ];
 
 function Navs(props) {
@@ -40,24 +40,24 @@ function Navs(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate()
 
-const handleDrawerToggle = () => {
+  const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
 
-      <Typography variant='h6' sx={{padding:3}}>
+      <Typography variant='h6' sx={{ padding: 3 }}>
         BONNA TOUCH
       </Typography>
 
       <Divider />
 
       <List>
-        {navItems.map((item,index) => (
+        {navItems.map((item, index) => (
           <ListItem key={index} disablePadding >
-            <ListItemButton sx={{ textAlign: 'center' }} onClick={()=>navigate(item.url)}>
-              <ListItemText primary={item.title}/>
+            <ListItemButton sx={{ textAlign: 'center' }} onClick={() => navigate(item.url)}>
+              <ListItemText primary={item.title} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -70,18 +70,18 @@ const handleDrawerToggle = () => {
   return (
     <Box sx={{ display: 'flex' }}>
 
-      <CssBaseline />
+      {/* <CssBaseline /> */}
 
-      <AppBar component="nav" sx={{backgroundColor:'#000000',height:'85px'}}>
+      <AppBar component="nav" sx={{ backgroundColor: '#dddddd', height: '75px',boxShadow:0 }}>
         <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' }}}
+            sx={{ mr: 2, display: { xs:'flex',sm: 'none' },alignItems:'center' }}
           >
-            <MenuIcon />
+            <MenuIcon sx={{color:'#000000', fontSize:'32px'}}/>
           </IconButton>
           {/* <Typography
             variant="h6"
@@ -92,14 +92,14 @@ const handleDrawerToggle = () => {
           </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-          <img src={bonnaTouchLogo} style={{maxHeight:'75px',objectFit:'cover',scale:'1.3'}} />
+            {/* <img src={bonnaTouchLogo} style={{ maxHeight: '75px', objectFit: 'cover', scale: '1.3' }} /> */}
           </Box>
 
-          
-         
+
+
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item,index) => (
-              <Button key={index} sx={{ color: '#fff',fontSize:'16px','&:hover':{color:'#D80032'}}} onClick={()=>navigate(item.url)}>
+            {navItems.map((item, index) => (
+              <Button key={index} sx={{ mr:3,color: '#000000', fontSize: '16px', '&:hover': { color: '#ffffff',backgroundColor:'transparent' } }} onClick={() => navigate(item.url)}>
                 {item.title}
               </Button>
             ))}
@@ -126,7 +126,7 @@ const handleDrawerToggle = () => {
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <Typography>
-          
+
         </Typography>
       </Box>
     </Box>
