@@ -19,6 +19,7 @@ import { Outlet, useNavigate } from 'react-router';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdDashboardCustomize } from "react-icons/md";
 import bonna_bonnatouch from '../assets/img/bonna_bonnatouch.png'
+import PromptStyle_Modal from './modals/PromptStyle_Modal';
 
 
 const pages = [
@@ -35,7 +36,8 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
 
-    const currentUser = true
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
 
     const navigate = useNavigate()
 
@@ -115,7 +117,7 @@ const NavBar = () => {
                                     handleCloseNavMenu()
                                 }}>
 
-                                    <ListItemButton>
+                                    <ListItemButton sx={{textTransform:'none'}}>
                                         <ListItemText>{page.title}</ListItemText>
                                     </ListItemButton>
 
@@ -135,12 +137,12 @@ const NavBar = () => {
                                     navigate(page.url)
                                     handleCloseNavMenu()
                                 }}
-                                sx={{ my: 2, color: '#000000', display: 'block', '&:hover': { color: '#ffffff',backgroundColor:'transparent' } }}
+                                sx={{ my: 2, fontSize:'18px',color: '#000000', display: 'block', '&:hover': { color: '#ffffff',backgroundColor:'transparent' },textTransform:'none' }}
                             >
                                 {page.title}
                             </Button>
                         ))}
-                        <MdDashboardCustomize cursor='pointer' size={33} style={{color:'#000000'}}/>
+                        <MdDashboardCustomize cursor='pointer' size={33} style={{color:'#000000'}} onClick={handleOpen}/>
 
                     </Box>
 
@@ -194,6 +196,8 @@ const NavBar = () => {
             <Box>
                 <Outlet />
             </Box>
+
+            <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen}/>
 
 
         </AppBar>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Headers } from '../components/Headers'
 import { Box, Container, FormControl, TextField } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { Dalle } from '../components/Dalle'

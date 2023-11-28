@@ -40,7 +40,7 @@ export default function History() {
 
           {dalleData?.filter(item => moment(currentTime) < moment(item.imgTime)).map((data) => (
 
-            <Card sx={{ maxWidth: 380, boxShadow: 3, backgroundColor: '#dddddd' }} key={data.id}>
+            <Card sx={{ maxWidth: 380,boxShadow: 0, backgroundColor: '#dddddd' }} key={data.id}>
 
               <CardActionArea>
 

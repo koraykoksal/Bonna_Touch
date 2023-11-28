@@ -1,19 +1,10 @@
 import React from 'react'
-import { StyleImg } from './Dalle.style'
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
-import useDalleCall from '../hooks/useDalleCall';
-import bonna_bonnatouch from '../assets/img/bonna_bonnatouch.png'
-import { saveAs } from 'file-saver'
 import generateGift from '../assets/gift/generateGift.gif'
-import imgV from '../assets/img/imgV.png'
-import axios from 'axios';
 import moment from 'moment';
 
 
@@ -23,9 +14,6 @@ export const Dalle = () => {
   const { loadingGeneration, firstRender, dalleImage,dalleData } = useSelector((state) => state.touch)
   const currentTime = moment().format()
 
-  
-  console.log("dalleImage: ",dalleImage)
-  console.log("dalleData: ",dalleData)
   return (
 
 
