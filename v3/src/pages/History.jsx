@@ -33,10 +33,10 @@ export default function History() {
 
     <>
 
-      <Box sx={{backgroundColor:'#dddddd',height:'900px'}}>
+      <Box sx={{ backgroundColor: '#dddddd', height: '900px' }}>
 
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2, pt: 5 }}>
 
           {dalleData?.filter(item => moment(currentTime) < moment(item.imgTime)).map((data) => (
 
@@ -53,12 +53,13 @@ export default function History() {
                 <Box>
 
 
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={data.promptImg}
-                  />
-
+                  <a href={data.imgUrl} target='_blank'>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={data.imgUrl}
+                    />
+                  </a>
                 </Box>
 
                 <CardContent sx={{ maxHeight: '50px', overflow: 'auto' }}>

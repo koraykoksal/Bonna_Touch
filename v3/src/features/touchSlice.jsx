@@ -34,11 +34,11 @@ const touchSlice = createSlice({
             state.error = true;
         },
         fetchSuccess_Generation: (state, { payload }) => {
-            console.log(payload)
+        console.log(payload)
             state.loadingGeneration = false
-            const datetime = moment().add(1, 'hours').format()
-            const currenttime = moment().format()
-            const createdTime = moment().format()
+            // const datetime = moment().add(1, 'hours').format()
+            // const currenttime = moment().format()
+            const createdTime = moment().add(1, 'hours').format()
 
             // Eğer payload beklenen yapıda değilse, doğrudan çıkın.
             if (!payload || !payload.res || !payload.res.data || !payload.res.data[0]) {
@@ -49,24 +49,26 @@ const touchSlice = createSlice({
             state.dalleImage.push({
                 imgTime: createdTime,
                 imgUrl: payload?.res?.data[0].url,
-                revisedPrompt: payload?.res?.data[0].revised_prompt
+                revisedPrompt: payload?.res?.data[0].revised_prompt,
+                prompt:payload?.data?.prompt,
+                searchData:payload?.data?.searchData
             });
 
 
         },
         fetchSuccess_AllGeneration: (state, { payload }) => {
-            console.log(payload)
+         console.log(payload)
             state.loadingGeneration = false
-            state.firstRender = false
-            const datetime = moment().add(1, 'hours').format()
-            const currenttime = moment().format()
-            const createdTime = moment().format()
+            // const datetime = moment().add(1, 'hours').format()
+            // const currenttime = moment().format()
+            const createdTime = moment().add(1, 'hours').format()
 
             state.dalleData.push({
                 imgTime: createdTime,
                 imgUrl: payload?.res?.data[0].url,
                 revisedPrompt: payload?.res?.data[0].revised_prompt,
-                prompt:payload?.data?.prompt
+                prompt:payload?.data?.prompt,
+                searchData:payload?.data?.searchData
             });
 
 

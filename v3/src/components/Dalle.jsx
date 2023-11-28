@@ -49,54 +49,31 @@ export const Dalle = () => {
 
 
         {
-          // dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
+          dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
 
-          //   <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-
-          //     <a href={data.imgUrl} target='_blank'>
-          //       <CardMedia
-          //         component="img"
-          //         height="350"
-          //         src={data.imgUrl}
-          //         sx={{ borderRadius: '0.5rem' }}
-          //       />
-          //     </a>
-
-          //     <CardContent>
-          //       <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          //         {data.userPrompt}
-          //       </Typography>
-          //     </CardContent>
+            <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
 
-          //   </CardActionArea>
+              <a href={data.imgUrl} target='_blank'>
+                <CardMedia
+                  component="img"
+                  height="450"
+                  src={data.imgUrl}
+                  sx={{ borderRadius: '0.5rem' }}
+                />
+              </a>
 
-          // ))
-
-          // dalleImage?.data.map((data,index) => (
-          //   <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-
-          //     <a href={data.imgUrl} target='_blank'>
-          //       <CardMedia
-          //         component="img"
-          //         height="350"
-          //         src={data.url}
-          //         sx={{ borderRadius: '0.5rem' }}
-          //       />
-          //     </a>
-
-          //     <CardContent>
-          //       <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-          //         {userPrompt}
-          //       </Typography>
-          //     </CardContent>
+              <CardContent>
+                <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+                  {data.prompt}
+                </Typography>
+              </CardContent>
 
 
-          //   </CardActionArea>
+            </CardActionArea>
 
-          // ))
+          ))
+
         }
 
 
