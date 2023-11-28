@@ -20,11 +20,12 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const { loadingGeneration, firstRender, dalleImage } = useSelector((state) => state.touch)
+  const { loadingGeneration, firstRender, dalleImage,dalleData } = useSelector((state) => state.touch)
   const currentTime = moment().format()
 
-  console.log(dalleImage)
-
+  
+  console.log("dalleImage: ",dalleImage)
+  console.log("dalleData: ",dalleData)
   return (
 
 
@@ -32,13 +33,13 @@ export const Dalle = () => {
 
 
 
-      <Box sx={{ backgroundColor: '#dddddd', py: 33 }}>
+      <Box sx={{ backgroundColor: '#dddddd' }}>
 
         {loadingGeneration && (
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: '5rem' }} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px' }} >
 
-            <img src={bonna_bonnatouch} alt="" />
+            <img src={generateGift} alt="" style={{ objectFit: 'cover' }} />
 
 
           </Box>
@@ -48,33 +49,54 @@ export const Dalle = () => {
 
 
         {
-          dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
+          // dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
 
-            <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+          //   <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
 
-              <a href={data.imgUrl} target='_blank'>
-                <CardMedia
-                  component="img"
-                  height="440"
-                  src={data.imgUrl}
-                  sx={{ borderRadius: '0.5rem' }}
-                />
-              </a>
+          //     <a href={data.imgUrl} target='_blank'>
+          //       <CardMedia
+          //         component="img"
+          //         height="350"
+          //         src={data.imgUrl}
+          //         sx={{ borderRadius: '0.5rem' }}
+          //       />
+          //     </a>
 
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-                  {data.userPrompt}
-                </Typography>
-              </CardContent>
+          //     <CardContent>
+          //       <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+          //         {data.userPrompt}
+          //       </Typography>
+          //     </CardContent>
 
-              {/* <Box textAlign={'center'} padding={'0.3rem'}>
-    <Button variant='outlined' sx={{'&:hover':{backgroundColor:'#3AB0FF',color:'#ffff'}}} onClick={handleVariation}>Variation</Button>
-  </Box> */}
 
-            </CardActionArea>
+          //   </CardActionArea>
 
-          ))
+          // ))
+
+          // dalleImage?.data.map((data,index) => (
+          //   <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+
+          //     <a href={data.imgUrl} target='_blank'>
+          //       <CardMedia
+          //         component="img"
+          //         height="350"
+          //         src={data.url}
+          //         sx={{ borderRadius: '0.5rem' }}
+          //       />
+          //     </a>
+
+          //     <CardContent>
+          //       <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
+          //         {userPrompt}
+          //       </Typography>
+          //     </CardContent>
+
+
+          //   </CardActionArea>
+
+          // ))
         }
 
 

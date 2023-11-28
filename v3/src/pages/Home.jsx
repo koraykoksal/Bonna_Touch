@@ -1,6 +1,6 @@
 import React from 'react'
 import { Headers } from '../components/Headers'
-import { Box, Container, TextField } from '@mui/material'
+import { Box, Container, FormControl, TextField } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
@@ -38,24 +38,25 @@ export const Home = () => {
     <>
 
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '900px',display:'flex',flexDirection:'column' }}>
+      <Box sx={{ backgroundColor: '#dddddd', height: '800px', display: 'flex', flexDirection: 'column'}}>
 
-        <Box sx={{p:10}}>
-        <Dalle />
-        </Box>
+        <Container >
+          <Dalle />
+        </Container>
 
 
-        <Container>
+        <Container sx={{mt:5,justifyContent:'center',display:'flex'}}>
 
- 
+
           <TextField
+          
             required
             fullWidth
             label='Prompt'
             variant='outlined'
             type='text'
             value={prompt}
-            
+
             onChange={(e) => setprompt(e.target.value)}
             onKeyUp={handleEnterPress}
 
