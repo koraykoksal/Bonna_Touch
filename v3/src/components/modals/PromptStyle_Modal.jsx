@@ -69,7 +69,7 @@ const PromptStyle_Modal = ({ handleOpen, open, setOpen }) => {
                     </Typography> */}
 
                     <Box sx={{p:2}}>
-                    <IoMdCloseCircle size={30} cursor='pointer' style={{color:'#D80032'}}/>
+                    <IoMdCloseCircle size={30} cursor='pointer' style={{color:'#D80032'}} onClick={handleClose}/>
                     </Box>
 
                     <ThemeProvider theme={theme}>

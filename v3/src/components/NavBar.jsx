@@ -75,7 +75,8 @@ const NavBar = () => {
                         src={bonna_bonnatouch}
                         alt="bonnaLogo"
                         width='250px'
-                        style={{scale:'1.3px'}}
+                        style={{scale:'1.3px',cursor:'pointer'}}
+                        onClick={()=>window.open('https://www.bonna.com.tr','_blank')}
                         />
                     </Box>
 
