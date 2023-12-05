@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
 import { useState } from 'react'
-
+import { RiSendPlane2Fill } from "react-icons/ri";
+import InputAdornment from '@mui/material/InputAdornment';
+import { toastWarnNotify } from '../helper/ToastNotify'
 
 export const Home = () => {
 
@@ -19,15 +21,36 @@ export const Home = () => {
   const handleEnterPress = (e) => {
     e.preventDefault()
 
-    prompt.toLocaleLowerCase().trim()
-
-    const generateData = {
-      url: 'generations',
-      searchData: lastSentenceSupport,
-      prompt: prompt,
+    if (!prompt) {
+      toastWarnNotify('Please enter prompt field !')
     }
+    else {
+      prompt.toLocaleLowerCase().trim()
 
-    if (e.key === 'Enter') {
+      const generateData = {
+        url: 'generations',
+        searchData: lastSentenceSupport,
+        prompt: prompt,
+      }
+
+      if (e.key === 'Enter') {
+        getImageData(generateData)
+      }
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!prompt) {
+      toastWarnNotify('Please enter prompt field !')
+    }
+    else {
+      const generateData = {
+        url: 'generations',
+        searchData: lastSentenceSupport,
+        prompt: prompt,
+      }
       getImageData(generateData)
     }
   }
@@ -37,18 +60,18 @@ export const Home = () => {
     <>
 
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '800px', display: 'flex', flexDirection: 'column'}}>
+      <Box sx={{ backgroundColor: '#dddddd', height: '800px', display: 'flex', flexDirection: 'column' }}>
 
         <Container >
           <Dalle />
         </Container>
 
 
-        <Container sx={{mt:5,justifyContent:'center',display:'flex'}}>
+        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }}>
 
 
           <TextField
-          
+
             required
             fullWidth
             label='Prompt'
@@ -60,10 +83,12 @@ export const Home = () => {
             onKeyUp={handleEnterPress}
 
             inputProps={{
-              style: { height: '15px' }
+              style: { height: '15px' },
             }}
 
           />
+
+          <RiSendPlane2Fill size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
 
         </Container>
 

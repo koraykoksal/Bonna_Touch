@@ -3,7 +3,13 @@ import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React from 'react'
 import {generateData_colors} from "../../helper/dalleGenerate"
 
-const Colors_Choice = () => {
+const Colors_Choice = ({test}) => {
+
+  const handleChange=()=>{
+
+    
+  }
+
   return (
 
     <Box sx={{ p: 3 }}>

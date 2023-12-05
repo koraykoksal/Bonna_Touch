@@ -58,6 +58,7 @@ export default function History() {
                       component="img"
                       height="140"
                       image={data.imgUrl}
+                      sx={{borderRadius:'0.5rem'}}
                     />
                   </a>
                 </Box>

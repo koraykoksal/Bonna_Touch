@@ -143,9 +143,11 @@ const NavBar = () => {
                                 {page.title}
                             </Button>
                         ))}
-                        <MdDashboardCustomize cursor='pointer' size={33} style={{color:'#000000'}} onClick={handleOpen}/>
-
+                        
                     </Box>
+                    
+                    {/* STYLE BAR BUTTON */}
+                    <MdDashboardCustomize cursor='pointer' size={33}  style={{color:'#000000',marginLeft:50}} onClick={handleOpen}/>
 
                     {/* SETTINGS MENU */}
 

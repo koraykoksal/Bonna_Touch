@@ -11,6 +11,7 @@ const initialState = {
     dalleData: [],
     dalleImage: [],
     userPrompt: "",
+    test:{}
 }
 
 const touchSlice = createSlice({
