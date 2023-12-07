@@ -91,6 +91,7 @@ const useDalleCall = () => {
     const getImageData2 = (url) => {
 
         console.log("info: ",info)
+        
 
         dispatch(fetchStartGeneration())    //api isteği öncesi çalışacan reducer
 
