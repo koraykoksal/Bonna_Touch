@@ -11,7 +11,12 @@ const initialState = {
     dalleData: [],
     dalleImage: [],
     userPrompt: "",
-    test:{}
+    dalleUser_PromptInfo:{
+        prompt:"",
+        cuisineType:"",
+        colorType:"",
+        styleType:""
+    }
 }
 
 const touchSlice = createSlice({
@@ -37,8 +42,6 @@ const touchSlice = createSlice({
         fetchSuccess_Generation: (state, { payload }) => {
         console.log(payload)
             state.loadingGeneration = false
-            // const datetime = moment().add(1, 'hours').format()
-            // const currenttime = moment().format()
             const createdTime = moment().add(1, 'hours').format()
 
             // Eğer payload beklenen yapıda değilse, doğrudan çıkın.
@@ -60,8 +63,6 @@ const touchSlice = createSlice({
         fetchSuccess_AllGeneration: (state, { payload }) => {
          console.log(payload)
             state.loadingGeneration = false
-            // const datetime = moment().add(1, 'hours').format()
-            // const currenttime = moment().format()
             const createdTime = moment().add(1, 'hours').format()
 
             state.dalleData.push({
@@ -74,6 +75,9 @@ const touchSlice = createSlice({
 
 
         },
+        updatePrompts:(state,{payload})=>{
+            state.dalleUser_PromptInfo = {...state.dalleUser_PromptInfo,...payload}
+        }
 
 
 
@@ -92,6 +96,7 @@ export const {
     fetchFailGeneration,
     fetchSuccess_Generation,
     fetchSuccess_AllGeneration,
+    updatePrompts
 
 
 } = touchSlice.actions

@@ -2,8 +2,22 @@ import Select from '@mui/material/Select';
 import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React from 'react'
 import {generateData_style} from "../../helper/dalleGenerate"
+import { useDispatch, useSelector } from 'react-redux'
+import { updatePrompts } from '../../features/touchSlice';
 
 const Style_Choice = () => {
+
+
+  const dispatch = useDispatch()
+
+  const handleChange=(e)=>{
+
+    const {name,value} = e.target;
+
+    dispatch(updatePrompts({[name]:value}))
+  }
+
+
   return (
     
 
@@ -11,12 +25,13 @@ const Style_Choice = () => {
 
 
     <FormControl fullWidth>
-      <InputLabel id="coisineType">Style Type</InputLabel>
+      <InputLabel id="styleType">Style Type</InputLabel>
       <Select
-       labelId="coisineType"
-       id="coisineType"
-       name='coisineType'
-       label="coisineType"
+       labelId="styleType"
+       id="styleType"
+       name='styleType'
+       label="styleType"
+       onChange={handleChange}
       >
         {
           generateData_style.map((item,index)=>(

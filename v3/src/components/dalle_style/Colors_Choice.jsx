@@ -1,13 +1,19 @@
 import Select from '@mui/material/Select';
 import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React from 'react'
-import {generateData_colors} from "../../helper/dalleGenerate"
+import { generateData_colors } from "../../helper/dalleGenerate"
+import { useDispatch, useSelector } from 'react-redux'
+import { updatePrompts } from '../../features/touchSlice';
 
-const Colors_Choice = ({test}) => {
+const Colors_Choice = () => {
 
-  const handleChange=()=>{
+  const dispatch = useDispatch()
 
-    
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    dispatch(updatePrompts({ [name]: value }))
+
   }
 
   return (
@@ -16,12 +22,13 @@ const Colors_Choice = ({test}) => {
 
 
       <FormControl fullWidth>
-        <InputLabel id="coisineType">Color Type</InputLabel>
+        <InputLabel id="colorType">Color Type</InputLabel>
         <Select
-          labelId="coisineType"
-          id="coisineType"
-          name='coisineType'
-          label="coisineType"
+          labelId="colorType"
+          id="colorType"
+          name='colorType'
+          label="colorType"
+          onChange={handleChange}
         >
           {
             generateData_colors.map((item, index) => (

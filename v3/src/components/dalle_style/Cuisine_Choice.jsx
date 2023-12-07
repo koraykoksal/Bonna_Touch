@@ -2,8 +2,22 @@ import Select from '@mui/material/Select';
 import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React from 'react'
 import {generateData_cuisine} from "../../helper/dalleGenerate"
+import { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { updatePrompts } from '../../features/touchSlice';
+
 
 const Coisine_Choice = () => {
+
+  const dispatch = useDispatch()
+
+  const handleChange=(e)=>{
+
+    const {name,value} = e.target;
+
+    dispatch(updatePrompts({[name]:value}))
+  }
+
 
 
   return (
@@ -12,12 +26,13 @@ const Coisine_Choice = () => {
 
 
     <FormControl fullWidth>
-      <InputLabel id="coisineType">Coisine Type</InputLabel>
+      <InputLabel id="cuisineType">Coisine Type</InputLabel>
       <Select
-       labelId="coisineType"
-       id="coisineType"
-       name='coisineType'
-       label="coisineType"
+       labelId="cuisineType"
+       id="cuisineType"
+       name='cuisineType'
+       label="cuisineType"
+       onChange={handleChange}
       >
         {
           generateData_cuisine.map((item,index)=>(

@@ -15,7 +15,7 @@ import Colors_Choice from '../dalle_style/Colors_Choice';
 import Style_Choice from '../dalle_style/Style_Choice';
 import { IoMdCloseCircle } from "react-icons/io";
 import { useSelector } from 'react-redux';
-
+import { useState } from 'react';
 
 
 const style = {
@@ -35,11 +35,10 @@ const style = {
 
 const PromptStyle_Modal = ({ handleOpen, open, setOpen }) => {
 
-    const {test} = useSelector((state)=>state.touch)
 
     const handleClose = () => setOpen(false);
 
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -86,21 +85,24 @@ const PromptStyle_Modal = ({ handleOpen, open, setOpen }) => {
 
 
                             <Tab
+                            value={0}
                                 label='Cuisine'
                                 icon={<img src={coisineType_img} style={{ width: '50px', objectFit: 'cover' }} />}
                             />
                             <Tab
+                            value={1}
                                 label='Colors'
                                 icon={<img src={colors_img} style={{ width: '50px', objectFit: 'cover' }} />}
                             />
                             <Tab
+                            value={2}
                                 label='Style'
                                 icon={<img src={style_img} style={{ width: '45px', objectFit: 'cover' }} />}
                             />
 
                         </Tabs>
 
-                        {value === 0 && <Cuisine_Choice test={test}/>}
+                        {value === 0 && <Cuisine_Choice />}
                         {value === 1 && <Colors_Choice />}
                         {value === 2 && <Style_Choice />}
 
