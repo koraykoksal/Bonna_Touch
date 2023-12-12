@@ -59,7 +59,9 @@ const Variation = () => {
 
   return (
     
+    <Box sx={{backgroundColor:'#dddddd',height: '800px', display: 'flex', flexDirection: 'column' }}>
     <Container sx={{justifyContent:'center',display:'flex',flexDirection:'column',alignItems:'center',mb:5}}>
+
 
         <Box padding={2}>
         <Typography variant='h5' align='center' mb={5} color='#FF6969'>
@@ -118,15 +120,9 @@ const Variation = () => {
         ))}
 
         </Box>
-        
 
-
-
-
-        
-    
-    
     </Container>
+    </Box>
   )
 }
 

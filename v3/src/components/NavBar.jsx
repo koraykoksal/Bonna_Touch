@@ -28,6 +28,10 @@ const pages = [
         url: "/"
     },
     {
+        title: "Variation",
+        url: "/variation"
+    },
+    {
         title: 'History',
         url: '/history'
     },
