@@ -18,9 +18,9 @@ import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const {dalleUser_PromptInfo} = useSelector((state)=>state.touch)
+    const { dalleUser_PromptInfo } = useSelector((state) => state.touch)
 
-    const info = dalleUser_PromptInfo.prompt +" "+dalleUser_PromptInfo.cuisineType +" "+dalleUser_PromptInfo.styleType +" "+dalleUser_PromptInfo.colorType +" a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+    const info = dalleUser_PromptInfo.prompt + " " + dalleUser_PromptInfo.cuisineType + " " + dalleUser_PromptInfo.styleType + " " + dalleUser_PromptInfo.colorType + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
     const data = "";
 
@@ -41,7 +41,7 @@ const useDalleCall = () => {
                     "prompt": data.searchData,
                     "n": 1,
                     // "size": "1024x1024"
-                    "size":"1792x1024",
+                    "size": "1792x1024",
                     "model": "dall-e-3"
                 }),
                 cache: 'default'
@@ -64,8 +64,8 @@ const useDalleCall = () => {
 
                     console.log(res)
 
-                    dispatch(fetchSuccess_Generation({res,data}))
-                    dispatch(fetchSuccess_AllGeneration({ res,data }))
+                    dispatch(fetchSuccess_Generation({ res, data }))
+                    dispatch(fetchSuccess_AllGeneration({ res, data }))
 
                     dispatch(fetchEndGeneration())
                     toastSuccessNotify('Image Genereted')
@@ -90,9 +90,6 @@ const useDalleCall = () => {
 
     const getImageData2 = (url) => {
 
-        console.log("info: ",info)
-        
-
         dispatch(fetchStartGeneration())    //api isteği öncesi çalışacan reducer
 
         try {
@@ -108,7 +105,7 @@ const useDalleCall = () => {
                     "prompt": info,
                     "n": 1,
                     // "size": "1024x1024"
-                    "size":"1792x1024",
+                    "size": "1792x1024",
                     "model": "dall-e-3"
                 }),
                 cache: 'default'
@@ -129,10 +126,8 @@ const useDalleCall = () => {
                 })
                 .then((res) => {
 
-                    console.log(res)
-
-                    dispatch(fetchSuccess_Generation({res,data}))
-                    dispatch(fetchSuccess_AllGeneration({ res,data }))
+                    dispatch(fetchSuccess_Generation({ res, data }))
+                    dispatch(fetchSuccess_AllGeneration({ res, data }))
 
                     dispatch(fetchEndGeneration())
                     toastSuccessNotify('Image Genereted')
@@ -153,6 +148,41 @@ const useDalleCall = () => {
 
 
     }
+
+
+
+    const create_image = () => {
+
+        const options = {
+            method: 'POST',
+            url: `${process.env.REACT_APP_LEONARDO_CREATE_IMAGE_ADDRESS}`,
+            headers: {
+                accept: 'application/json',
+                'content-type': 'application/json',
+                authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+            },
+            data: {
+                height: 512,
+                modelId: '6bef9f1b-29cb-40c7-b9df-32b51c1f67d3',
+                prompt: info,
+                width: 512,
+                alchemy: 'true',
+                presetStyle: 'DYNAMIC',
+                sd_version: 'v2'
+            }
+        };
+
+        axios
+            .request(options)
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+
+    }
+
 
 
 
@@ -188,7 +218,13 @@ const useDalleCall = () => {
     }
 
 
-    return { getImageData, getImageVariationData,getImageData2 }
+    return { 
+        getImageData, 
+        getImageVariationData, 
+        getImageData2 ,
+        create_image
+    
+    }
 
 }
 

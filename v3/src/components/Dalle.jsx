@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generateGift.gif'
+import generateGift2 from '../assets/gift/generationGift2.gif'
 import moment from 'moment';
 
 
@@ -25,9 +26,10 @@ export const Dalle = () => {
 
         {loadingGeneration && (
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px' }} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px',p:3 }} >
 
-            <img src={generateGift} alt="" style={{ objectFit: 'cover' }} />
+            {/* <img src={generateGift} alt="" style={{ objectFit: 'cover' }} /> */}
+            <img src={generateGift2} alt="" style={{ objectFit: 'cover' }} />
 
 
           </Box>

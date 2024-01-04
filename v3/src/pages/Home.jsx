@@ -19,7 +19,7 @@ export const Home = () => {
 
   const [prompt, setprompt] = useState("")
 
-  const { getImageData, getImageData2 } = useDalleCall()
+  const { getImageData, getImageData2, create_image } = useDalleCall()
 
   const lastSentenceSupport = `A plate round, flat plate with a clear, blurred background, showcasing a top-down view.${prompt}`;
 
@@ -28,12 +28,7 @@ export const Home = () => {
   const handleEnterPress = (e) => {
     e.preventDefault()
 
-    if (!prompt) {
-      toastWarnNotify('Please enter prompt field !')
-    }
-    else {
-
-
+    if (prompt) {
       // prompt.toLocaleLowerCase().trim()
 
       // const generateData = {
@@ -48,7 +43,8 @@ export const Home = () => {
 
         dispatch(updatePrompts({ ['prompt']: prompt }))
 
-        getImageData2('generations')
+        // getImageData2('generations')
+        create_image()
 
       }
     }
@@ -57,16 +53,12 @@ export const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (!prompt) {
-      toastWarnNotify('Please enter prompt field !')
-    }
-    else {
-
+    if (prompt) {
       prompt.toLocaleLowerCase().trim()
 
       dispatch(updatePrompts({ ['prompt']: prompt }))
 
-      getImageData2('generations')
+      // getImageData2('generations')
 
       // const generateData = {
       //   url: 'generations',
@@ -77,8 +69,6 @@ export const Home = () => {
     }
   }
 
-  console.log(prompt)
-  console.log(dalleUser_PromptInfo)
 
   return (
 
@@ -105,7 +95,6 @@ export const Home = () => {
             type='text'
             value={prompt}
             onChange={(e) => setprompt(e.target.value)}
-            // onChange={handleChange}
             onKeyUp={handleEnterPress}
 
             inputProps={{
