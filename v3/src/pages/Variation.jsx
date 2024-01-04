@@ -97,7 +97,7 @@ const Variation = () => {
             id='chosen-image'
             component="img"
             height="440"
-            sx={{borderRadius:'0.5rem'}}
+            sx={{borderRadius:'0.5rem',background:'transparent'}}
             />
 
           </CardActionArea> 
@@ -108,12 +108,14 @@ const Variation = () => {
 
           <Typography variant='subtitle2' sx={{letterSpacing:3}}>Variation Image</Typography>
 
+          <a href={data.imgUrl} target={data.imgUrl}>
           <CardMedia
           component="img"
           height="440"
           src={data.imgUrl}
-          sx={{borderRadius:'0.5rem'}}
+          sx={{borderRadius:'0.5rem',background:'transparent'}}
           />
+          </a>
 
         </CardActionArea> 
 

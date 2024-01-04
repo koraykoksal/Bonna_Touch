@@ -5,9 +5,9 @@ export const generateData_cuisine = [
     {
         cuisineType: "Asian / Asia"
     },
-    {
-        cuisineType: "Mediterranean / Mediterranean"
-    },
+    // {
+    //     cuisineType: "Mediterranean / Mediterranean"
+    // },
     {
         cuisineType: "Latin"
     },
@@ -20,19 +20,20 @@ export const generateData_cuisine = [
     {
         cuisineType: "World Cuisine"
     },
-    {
-        cuisineType: "Buffet"
-    },
-    {
-        cuisineType: "Tea & Coffee"
-    },
-    {
-        cuisineType: "Clean Eating / Wellness Spaces / Bowl Food"
-    },
-    {
-        cuisineType: "Sustainable Kitchens"
-    }
+    // {
+    //     cuisineType: "Buffet"
+    // },
+    // {
+    //     cuisineType: "Tea & Coffee"
+    // },
+    // {
+    //     cuisineType: "Clean Eating / Wellness Spaces / Bowl Food"
+    // },
+    // {
+    //     cuisineType: "Sustainable Kitchens"
+    // }
 ]
+
 
 
 
@@ -81,9 +82,9 @@ export const generateData_style = [
     {
         style: "Rustic"
     },
-    {
-        style: "Abstract / Surreal"
-    },
+    // {
+    //     style: "Abstract / Surreal"
+    // },
     {
         style: "Geometric"
     },

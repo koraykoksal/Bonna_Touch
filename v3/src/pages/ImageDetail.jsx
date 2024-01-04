@@ -11,8 +11,6 @@ const ImageDetail = () => {
     const {state} = useLocation()
     const {id} = useParams()
 
-    console.log(state)
-    console.log(id)
 
   return (
     

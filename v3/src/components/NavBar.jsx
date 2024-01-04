@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdDashboardCustomize } from "react-icons/md";
-import bonna_bonnatouch from '../assets/img/bonna_bonnatouch.png'
+import bonna_bonnatouch from '../assets/img/bonnaTouchLogo.png'
 import PromptStyle_Modal from './modals/PromptStyle_Modal';
 
 
@@ -78,7 +78,7 @@ const NavBar = () => {
                         <img
                         src={bonna_bonnatouch}
                         alt="bonnaLogo"
-                        width='250px'
+                        width='200px'
                         style={{scale:'1.3px',cursor:'pointer'}}
                         onClick={()=>window.open('https://www.bonna.com.tr','_blank')}
                         />

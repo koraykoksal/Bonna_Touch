@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import coisineType_img from "../../assets/img/coisineType_img.png"
-import colors_img from "../../assets/img/colors_img.png"
-import style_img from "../../assets/img/style_img.png"
+// import coisineType_img from "../../assets/img/coisineType_img.png"
+// import colors_img from "../../assets/img/colors_img.png"
+// import style_img from "../../assets/img/style_img.png"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Select } from '@mui/material';
 import Cuisine_Choice from '../dalle_style/Cuisine_Choice';
@@ -87,17 +87,17 @@ const PromptStyle_Modal = ({ handleOpen, open, setOpen }) => {
                             <Tab
                             value={0}
                                 label='Cuisine'
-                                icon={<img src={coisineType_img} style={{ width: '50px', objectFit: 'cover' }} />}
+                                // icon={<img src={coisineType_img} style={{ width: '50px', objectFit: 'cover' }} />}
                             />
                             <Tab
                             value={1}
                                 label='Colors'
-                                icon={<img src={colors_img} style={{ width: '50px', objectFit: 'cover' }} />}
+                                // icon={<img src={colors_img} style={{ width: '50px', objectFit: 'cover' }} />}
                             />
                             <Tab
                             value={2}
                                 label='Style'
-                                icon={<img src={style_img} style={{ width: '45px', objectFit: 'cover' }} />}
+                                // icon={<img src={style_img} style={{ width: '45px', objectFit: 'cover' }} />}
                             />
 
                         </Tabs>
