@@ -45,7 +45,7 @@ const NavBar = () => {
 
     const navigate = useNavigate()
 
-    const {dalleImage} = useSelector((state)=>state.touch)
+    const { dalleImage } = useSelector((state) => state.touch)
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -70,17 +70,17 @@ const NavBar = () => {
 
     return (
 
-        <AppBar position="static" sx={{ backgroundColor: '#dddddd',boxShadow:0 }}>
+        <AppBar position="static" sx={{ backgroundColor: '#dddddd', boxShadow: 0 }}>
             <Container maxWidth="xl">
-                <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between',p:3 }}>
+                <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
                         <img
-                        src={bonna_bonnatouch}
-                        alt="bonnaLogo"
-                        width='200px'
-                        style={{scale:'1.3px',cursor:'pointer'}}
-                        onClick={()=>window.open('https://www.bonna.com.tr','_blank')}
+                            src={bonna_bonnatouch}
+                            alt="bonnaLogo"
+                            width='200px'
+                            style={{ scale: '1.3px', cursor: 'pointer' }}
+                            onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
                         />
                     </Box>
 
@@ -94,7 +94,8 @@ const NavBar = () => {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
+                            // color="inherit"
+                            color='#000000'
                         >
                             <MenuIcon />
                         </IconButton>
@@ -117,16 +118,22 @@ const NavBar = () => {
                             }}
                         >
                             {pages.map((page, index) => (
-                                <MenuItem key={index} onClick={() => {
-                                    navigate(page.url)
-                                    handleCloseNavMenu()
-                                }}>
+                                // <MenuItem key={index} onClick={() => {
+                                //     navigate(page.url)
+                                //     handleCloseNavMenu()
+                                // }}>
 
-                                    <ListItemButton sx={{textTransform:'none'}}>
-                                        <ListItemText>{page.title}</ListItemText>
-                                    </ListItemButton>
+                                //     <ListItemButton sx={{ textTransform: 'none' }}>
+                                //         <ListItemText>{page.title}</ListItemText>
+                                //     </ListItemButton>
 
-                                </MenuItem>
+                                // </MenuItem>
+                                <Box key={index}>
+                                    <Button sx={{textTransform:'none',color:'#000000',fontSize:'16px'}} onClick={()=>{
+                                        navigate(page.url)
+                                        handleCloseNavMenu()
+                                    }}>{page.title}</Button>
+                                </Box>
                             ))}
                         </Menu>
                     </Box>
@@ -134,7 +141,7 @@ const NavBar = () => {
 
                     {/* PAGES MENU */}
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },justifyContent:'end',gap:5,alignItems:'center' }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
                         {pages.map((page, index) => (
                             <Button
                                 key={index}
@@ -142,16 +149,16 @@ const NavBar = () => {
                                     navigate(page.url)
                                     handleCloseNavMenu()
                                 }}
-                                sx={{ my: 2, fontSize:'18px',color: '#000000', display: 'block', '&:hover': { color: '#ffffff',backgroundColor:'transparent' },textTransform:'none' }}
+                                sx={{ my: 2, fontSize: '18px', color: '#000000', display: 'block', '&:hover': { color: '#ffffff', backgroundColor: 'transparent' }, textTransform: 'none' }}
                             >
                                 {page.title}
                             </Button>
                         ))}
-                        
+
                     </Box>
-                    
+
                     {/* STYLE BAR BUTTON */}
-                    <MdDashboardCustomize cursor='pointer' size={33}  style={{color:'#000000',marginLeft:50}} onClick={handleOpen}/>
+                    <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000', marginLeft: 50 }} onClick={handleOpen} />
 
                     {/* SETTINGS MENU */}
 
@@ -204,7 +211,7 @@ const NavBar = () => {
                 <Outlet />
             </Box>
 
-            <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen}/>
+            <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen} />
 
 
         </AppBar>

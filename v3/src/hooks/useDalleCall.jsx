@@ -162,13 +162,37 @@ const useDalleCall = () => {
                 authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
             },
             data: {
-                height: 512,
-                modelId: '6bef9f1b-29cb-40c7-b9df-32b51c1f67d3',
-                prompt: info,
-                width: 512,
-                alchemy: 'true',
-                presetStyle: 'DYNAMIC',
-                sd_version: 'v2'
+                // height: 512,
+                // modelId: '6bef9f1b-29cb-40c7-b9df-32b51c1f67d3',
+                // prompt: info,
+                // width: 512,
+                // alchemy: 'true',
+                // presetStyle: 'DYNAMIC',
+                // sd_version: 'v2'
+                "alchemy": true,
+                "controlnets": [],
+                "elements": [],
+                "expandedDomain": true,
+                "guidance_scale": 7,
+                "height": 512,
+                "highContrast": false,
+                "leonardoMagic": false,
+                "modelId": "6bef9f1b-29cb-40c7-b9df-32b51c1f67d3",
+                "negative_prompt": "",
+                "nsfw": true,
+                "num_images": 1,
+                "num_inference_steps": 10,
+                "photoReal": false,
+                "poseToImage": false,
+                "poseToImageType": "POSE",
+                "presetStyle": "DYNAMIC",
+                "prompt": info,
+                "public": false,
+                "scheduler": "LEONARDO",
+                "sd_version": "SDXL_0_9",
+                "tiling": false,
+                "weighting": 0.75,
+                "width": 768
             }
         };
 
