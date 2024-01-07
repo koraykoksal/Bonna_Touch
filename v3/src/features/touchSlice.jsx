@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { createElement, useEffect } from "react";
 import moment from "moment";
-
+import { uid } from "uid";
 
 const initialState = {
     loadingGeneration: false,
@@ -43,12 +43,12 @@ const touchSlice = createSlice({
         },
         fetchSuccess_Generation: (state, { payload }) => {
 
-            console.log("fetchSuccess_Generation: ", payload)
-
             state.loadingGeneration = false
             const createdTime = moment().add(1, 'hours').format()
+            const uID = uid()
 
             state.dalleImage.push({
+                id:uID,
                 imgTime: createdTime,
                 imgUrl: payload?.res?.data[0].url,
                 revisedPrompt: payload?.res?.data[0].revised_prompt,
@@ -57,12 +57,12 @@ const touchSlice = createSlice({
         },
         fetchSuccess_AllGeneration: (state, { payload }) => {
 
-            console.log("fetchSuccess_AllGeneration: ", payload)
-
             state.loadingGeneration = false
             const createdTime = moment().add(1, 'hours').format()
+            const uID = uid()
 
             state.dalleData.push({
+                id:uID,
                 imgTime: createdTime,
                 imgUrl: payload?.res?.data[0].url,
                 revisedPrompt: payload?.res?.data[0].revised_prompt,
