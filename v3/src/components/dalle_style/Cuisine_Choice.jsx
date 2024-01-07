@@ -11,11 +11,16 @@ const Coisine_Choice = () => {
 
   const dispatch = useDispatch()
 
+  const [info, setInfo] = useState({
+    cuisineType:""
+  })
+
+  
   const handleChange=(e)=>{
 
     const {name,value} = e.target;
-
-    dispatch(updatePrompts({[name]:value}))
+    setInfo({...info,[name]:value})
+    dispatch(updatePrompts({['cuisineType']:value}))
   }
 
 
@@ -32,6 +37,7 @@ const Coisine_Choice = () => {
        id="cuisineType"
        name='cuisineType'
        label="cuisineType"
+       value={info.cuisineType}
        onChange={handleChange}
       >
         {

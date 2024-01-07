@@ -4,17 +4,23 @@ import React from 'react'
 import {generateData_style} from "../../helper/dalleGenerate"
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePrompts } from '../../features/touchSlice';
+import { useState } from 'react';
+
+
 
 const Style_Choice = () => {
 
 
   const dispatch = useDispatch()
+  const [info, setInfo] = useState({
+    styleType:""
+  })
 
   const handleChange=(e)=>{
 
     const {name,value} = e.target;
-
-    dispatch(updatePrompts({[name]:value}))
+    setInfo({...info,[name]:value})
+    dispatch(updatePrompts({['styleType']:value}))
   }
 
 
@@ -31,6 +37,7 @@ const Style_Choice = () => {
        id="styleType"
        name='styleType'
        label="styleType"
+       value={info.styleType}
        onChange={handleChange}
       >
         {

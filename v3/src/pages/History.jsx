@@ -17,16 +17,6 @@ export default function History() {
   const { dalleData } = useSelector((state) => state.touch)
   const currentTime = moment().format()
 
-  // let sum = 0;
-
-  // const toplamImg=()=>{
-
-  //   sum = dalleData.reduce((n,item)=>new Date(datetime) < new Date(item.imgTime) ? n+1:n,0)
-
-  //   return sum
-
-  // }
-
   console.log(dalleData)
 
   return (
@@ -51,8 +41,6 @@ export default function History() {
 
 
                 <Box>
-
-
                   <a href={data.imgUrl} target='_blank'>
                     <CardMedia
                       component="img"

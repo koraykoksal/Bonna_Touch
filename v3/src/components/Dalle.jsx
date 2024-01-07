@@ -12,8 +12,10 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const { loadingGeneration, firstRender, dalleImage,dalleData } = useSelector((state) => state.touch)
+  const { loadingGeneration, firstRender, dalleImage,dalleData,dalleUser_PromptInfo } = useSelector((state) => state.touch)
   const currentTime = moment().format()
+
+  console.log(dalleImage)
 
   return (
 

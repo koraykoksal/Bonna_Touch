@@ -12,60 +12,51 @@ import { updatePrompts } from '../features/touchSlice';
 
 export const Home = () => {
 
-
-  const { dalleUser_PromptInfo } = useSelector((state) => state.touch)
-
+  const { create_Dalle2_Image, create_Dalle3_Image, create_Leonardo_Image } = useDalleCall()
   const dispatch = useDispatch()
 
-  const [prompt, setprompt] = useState("")
+  const {dalleUser_PromptInfo} = useSelector((state)=>state.touch)
 
-  const { getImageData, getImageData2, create_image } = useDalleCall()
+  const [info, setInfo] = useState({
+    prompt: ""
+  })
 
-  const lastSentenceSupport = `A plate round, flat plate with a clear, blurred background, showcasing a top-down view.${prompt}`;
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setInfo({ ...info, [name]: value })
+    dispatch(updatePrompts({ ['prompt']: value }))
+  }
 
 
 
   const handleEnterPress = (e) => {
     e.preventDefault()
 
-    if (prompt) {
-      // prompt.toLocaleLowerCase().trim()
-
-      // const generateData = {
-      //   url: 'generations',
-      //   searchData: lastSentenceSupport,
-      //   prompt: prompt,
-      // }
+    if (info) {
 
       if (e.key === 'Enter') {
 
-        prompt.toLocaleLowerCase().trim()
-
-        dispatch(updatePrompts({ ['prompt']: prompt }))
-
-        // getImageData2('generations')
-        create_image()
+        info.prompt.toLocaleLowerCase().trim()
+        create_Dalle3_Image('generations')
 
       }
+    }
+    else {
+      toastWarnNotify('Please enter prompt field !')
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (prompt) {
-      prompt.toLocaleLowerCase().trim()
-
-      dispatch(updatePrompts({ ['prompt']: prompt }))
-
-      // getImageData2('generations')
-
-      // const generateData = {
-      //   url: 'generations',
-      //   searchData: lastSentenceSupport,
-      //   prompt: prompt,
-      // }
-      // getImageData(generateData)
+    if (info) {
+      info.prompt.toLocaleLowerCase().trim()
+      create_Dalle3_Image('generations')
+    }
+    else {
+      toastWarnNotify('Please enter prompt field !')
     }
   }
 
@@ -86,15 +77,14 @@ export const Home = () => {
 
 
           <TextField
-
             required
             fullWidth
             name='prompt'
             label='Prompt'
             variant='outlined'
             type='text'
-            value={prompt}
-            onChange={(e) => setprompt(e.target.value)}
+            value={info.prompt}
+            onChange={handleChange}
             onKeyUp={handleEnterPress}
 
             inputProps={{
