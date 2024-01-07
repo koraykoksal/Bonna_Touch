@@ -61,14 +61,13 @@ export const Home = () => {
   }
 
 
-  console.log(dalleUser_PromptInfo)
 
   return (
 
     <>
 
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '800px', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ backgroundColor: '#dddddd', height: '100vh', display: 'flex', flexDirection: 'column' }}>
 
         <Container >
           <Dalle />

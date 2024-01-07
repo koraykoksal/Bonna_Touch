@@ -45,7 +45,7 @@ export default function History() {
 
     <>
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '900px' }}>
+      <Box sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2, pt: 5 }}>
