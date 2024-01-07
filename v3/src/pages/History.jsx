@@ -54,7 +54,7 @@ export default function History() {
 
             <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={data.id}>
 
-              <CardActionArea>
+              {/* <CardActionArea> */}
 
 
                 <Typography variant="subtitle2" color="text.secondary" p={0.5}>
@@ -62,7 +62,8 @@ export default function History() {
                 </Typography>
 
 
-                <Box>
+                <Box sx={{display:'flex',flexDirection:'column',gap:1}}>
+
                   <a href={data.imgUrl} target='_blank'>
                     <CardMedia
                       component="img"
@@ -71,14 +72,17 @@ export default function History() {
                       sx={{ borderRadius: '0.5rem' }}
                     />
                   </a>
+
+                  <FaHeart onClick={() => toggleHeart(data.id)}
+                    color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'}/>
                 </Box>
 
-                <CardContent sx={{ maxHeight: '50px', overflow: 'auto' }}>
+                {/* <CardContent sx={{ maxHeight: '50px', overflow: 'auto' }}>
                   <FaHeart onClick={() => toggleHeart(data.id)}
                     color={selectedIds[data.id] ? 'red' : 'grey'} />
-                </CardContent>
+                </CardContent> */}
 
-              </CardActionArea>
+              {/* </CardActionArea> */}
 
             </Card>
 

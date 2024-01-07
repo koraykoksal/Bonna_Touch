@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, FormControl, TextField } from '@mui/material'
+import { Box, Container, FormControl, Grid, TextField, Typography } from '@mui/material'
 import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
 import { useState } from 'react'
@@ -61,6 +61,8 @@ export const Home = () => {
   }
 
 
+  console.log(dalleUser_PromptInfo)
+
   return (
 
     <>
@@ -70,6 +72,31 @@ export const Home = () => {
 
         <Container >
           <Dalle />
+        </Container>
+
+        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
+          
+          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
+          <Typography variant='subtitle2'>User Prompt :</Typography>
+          <Typography variant='subtitle2' fontWeight={700}> {dalleUser_PromptInfo.prompt}</Typography>
+          </Grid>
+          
+          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
+          <Typography variant='subtitle2'>Cuisine :</Typography>
+          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.cuisineType}</Typography>
+          </Grid>
+
+          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
+          <Typography variant='subtitle2'>Color :</Typography>
+          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.colorType}</Typography>
+          </Grid>
+
+          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
+          <Typography variant='subtitle2'>Style :</Typography>
+          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.styleType}</Typography>
+          </Grid>
+
+
         </Container>
 
 

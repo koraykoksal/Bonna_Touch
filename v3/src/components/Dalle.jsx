@@ -55,11 +55,11 @@ export const Dalle = () => {
                 />
               </a>
 
-              <CardContent>
+              {/* <CardContent>
                 <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
                   {data.prompt}
                 </Typography>
-              </CardContent>
+              </CardContent> */}
 
 
             </CardActionArea>
