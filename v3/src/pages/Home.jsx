@@ -35,7 +35,7 @@ export const Home = () => {
   const handleEnterPress = (e) => {
     e.preventDefault()
 
-    if (info) {
+    if (info.prompt) {
 
       if (e.key === 'Enter') {
 
@@ -52,7 +52,7 @@ export const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (info) {
+    if (info.prompt) {
       info.prompt.toLocaleLowerCase().trim()
       create_Dalle3_Image('generations')
       // create_Leonardo_Image()
@@ -61,7 +61,6 @@ export const Home = () => {
       toastWarnNotify('Please enter prompt field !')
     }
   }
-
 
 
   return (
@@ -101,7 +100,7 @@ export const Home = () => {
         </Container>
 
 
-        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }} component={'form'} onSubmit={handleSubmit}>
 
 
           <TextField
@@ -121,7 +120,7 @@ export const Home = () => {
 
           />
 
-          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
+          <IoSend size={35} color='#000000' cursor='pointer' type='submit'/>
 
         </Container>
 
