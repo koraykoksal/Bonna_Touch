@@ -4,6 +4,7 @@ import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
 import { useState } from 'react'
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { IoSend } from "react-icons/io5";
 import InputAdornment from '@mui/material/InputAdornment';
 import { toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
@@ -40,7 +41,7 @@ export const Home = () => {
 
         info.prompt.toLocaleLowerCase().trim()
         create_Dalle3_Image('generations')
-
+        // create_Leonardo_Image()
       }
     }
     else {
@@ -54,6 +55,7 @@ export const Home = () => {
     if (info) {
       info.prompt.toLocaleLowerCase().trim()
       create_Dalle3_Image('generations')
+      // create_Leonardo_Image()
     }
     else {
       toastWarnNotify('Please enter prompt field !')
@@ -119,7 +121,7 @@ export const Home = () => {
 
           />
 
-          <RiSendPlane2Fill size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
+          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
 
         </Container>
 

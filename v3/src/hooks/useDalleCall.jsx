@@ -25,7 +25,7 @@ const useDalleCall = () => {
 
 
 
-    
+
     const create_Dalle2_Image = (url) => {
 
         dispatch(fetchStartGeneration())    //api isteği öncesi çalışacan reducer
@@ -164,17 +164,38 @@ const useDalleCall = () => {
             },
             data: {
                 // alchemy: true,
-                height: 512,
-                prompt: info,
-                width: 512,
-                num_images: 2,
-                num_inference_steps: 10,
-                // photoReal: true,
-                scheduler: 'LEONARDO',
-                sd_version: 'v2',
-                tiling: false,
-                guidance_scale: 7,
-                presetStyle: 'DYNAMIC',
+                // prompt: "red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.",
+                // num_images: 2,
+                // num_inference_steps: 10,
+                // scheduler: 'LEONARDO',
+                // guidance_scale: 7,
+                // presetStyle: 'DYNAMIC',
+
+                "alchemy": true,
+                "controlnets": [],
+                "elements": [],
+                "expandedDomain": true,
+                "guidance_scale": 7,
+                "height": 512,
+                "highContrast": true,
+                "leonardoMagic": true,
+                "leonardoMagicVersion":"v3",
+                "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
+                "negative_prompt": "",
+                "nsfw": true,
+                "num_images": 2,
+                "num_inference_steps": 10,
+                "photoReal": false,
+                "poseToImage": false,
+                "poseToImageType": "POSE",
+                "presetStyle": "DYNAMIC",
+                "prompt": "red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.",
+                "public": false,
+                "scheduler": "LEONARDO",
+                "sd_version": "v2",
+                "tiling": false,
+                "weighting": 0.75,
+                "width": 768
 
             }
         };
