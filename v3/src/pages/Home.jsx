@@ -40,8 +40,8 @@ export const Home = () => {
       if (e.key === 'Enter') {
 
         info.prompt.toLocaleLowerCase().trim()
-        create_Dalle3_Image('generations')
-        // create_Leonardo_Image()
+        // create_Dalle3_Image('generations')
+        create_Leonardo_Image()
       }
     }
     else {
@@ -54,8 +54,8 @@ export const Home = () => {
 
     if (info.prompt) {
       info.prompt.toLocaleLowerCase().trim()
-      create_Dalle3_Image('generations')
-      // create_Leonardo_Image()
+      // create_Dalle3_Image('generations')
+      create_Leonardo_Image()
     }
     else {
       toastWarnNotify('Please enter prompt field !')

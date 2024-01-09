@@ -162,42 +162,7 @@ const useDalleCall = () => {
                 'content-type': 'application/json',
                 authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
             },
-            data: {
-                // alchemy: true,
-                // prompt: "red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.",
-                // num_images: 2,
-                // num_inference_steps: 10,
-                // scheduler: 'LEONARDO',
-                // guidance_scale: 7,
-                // presetStyle: 'DYNAMIC',
-
-                "alchemy": true,
-                "controlnets": [],
-                "elements": [],
-                "expandedDomain": true,
-                "guidance_scale": 7,
-                "height": 512,
-                "highContrast": true,
-                "leonardoMagic": true,
-                "leonardoMagicVersion":"v3",
-                "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
-                "negative_prompt": "",
-                "nsfw": true,
-                "num_images": 2,
-                "num_inference_steps": 10,
-                "photoReal": false,
-                "poseToImage": false,
-                "poseToImageType": "POSE",
-                "presetStyle": "DYNAMIC",
-                "prompt": "red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.",
-                "public": false,
-                "scheduler": "LEONARDO",
-                "sd_version": "v2",
-                "tiling": false,
-                "weighting": 0.75,
-                "width": 768
-
-            }
+            data: {"height":512,"modelId":"6bef9f1b-29cb-40c7-b9df-32b51c1f67d3","prompt":"red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.","width":768,"controlNetType":"POSE","alchemy":"true","scheduler":"LEONARDO","sd_version":"v2","presetStyle":"DYNAMIC","controlNet":"true"}
         };
 
         await axios
