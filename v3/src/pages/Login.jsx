@@ -24,48 +24,53 @@ const Login = () => {
     const handleChage = (e) => {
 
         const { name, value } = e.target
-    
+
         setInfo({ ...info, [name]: value })
-    
-    
-      }
-    
-      const handleSubmit=(e)=>{
-    
+
+
+    }
+
+    const handleSubmit = (e) => {
+
         e.preventDefault()
-    
-      }
+
+    }
 
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#dddddd', minHeight: '900px' }}>
 
-            <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Login</Typography>
+            <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
 
-            <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 
-                <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
+                <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Login</Typography>
 
-                    <TextField
-                        fullWidth
-                        required
-                        type='text'
-                        id='email'
-                        name='email'
-                        label='Email'
-                        variant="outlined"
-                        onChange={handleChage}
-                    />
+                <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5,p:3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 
-                </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
 
-                <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Login</Button>
+                        <TextField
+                            fullWidth
+                            required
+                            type='text'
+                            id='email'
+                            name='email'
+                            label='Email'
+                            variant="outlined"
+                            onChange={handleChage}
+                        />
 
-                <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
-                    <Link to={'/register'} >Don't you have an account.</Link>
-                </Box>
+                    </Box>
 
-            </Container>
+                    <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Login</Button>
+
+                    <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
+                        <Link to={'/'} >Don't you have an account.</Link>
+                    </Box>
+
+                </Container>
+
+            </Box>
 
         </div>
     )

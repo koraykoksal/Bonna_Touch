@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container, TextField } from '@mui/material';
 import { useState } from 'react';
-import { countries,companyType } from "../helper/data"
+import { countries, companyType } from "../helper/data"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -23,7 +23,7 @@ export const Register = () => {
     email: "",
     tel: "",
     age: "",
-    companyType:"",
+    companyType: "",
 
   })
 
@@ -36,7 +36,7 @@ export const Register = () => {
 
   }
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
 
     e.preventDefault()
 
@@ -46,146 +46,152 @@ export const Register = () => {
 
   return (
 
-    <div>
-
-      <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Register</Typography>
-
-      <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
-
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
-
-          <TextField
-            fullWidth
-            required
-            type='text'
-            id='name'
-            name='name'
-            label='Name'
-            variant="outlined"
-            onChange={handleChage}
-          />
-
-          <TextField
-            fullWidth
-            required
-            type='text'
-            id='surname'
-            name='surname'
-            label='Surname'
-            variant="outlined"
-            onChange={handleChage}
-          />
-
-        </Box>
-
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
-
-          <TextField
-            fullWidth
-            required
-            type='text'
-            id='job'
-            name='job'
-            label='Job'
-            variant="outlined"
-            onChange={handleChage}
-          />
+    <div style={{ backgroundColor: '#dddddd', minHeight: '900px' }}>
 
 
-          <FormControl fullWidth>
-            <InputLabel id="country">Country</InputLabel>
-            <Select
+      <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
+
+        <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Register</Typography>
+
+
+        <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5,p:3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
+
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
+
+            <TextField
+              fullWidth
               required
-              labelId="country"
-              id="country"
-              name='country'
-              label="Country"
-              value={info.country}
+              type='text'
+              id='name'
+              name='name'
+              label='Name'
+              variant="outlined"
               onChange={handleChage}
-            >
-              {
-                countries?.map(({ name, index }) => (
-                  <MenuItem key={index} value={name}>{name}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+            />
 
-        </Box>
-
-
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
-
-          <TextField
-            fullWidth
-            required
-            type='text'
-            id='company'
-            name='company'
-            label='Company'
-            variant="outlined"
-            onChange={handleChage}
-          />
-
-
-          <FormControl fullWidth>
-            <InputLabel id="companyType">Company Type</InputLabel>
-            <Select
+            <TextField
+              fullWidth
               required
-              labelId="companyType"
-              id="companyType"
-              name='companyType'
-              label="CompanyType"
-              value={info.companyType}
+              type='text'
+              id='surname'
+              name='surname'
+              label='Surname'
+              variant="outlined"
               onChange={handleChage}
-            >
-              {
-                companyType?.map(({ name, index }) => (
-                  <MenuItem key={index} value={name}>{name}</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
+            />
 
-        </Box>
-
-        <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
-
-          <Box sx={{display:'flex',flexDirection:'column',width:'100%'}} fullWidth>
-          <TextField
-            fullWidth
-            type='text'
-            id='tel'
-            name='tel'
-            label='Phone'
-            variant="outlined"
-            onChange={handleChage}
-          />
-          <Typography variant='subtitle2' color={'#B6BBC4'}>Optional</Typography>
           </Box>
 
-          <Box sx={{display:'flex',flexDirection:'column',width:'100%'}}>
-          <TextField
-            fullWidth
-            type='text'
-            id='email'
-            name='email'
-            label='Email'
-            variant="outlined"
-            onChange={handleChage}
-          />
-          <Typography variant='subtitle2' color={'#B6BBC4'}>Optional</Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
+
+            <TextField
+              fullWidth
+              required
+              type='text'
+              id='job'
+              name='job'
+              label='Job'
+              variant="outlined"
+              onChange={handleChage}
+            />
+
+
+            <FormControl fullWidth>
+              <InputLabel id="country">Country</InputLabel>
+              <Select
+                required
+                labelId="country"
+                id="country"
+                name='country'
+                label="Country"
+                value={info.country}
+                onChange={handleChage}
+              >
+                {
+                  countries?.map(({ name, index }) => (
+                    <MenuItem key={index} value={name}>{name}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
+
           </Box>
 
-        </Box>
 
-        <Button variant='contained' sx={{letterSpacing:5}} type='submit'>Register</Button>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
 
-        <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
-          <Link to={'/login'} >I have an account.</Link>
-        </Box>
+            <TextField
+              fullWidth
+              required
+              type='text'
+              id='company'
+              name='company'
+              label='Company'
+              variant="outlined"
+              onChange={handleChage}
+            />
 
-      </Container>
+
+            <FormControl fullWidth>
+              <InputLabel id="companyType">Company Type</InputLabel>
+              <Select
+                required
+                labelId="companyType"
+                id="companyType"
+                name='companyType'
+                label="CompanyType"
+                value={info.companyType}
+                onChange={handleChage}
+              >
+                {
+                  companyType?.map(({ name, index }) => (
+                    <MenuItem key={index} value={name}>{name}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
+
+          </Box>
+
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }} fullWidth>
+              <TextField
+                fullWidth
+                type='text'
+                id='tel'
+                name='tel'
+                label='Phone'
+                variant="outlined"
+                onChange={handleChage}
+              />
+              <Typography variant='subtitle2' color={'#B6BBC4'}>Optional</Typography>
+            </Box>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <TextField
+                fullWidth
+                type='text'
+                id='email'
+                name='email'
+                label='Email'
+                variant="outlined"
+                onChange={handleChage}
+              />
+              <Typography variant='subtitle2' color={'#B6BBC4'}>Optional</Typography>
+            </Box>
+
+          </Box>
+
+          <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Register</Button>
+
+          <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
+            <Link to={'/login'} >I have an account.</Link>
+          </Box>
+
+        </Container>
+
+      </Box>
 
     </div>
 

@@ -8,25 +8,28 @@ import ImageDetail from '../pages/ImageDetail'
 import Variation from '../pages/Variation'
 import NavBar from '../components/NavBar'
 import Login from '../pages/Login'
+import PrivateRouter from './PrivateRouter'
 
 export const AppRouter = () => {
 
 
   return (
-    
-    <>
-    <BrowserRouter>
-      <NavBar/>
-      <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='history' element={<History/>}/>
-      <Route path='variation' element={<Variation/>}/>
-      <Route path='register' element={<Register/>}/>
-      <Route path='login' element={<Login/>}/>
-      <Route path='*' element={<NotFound/>}/>
 
-    </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path='/' element={<Register />} />
+          <Route path='login' element={<Login />} />
+
+          <Route path='' element={<PrivateRouter />}>
+            <Route path='home' element={<Home />} />
+            <Route path='history' element={<History />} />
+            <Route path='variation' element={<Variation />} />
+          </Route>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
 
     </>
   )

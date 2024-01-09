@@ -25,15 +25,15 @@ import PromptStyle_Modal from './modals/PromptStyle_Modal';
 const pages = [
     {
         title: "Home",
-        url: "/"
+        url: "home"
     },
-    {
-        title: "Variation",
-        url: "/variation"
-    },
+    // {
+    //     title: "Variation",
+    //     url: "variation"
+    // },
     {
         title: 'History',
-        url: '/history'
+        url: 'history'
     },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
