@@ -25,7 +25,7 @@ import PromptStyle_Modal from './modals/PromptStyle_Modal';
 const pages = [
     {
         title: "Home",
-        url: "home"
+        url: "/home"
     },
     // {
     //     title: "Variation",
@@ -33,7 +33,7 @@ const pages = [
     // },
     {
         title: 'History',
-        url: 'history'
+        url: '/history'
     },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
