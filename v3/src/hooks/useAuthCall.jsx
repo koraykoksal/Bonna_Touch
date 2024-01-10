@@ -1,40 +1,53 @@
 import React from 'react'
 import { auth } from "../auth/firebase.js"
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { uid } from "uid";
-import { getDatabase,set,ref} from "firebase/firestore";
-import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
-
+import { fetchFail, fetchLogoutSuccess, fetchRegisterSuccess, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
+import { getDatabase, onValue, ref, remove, set, update } from "firebase/database";
+import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 
 
 const useAuthCall = () => {
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const register = async (url, info) => {
+
+    dispatch(fetchStart())
 
 
-  const register=async(url,info)=>{
+    try {
 
+      const uID = uid()
+      const newDb = getDatabase()
 
-    // try {
+      await set(ref(newDb, `${url}/${uID}`), info)
+      dispatch(fetchRegisterSuccess(info))
 
-    //   const uID = uid()
-    //   const newDb = getDatabase()
+      navigate('/home')
+      toastSuccessNotify('Register Success')
 
-    //   await set(ref(newDb,`${url}/${uID}`),info)
-    //   toastSuccessNotify('Register Success')
-      
-    // } catch (error) {
-    //   toastWarnNotify('Register Error')
-    //   console.log("register, ",error)
-    // }
+    } catch (error) {
+      toastWarnNotify('Register Error')
+      console.log("register, ", error)
+    }
 
 
   }
 
 
-  const login=()=>{
+  const logout = () => {
+
+    dispatch(fetchStart())
+
+    dispatch(fetchLogoutSuccess())
+    toastSuccessNotify('Logout Successful.')
+    navigate('/')
 
   }
 
@@ -45,7 +58,7 @@ const useAuthCall = () => {
   return {
 
     register,
-    login
+    logout
 
   }
 

@@ -20,11 +20,13 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdDashboardCustomize } from "react-icons/md";
 import bonna_bonnatouch from '../assets/img/bonnaTouchLogo.png'
 import PromptStyle_Modal from './modals/PromptStyle_Modal';
+import { AiOutlineLogout } from "react-icons/ai";
+import useAuthCall from '../hooks/useAuthCall';
 
 
 const pages = [
     {
-        title: "Generation",
+        title: "Generate",
         url: "/home"
     },
     // {
@@ -39,6 +41,11 @@ const pages = [
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
+
+    const { currentUser } = useSelector((state) => state.auth)
+
+    const {logout}=useAuthCall()
+    let avatarName = ""
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -66,6 +73,16 @@ const NavBar = () => {
     };
 
 
+    //avatarın name bilgisi
+    const avatarNick = () => {
+        const name = currentUser[0]
+        const boslukIndex = currentUser.indexOf(" ")
+        const surname = currentUser[boslukIndex + 1]
+
+        avatarName = name + surname
+
+        return avatarName
+    }
 
 
     return (
@@ -73,6 +90,10 @@ const NavBar = () => {
         <AppBar position="static" sx={{ backgroundColor: '#dddddd', boxShadow: 0 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
+
+
+
+
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
                         <img
@@ -129,7 +150,7 @@ const NavBar = () => {
 
                                 // </MenuItem>
                                 <Box key={index}>
-                                    <Button sx={{textTransform:'none',color:'#000000',fontSize:'16px'}} onClick={()=>{
+                                    <Button sx={{ textTransform: 'none', color: '#000000', fontSize: '16px' }} onClick={() => {
                                         navigate(page.url)
                                         handleCloseNavMenu()
                                     }}>{page.title}</Button>
@@ -137,6 +158,7 @@ const NavBar = () => {
                             ))}
                         </Menu>
                     </Box>
+
 
 
                     {/* PAGES MENU */}
@@ -157,49 +179,51 @@ const NavBar = () => {
 
                     </Box>
 
-                    {/* STYLE BAR BUTTON */}
-                    <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000', marginLeft: 50 }} onClick={handleOpen} />
 
-                    {/* SETTINGS MENU */}
 
-                    {/* <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> */}
+                    <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} marginLeft={5}>
+                        {/* STYLE BAR BUTTON */}
+                        <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000' }} onClick={handleOpen} />
 
-                    <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 3, mr: 1 }}>
-                        {/* {
-              currentUser && (<Typography>{currentUser || null}</Typography>)
-            }
-            {
-              currentUser && (<RiLogoutCircleRLine size={22} color='#B31312' cursor='pointer' onClick={() => logout()} />)
-            } */}
+                        {/* <Typography sx={{ textTransform: 'none' }} variant='subtitle2' color={'black'} fontSize={18}>{currentUser}</Typography>
+
+                        <AiOutlineLogout color='red' size={25} cursor={'pointer'}/> */}
+
+
+                        <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center' }}>
+
+                            <Box>
+
+                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer', backgroundColor: 'black' }} >{avatarNick()}</Avatar>
+
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
+                                </Menu>
+                            </Box>
+
+
+                        </Box>
                     </Box>
+
+
+
+
+
 
                 </Toolbar>
 

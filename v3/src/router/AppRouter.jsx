@@ -17,15 +17,17 @@ export const AppRouter = () => {
 
     <>
       <BrowserRouter>
-        <NavBar />
+        
         <Routes>
           <Route path='/' element={<Register />} />
           <Route path='login' element={<Login />} />
 
           <Route path='' element={<PrivateRouter />}>
+            <Route element={<NavBar/>}>
             <Route path='home' element={<Home />} />
             <Route path='history' element={<History />} />
             <Route path='variation' element={<Variation />} />
+            </Route>
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

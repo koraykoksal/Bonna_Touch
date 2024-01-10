@@ -47,7 +47,6 @@ export const Register = () => {
   }
 
 
-
   return (
 
     <div style={{ backgroundColor: '#dddddd', minHeight: '900px' }}>
