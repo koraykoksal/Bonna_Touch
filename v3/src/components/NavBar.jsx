@@ -24,7 +24,7 @@ import PromptStyle_Modal from './modals/PromptStyle_Modal';
 
 const pages = [
     {
-        title: "Home",
+        title: "Generation",
         url: "/home"
     },
     // {

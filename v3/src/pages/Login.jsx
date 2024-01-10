@@ -43,7 +43,7 @@ const Login = () => {
             <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
 
 
-                <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Login</Typography>
+                <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'black'} fontSize={'22px'} letterSpacing={5}>Login</Typography>
 
                 <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5,p:3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 

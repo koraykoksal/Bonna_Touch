@@ -11,8 +11,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import useAuthCall from '../hooks/useAuthCall';
 
 export const Register = () => {
+
+  const { register } = useAuthCall()
 
   const [info, setInfo] = useState({
     name: "",
@@ -39,6 +42,7 @@ export const Register = () => {
   const handleSubmit = (e) => {
 
     e.preventDefault()
+    register("register", info)
 
   }
 
@@ -51,10 +55,10 @@ export const Register = () => {
 
       <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
 
-        <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'red'} fontSize={'22px'} letterSpacing={5}>Register</Typography>
+        <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'black'} fontSize={'22px'} letterSpacing={5}>Register</Typography>
 
 
-        <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5,p:3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
+        <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
 
@@ -91,6 +95,17 @@ export const Register = () => {
               id='job'
               name='job'
               label='Job'
+              variant="outlined"
+              onChange={handleChage}
+            />
+
+            <TextField
+              fullWidth
+              required
+              type='text'
+              id='email'
+              name='email'
+              label='Email'
               variant="outlined"
               onChange={handleChage}
             />
@@ -169,12 +184,13 @@ export const Register = () => {
             </Box>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+
               <TextField
                 fullWidth
                 type='text'
-                id='email'
-                name='email'
-                label='Email'
+                id='age'
+                name='age'
+                label='Age'
                 variant="outlined"
                 onChange={handleChage}
               />
