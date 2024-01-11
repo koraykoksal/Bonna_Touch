@@ -12,10 +12,19 @@ import moment from 'moment';
 export const Dalle = () => {
 
 
-  const { loadingGeneration, firstRender, dalleImage,dalleData,dalleUser_PromptInfo } = useSelector((state) => state.touch)
+  const {
+    loadingGeneration,
+    firstRender,
+    dalleImage,
+    dalleData,
+    dalleUser_PromptInfo,
+    leonardoGenerationData
+
+  } = useSelector((state) => state.touch)
   const currentTime = moment().format()
 
-  console.log(dalleImage)
+
+  console.log(leonardoGenerationData)
 
   return (
 
@@ -28,23 +37,44 @@ export const Dalle = () => {
 
         {loadingGeneration && (
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px',p:3 }} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
             {/* <img src={generateGift} alt="" style={{ objectFit: 'cover' }} /> */}
             <img src={generateGift2} alt="" style={{ objectFit: 'cover' }} />
-
 
           </Box>
 
         )
         }
 
+        <Box sx={{ display: 'flex', justifyContent: 'center' }} >
 
-        {
+          {
+            leonardoGenerationData?.map((data, index) => (
+
+              <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                <a href={data.url} target='_blank'>
+                  <CardMedia
+                    component="img"
+                    height="450"
+                    src={data.url}
+                    sx={{ borderRadius: '0.5rem' }}
+                  />
+                </a>
+
+              </CardActionArea>
+
+            ))
+
+          }
+        </Box>
+
+
+        {/* {
           dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
 
             <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
 
               <a href={data.imgUrl} target='_blank'>
                 <CardMedia
@@ -55,18 +85,11 @@ export const Dalle = () => {
                 />
               </a>
 
-              {/* <CardContent>
-                <Typography variant="body2" color="text.secondary" textAlign={'center'} overflow={'auto'} style={{ wordWrap: 'break-word' }}>
-                  {data.prompt}
-                </Typography>
-              </CardContent> */}
-
-
             </CardActionArea>
 
           ))
 
-        }
+        } */}
 
 
       </Box>

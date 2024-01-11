@@ -18,6 +18,8 @@ const initialState = {
         styleType:""
     },
     leonardoGenerationID: "",
+    leonardoGenerationData:[],
+    leonardoGenerationAllData:[]
 }
 
 const touchSlice = createSlice({
@@ -70,14 +72,28 @@ const touchSlice = createSlice({
             });
         },
         updatePrompts: (state, { payload }) => {
-            console.log("update : ", payload)
             state.dalleUser_PromptInfo = {...state.dalleUser_PromptInfo,...payload}
         },
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
-            state.loadingGeneration = false
+            // state.loadingGeneration = false
             state.leonardoGenerationID = payload
-        }
+        },
+        fetchSuccessLeonardoGenerationData:(state,{payload})=>{
+            state.loadingGeneration = false
+            state.leonardoGenerationData = payload
 
+        },
+        fetchSuccessLeonardoGenerationAllData:(state,{payload})=>{
+            // state.loadingGeneration = false
+            console.log(payload)
+            const uID = uid()
+            return {
+
+                leonardoGenerationAllData:[...state.leonardoGenerationAllData,{id:uID,url:payload}]
+            }
+
+
+        }
 
 
     }
@@ -96,7 +112,9 @@ export const {
     fetchSuccess_Generation,
     fetchSuccess_AllGeneration,
     updatePrompts,
-    fetchSuccessLeonardoGeneration
+    fetchSuccessLeonardoGeneration,
+    fetchSuccessLeonardoGenerationData,
+    fetchSuccessLeonardoGenerationAllData
 
 
 } = touchSlice.actions

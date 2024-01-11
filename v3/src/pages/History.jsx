@@ -16,7 +16,7 @@ import { FaHeart } from "react-icons/fa";
 
 export default function History() {
 
-  const { dalleData } = useSelector((state) => state.touch)
+  const { dalleData, leonardoGenerationAllData } = useSelector((state) => state.touch)
   const currentTime = moment().format()
 
   // FaHeart'ların tıklama durumunu saklamak için bir state oluşturun
@@ -41,6 +41,10 @@ export default function History() {
     });
   };
 
+
+
+  console.log(leonardoGenerationAllData)
+
   return (
 
     <>
@@ -50,43 +54,56 @@ export default function History() {
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2, pt: 5 }}>
 
-          {dalleData?.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, id) => (
+
+          {leonardoGenerationAllData.map((data, id) => (
 
             <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={data.id}>
 
-              {/* <CardActionArea> */}
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 
+                <a href={data.url} target='_blank'>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={data.url}
+                    sx={{ borderRadius: '0.5rem' }}
+                  />
+                </a>
 
-                <Typography variant="subtitle2" color="text.secondary" p={0.5}>
-                  Expiry : {moment(data.imgTime).format('LT')}
-                </Typography>
-
-
-                <Box sx={{display:'flex',flexDirection:'column',gap:1}}>
-
-                  <a href={data.imgUrl} target='_blank'>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={data.imgUrl}
-                      sx={{ borderRadius: '0.5rem' }}
-                    />
-                  </a>
-
-                  <FaHeart onClick={() => toggleHeart(data.id)}
-                    color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'}/>
-                </Box>
-
-                {/* <CardContent sx={{ maxHeight: '50px', overflow: 'auto' }}>
-                  <FaHeart onClick={() => toggleHeart(data.id)}
-                    color={selectedIds[data.id] ? 'red' : 'grey'} />
-                </CardContent> */}
-
-              {/* </CardActionArea> */}
+                <FaHeart onClick={() => toggleHeart(data.id)}
+                  color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'} />
+              </Box>
 
             </Card>
 
           ))}
+
+          {/* {dalleData?.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, id) => (
+
+            <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={data.id}>
+
+              <Typography variant="subtitle2" color="text.secondary" p={0.5}>
+                Expiry : {moment(data.imgTime).format('LT')}
+              </Typography>
+
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+
+                <a href={data.imgUrl} target='_blank'>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={data.imgUrl}
+                    sx={{ borderRadius: '0.5rem' }}
+                  />
+                </a>
+
+                <FaHeart onClick={() => toggleHeart(data.id)}
+                  color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'} />
+              </Box>
+
+            </Card>
+
+          ))} */}
 
         </Box>
       </Box>

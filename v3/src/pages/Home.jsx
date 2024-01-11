@@ -1,8 +1,8 @@
 import React from 'react'
-import { Box, Container, FormControl, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, Container, FormControl, Grid, TextField, Typography } from '@mui/material'
 import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
 import InputAdornment from '@mui/material/InputAdornment';
@@ -10,13 +10,12 @@ import { toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePrompts } from '../features/touchSlice';
 
-
 export const Home = () => {
 
-  const { create_Dalle2_Image, create_Dalle3_Image, create_Leonardo_Image } = useDalleCall()
+  const {create_Leonardo_Image,get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
 
-  const {dalleUser_PromptInfo} = useSelector((state)=>state.touch)
+  const {dalleUser_PromptInfo, leonardoGenerationID} = useSelector((state)=>state.touch)
 
   const [info, setInfo] = useState({
     prompt: ""
@@ -40,7 +39,6 @@ export const Home = () => {
       if (e.key === 'Enter') {
 
         info.prompt.toLocaleLowerCase().trim()
-        // create_Dalle3_Image('generations')
         create_Leonardo_Image()
       }
     }
@@ -49,18 +47,29 @@ export const Home = () => {
     }
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (info.prompt) {
-      info.prompt.toLocaleLowerCase().trim()
-      // create_Dalle3_Image('generations')
+    if (info.prompt && dalleUser_PromptInfo) {
+      // info.prompt.toLocaleLowerCase().trim()
       create_Leonardo_Image()
     }
     else {
       toastWarnNotify('Please enter prompt field !')
     }
   }
+
+
+  useEffect(() => {
+    get_Leonarda_Image(leonardoGenerationID)
+  }, [leonardoGenerationID])
+  
+
+  const run=()=>{
+    get_Leonarda_Image(leonardoGenerationID)
+  }
+
 
 
   return (
@@ -100,7 +109,7 @@ export const Home = () => {
         </Container>
 
 
-        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }} component={'form'} onSubmit={handleSubmit}>
+        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }}>
 
 
           <TextField
@@ -112,7 +121,7 @@ export const Home = () => {
             type='text'
             value={info.prompt}
             onChange={handleChange}
-            onKeyUp={handleEnterPress}
+            // onKeyUp={handleEnterPress}
 
             inputProps={{
               style: { height: '15px' },
@@ -120,7 +129,10 @@ export const Home = () => {
 
           />
 
-          <IoSend size={35} color='#000000' cursor='pointer' type='submit'/>
+          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit}/>
+          <Button onClick={run}>
+            RUN
+          </Button>
 
         </Container>
 

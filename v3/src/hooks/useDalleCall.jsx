@@ -7,6 +7,8 @@ import {
     fetchSuccess_Generation,
     fetchSuccess_AllGeneration,
     fetchSuccessLeonardoGeneration,
+    fetchSuccessLeonardoGenerationData,
+    fetchSuccessLeonardoGenerationAllData,
 
 } from '../features/touchSlice'
 import { fetchStartVariation, fetchSuccessVariation, fetchEndVariation, fetchFailVariation } from '../features/variationSlice'
@@ -23,7 +25,7 @@ const useDalleCall = () => {
 
     const info = dalleUser_PromptInfo.cuisineType + ", " + dalleUser_PromptInfo.styleType + ", " + dalleUser_PromptInfo.colorType + ", " + dalleUser_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
-
+    console.log(info)
 
 
     const create_Dalle2_Image = (url) => {
@@ -160,8 +162,7 @@ const useDalleCall = () => {
             headers: {
                 'accept': 'application/json',
                 'content-type': 'application/json',
-                // authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
-                'authorization': 'Bearer 15962415-21eb-4b8c-9d5d-f76311b1a216'
+                'authorization': `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
             },
             data: {
                 "alchemy": true,
@@ -177,7 +178,7 @@ const useDalleCall = () => {
                 "num_inference_steps": 10,
                 "photoReal": false,
                 "presetStyle": "DYNAMIC",
-                "prompt": "savana pattern, red and beige, simple round porcelain plate show top view and clear background",
+                "prompt": info,
                 "public": false,
                 "scheduler": "LEONARDO",
                 "sd_version": "SDXL_0_9",
@@ -193,11 +194,7 @@ const useDalleCall = () => {
 
                 if (response?.data) {
                     const data = response?.data?.sdGenerationJob?.generationId
-                    console.log("image id: ", data)
-
                     dispatch(fetchSuccessLeonardoGeneration(data))
-
-                    get_Leonarda_Image()
                 }
 
             })
@@ -208,23 +205,42 @@ const useDalleCall = () => {
     }
 
 
-    const get_Leonarda_Image = async () => {
+    const get_Leonarda_Image = async (id) => {
+
 
         const options = {
             method: 'GET',
-            url: `${process.env.REACT_APP_LEONARDO_GET_IMAGE_ADDRESS}/1ce77e36-9c5f-4100-bb41-decd6663ddc0`,
-            // url: `https://cloud.leonardo.ai/api/rest/v1/generations/${leonardoGenerationID}`,
+            url: `${process.env.REACT_APP_LEONARDO_GET_IMAGE_ADDRESS}/${id}`,
             headers: {
-                "accept": 'application/json',
-                // "authorization": `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
-                "authorization": 'Bearer 15962415-21eb-4b8c-9d5d-f76311b1a216'
+                'accept': 'application/json',
+                'authorization': `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+                // 'authorization': 'Bearer fc61cfaa-a7d8-4848-819e-5517e67605a6'
             }
         };
 
         try {
 
+            let dizi = []
             const res = await axios(options)
-            console.log(res)
+
+
+            if(res.status == 200 && res?.data){
+
+                const userPrompt = res?.data?.generations_by_pk?.prompt
+                const images = res?.data?.generations_by_pk?.generated_images
+
+                images.forEach(element => {
+                    dizi.push({
+                        url:element.url,
+                        prompt:userPrompt
+                    })
+                    return {...element,element}
+                });
+                
+            }
+
+            dispatch(fetchSuccessLeonardoGenerationData(dizi))
+            dispatch(fetchSuccessLeonardoGenerationAllData(dizi))
 
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)
@@ -271,7 +287,8 @@ const useDalleCall = () => {
         create_Dalle2_Image,
         getImageVariationData,
         create_Dalle3_Image,
-        create_Leonardo_Image
+        create_Leonardo_Image,
+        get_Leonarda_Image
 
     }
 
