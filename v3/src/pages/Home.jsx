@@ -93,7 +93,6 @@ export const Home = () => {
   }
 
 
-  console.log(user_PromptInfo)
 
   return (
 

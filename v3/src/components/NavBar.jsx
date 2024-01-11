@@ -33,10 +33,10 @@ const pages = [
     //     title: "Variation",
     //     url: "variation"
     // },
-    {
-        title: 'History',
-        url: '/history'
-    },
+    // {
+    //     title: 'History',
+    //     url: '/history'
+    // },
 ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -44,7 +44,7 @@ const NavBar = () => {
 
     const { currentUser } = useSelector((state) => state.auth)
 
-    const {logout}=useAuthCall()
+    const { logout } = useAuthCall()
     let avatarName = ""
 
     const [open, setOpen] = React.useState(false);
@@ -180,6 +180,7 @@ const NavBar = () => {
                     </Box>
 
 
+                    {/* USER MENU */}
 
                     <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} marginLeft={5}>
                         {/* STYLE BAR BUTTON */}
@@ -212,7 +213,11 @@ const NavBar = () => {
                                     open={Boolean(anchorElUser)}
                                     onClose={handleCloseUserMenu}
                                 >
-                                    <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
+                                    <Box display={'flex'} flexDirection={'column'}>
+                                        <Button sx={{ color: '#000000', fontWeight: '700', textTransform: 'none' }} onClick={() => navigate('/history')}>History</Button>
+                                        <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
+                                    </Box>
+
                                 </Menu>
                             </Box>
 
