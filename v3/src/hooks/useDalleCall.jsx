@@ -21,11 +21,9 @@ import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const { dalleUser_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
+    const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
 
-    const info = dalleUser_PromptInfo.cuisineType + ", " + dalleUser_PromptInfo.styleType + ", " + dalleUser_PromptInfo.colorType + ", " + dalleUser_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
-
-    console.log(info)
+    const info = user_PromptInfo.cuisineType + ", " + user_PromptInfo.styleType + ", " + user_PromptInfo.colorType + ", " + user_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
 
     const create_Dalle2_Image = (url) => {

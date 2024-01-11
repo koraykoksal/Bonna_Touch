@@ -3,30 +3,44 @@ import { Box, Button, Container, FormControl, Grid, TextField, Typography } from
 import { Dalle } from '../components/Dalle'
 import useDalleCall from '../hooks/useDalleCall'
 import { useState, useEffect } from 'react'
-import { RiSendPlane2Fill } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
-import InputAdornment from '@mui/material/InputAdornment';
 import { toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
 import { updatePrompts } from '../features/touchSlice';
+import { generateData_cuisine, generateData_colors, generateData_style } from "../helper/dalleGenerate"
+import { InputLabel, MenuItem } from '@mui/material'
+import Select from '@mui/material/Select';
+import PromptInfo from '../components/PromptInfo'
 
 export const Home = () => {
 
-  const {create_Leonardo_Image,get_Leonarda_Image } = useDalleCall()
+  const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
 
-  const {dalleUser_PromptInfo, leonardoGenerationID} = useSelector((state)=>state.touch)
+  const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
 
   const [info, setInfo] = useState({
-    prompt: ""
+    prompt: "",
+    cuisineType: "",
+    colorType: "",
+    styleType: ""
   })
 
+  const inputStyle = {
+    backgroundColor: 'transparent',
+    border: '0.7px solid #706b6b',
+    borderRadius: '20px',
+    height: '45px',
+    width: '80%',
+    padding: 10,
+    color: '#000000'
+  }
 
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
-    dispatch(updatePrompts({ ['prompt']: value }))
+    dispatch(updatePrompts({ [name]: value }))
   }
 
 
@@ -37,8 +51,6 @@ export const Home = () => {
     if (info.prompt) {
 
       if (e.key === 'Enter') {
-
-        info.prompt.toLocaleLowerCase().trim()
         create_Leonardo_Image()
       }
     }
@@ -51,8 +63,7 @@ export const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (info.prompt && dalleUser_PromptInfo) {
-      // info.prompt.toLocaleLowerCase().trim()
+    if (info.prompt && user_PromptInfo) {
       create_Leonardo_Image()
     }
     else {
@@ -62,15 +73,27 @@ export const Home = () => {
 
 
   useEffect(() => {
+    setInfo({
+      prompt: user_PromptInfo.prompt,
+      cuisineType: user_PromptInfo.cuisineType,
+      colorType: user_PromptInfo.colorType,
+      styleType: user_PromptInfo.styleType
+    })
+
+  }, [])
+
+
+  useEffect(() => {
     get_Leonarda_Image(leonardoGenerationID)
   }, [leonardoGenerationID])
-  
 
-  const run=()=>{
+
+  const run = () => {
     get_Leonarda_Image(leonardoGenerationID)
   }
 
 
+  console.log(user_PromptInfo)
 
   return (
 
@@ -83,36 +106,16 @@ export const Home = () => {
           <Dalle />
         </Container>
 
-        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
-          
-          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
-          <Typography variant='subtitle2'>User Prompt :</Typography>
-          <Typography variant='subtitle2' fontWeight={700}> {dalleUser_PromptInfo.prompt}</Typography>
-          </Grid>
-          
-          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
-          <Typography variant='subtitle2'>Cuisine :</Typography>
-          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.cuisineType}</Typography>
-          </Grid>
 
-          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
-          <Typography variant='subtitle2'>Color :</Typography>
-          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.colorType}</Typography>
-          </Grid>
-
-          <Grid sx={{display:'flex',justifyContent:'center',gap:1}}>
-          <Typography variant='subtitle2'>Style :</Typography>
-          <Typography variant='subtitle2' fontWeight={700}>{dalleUser_PromptInfo.styleType}</Typography>
-          </Grid>
-
-
+        <Container>
+          <PromptInfo handleChange={handleChange} info={info} />
         </Container>
 
 
         <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }}>
 
 
-          <TextField
+          {/* <TextField
             required
             fullWidth
             name='prompt'
@@ -122,14 +125,15 @@ export const Home = () => {
             value={info.prompt}
             onChange={handleChange}
             // onKeyUp={handleEnterPress}
-
+            style={{ borderRadius: '30px' }}
             inputProps={{
-              style: { height: '15px' },
+              style: { height: '15px'},
             }}
+          /> */}
 
-          />
+          <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' />
 
-          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit}/>
+          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
           <Button onClick={run}>
             RUN
           </Button>

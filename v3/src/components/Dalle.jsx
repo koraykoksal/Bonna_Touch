@@ -24,8 +24,6 @@ export const Dalle = () => {
   const currentTime = moment().format()
 
 
-  console.log(leonardoGenerationData)
-
   return (
 
 

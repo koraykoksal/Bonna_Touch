@@ -11,7 +11,7 @@ const initialState = {
     dalleData: [],
     dalleImage: [],
     userPrompt: "",
-    dalleUser_PromptInfo: {
+    user_PromptInfo: {
         prompt:"",
         cuisineType:"",
         colorType:"",
@@ -72,7 +72,7 @@ const touchSlice = createSlice({
             });
         },
         updatePrompts: (state, { payload }) => {
-            state.dalleUser_PromptInfo = {...state.dalleUser_PromptInfo,...payload}
+            state.user_PromptInfo = {...state.user_PromptInfo,...payload}
         },
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
             // state.loadingGeneration = false

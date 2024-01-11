@@ -17,6 +17,7 @@ import { FaHeart } from "react-icons/fa";
 export default function History() {
 
   const { dalleData, leonardoGenerationAllData } = useSelector((state) => state.touch)
+  
   const currentTime = moment().format()
 
   // FaHeart'ların tıklama durumunu saklamak için bir state oluşturun
