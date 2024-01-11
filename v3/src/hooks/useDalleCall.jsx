@@ -158,11 +158,33 @@ const useDalleCall = () => {
             method: 'POST',
             url: `${process.env.REACT_APP_LEONARDO_CREATE_IMAGE_ADDRESS}`,
             headers: {
-                accept: 'application/json',
+                'accept': 'application/json',
                 'content-type': 'application/json',
-                authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+                // authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+                'authorization': 'Bearer 15962415-21eb-4b8c-9d5d-f76311b1a216'
             },
-            data: {"height":512,"modelId":"6bef9f1b-29cb-40c7-b9df-32b51c1f67d3","prompt":"red flowers Latin Handmade Beige a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference.","width":768,"controlNetType":"POSE","alchemy":"true","scheduler":"LEONARDO","sd_version":"v2","presetStyle":"DYNAMIC","controlNet":"true"}
+            data: {
+                "alchemy": true,
+                "elements": [],
+                "expandedDomain": true,
+                "guidance_scale": 7,
+                "height": 512,
+                "highContrast": false,
+                "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
+                "negative_prompt": "",
+                "nsfw": true,
+                "num_images": 2,
+                "num_inference_steps": 10,
+                "photoReal": false,
+                "presetStyle": "DYNAMIC",
+                "prompt": "savana pattern, red and beige, simple round porcelain plate show top view and clear background",
+                "public": false,
+                "scheduler": "LEONARDO",
+                "sd_version": "SDXL_0_9",
+                "tiling": false,
+                "weighting": 0.75,
+                "width": 768
+            }
         };
 
         await axios
@@ -190,10 +212,12 @@ const useDalleCall = () => {
 
         const options = {
             method: 'GET',
-            url: `${process.env.REACT_APP_LEONARDO_GET_IMAGE_ADDRESS}/${leonardoGenerationID}`,
+            url: `${process.env.REACT_APP_LEONARDO_GET_IMAGE_ADDRESS}/1ce77e36-9c5f-4100-bb41-decd6663ddc0`,
+            // url: `https://cloud.leonardo.ai/api/rest/v1/generations/${leonardoGenerationID}`,
             headers: {
-                accept: 'application/json',
-                authorization: `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+                "accept": 'application/json',
+                // "authorization": `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
+                "authorization": 'Bearer 15962415-21eb-4b8c-9d5d-f76311b1a216'
             }
         };
 
