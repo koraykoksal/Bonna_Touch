@@ -1,22 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;600&display=swap');
 
 
-@media (max-width:800px){
-
-    .hamburger_ul{
-        display: none;
-        height: 100vh;
-        position: fixed;
-        /* top: 0; */
-        /* right: 0; */
-        /* left: 0; */
-        z-index: 10;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: top 1s ease;
-
-    }
+body {
+    font-family: 'Catamaran', sans-serif;
 }

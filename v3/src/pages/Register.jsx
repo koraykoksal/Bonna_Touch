@@ -73,7 +73,7 @@ export const Register = () => {
 
   return (
 
-    <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
+    <div style={{ backgroundColor: '#dddddd',maxHeight:'1100px'}} >
 
 
       <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
@@ -225,7 +225,7 @@ export const Register = () => {
           <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
             <FormGroup style={{ padding: 10 }}>
-              <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
+              <FormControlLabel sx={{fontFamily:'catamara'}} required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
             </FormGroup>
 
           </Container>

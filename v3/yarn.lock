@@ -2044,6 +2044,11 @@
   resolved "https://registry.npmjs.org/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.10.1.tgz"
   integrity sha512-Dq5rYfEpdeel0bLVN+nfD1VWmzCkK+pJbSjIawGE+RY4+NIJqhbUDDQjvV0NUK84fMfwxvtFoCtEe70HfZjFcw==
 
+"@fontsource/catamaran@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource/catamaran/-/catamaran-5.0.18.tgz#fed99429a44d3f89f91e9e02591f8170b54b66ac"
+  integrity sha512-Px6tSm8wdHg7nLzh4lSsHwyT8CHJLEM5NmGvCrxBJIqqyvrw1FXeNgK2gbvmYDrYUeFgBRQ1SpX6RqDQHc4+eA==
+
 "@fontsource/roboto@^5.0.8":
   version "5.0.8"
   resolved "https://registry.npmjs.org/@fontsource/roboto/-/roboto-5.0.8.tgz"
