@@ -183,8 +183,9 @@ const NavBar = () => {
                     {/* USER MENU */}
 
                     <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} marginLeft={5}>
+
                         {/* STYLE BAR BUTTON */}
-                        <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000' }} onClick={handleOpen} />
+                        {/* <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000' }} onClick={handleOpen} /> */}
 
                         {/* <Typography sx={{ textTransform: 'none' }} variant='subtitle2' color={'black'} fontSize={18}>{currentUser}</Typography>
 
@@ -225,11 +226,6 @@ const NavBar = () => {
                         </Box>
                     </Box>
 
-
-
-
-
-
                 </Toolbar>
 
             </Container>
@@ -240,7 +236,7 @@ const NavBar = () => {
                 <Outlet />
             </Box>
 
-            <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen} />
+            {/* <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen} /> */}
 
 
         </AppBar>

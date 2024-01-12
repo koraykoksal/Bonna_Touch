@@ -18,6 +18,7 @@ export const Home = () => {
   const dispatch = useDispatch()
 
   const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
+  const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
     prompt: "",
@@ -42,6 +43,24 @@ export const Home = () => {
     setInfo({ ...info, [name]: value })
     dispatch(updatePrompts({ [name]: value }))
   }
+
+
+  const handleColorChange = (event) => {
+
+    const {
+      target: { value },
+    } = event;
+    setColors(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+
+    setInfo({
+      ...info,
+      colorType: typeof value === 'string' ? value.split(',') : value,
+    });
+
+  };
 
 
 
@@ -93,6 +112,8 @@ export const Home = () => {
   }
 
 
+  console.log(info)
+
 
   return (
 
@@ -107,7 +128,7 @@ export const Home = () => {
 
 
         <Container>
-          <PromptInfo handleChange={handleChange} info={info} />
+          <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} />
         </Container>
 
 

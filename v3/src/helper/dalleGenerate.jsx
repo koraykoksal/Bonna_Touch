@@ -40,30 +40,39 @@ export const generateData_cuisine = [
 
 export const generateData_colors = [
 
-    {
-        colorType: "Blue"
-    },
-    {
-        colorType: "Green"
-    },
-    {
-        colorType: "Beige"
-    },
-    {
-        colorType: "Brown"
-    },
-    {
-        colorType: "Earth Tones"
-    },
-    {
-        colorType: "Gray"
-    },
-    {
-        colorType: "Black"
-    },
-    {
-        colorType: "Colourful"
-    },
+    "Blue",
+    "Green",
+    "Beige",
+    "Brown",
+    "Earth Tones",
+    "Gray",
+    "Black",
+    "Colourful",
+
+    // {
+    //     colorType: "Blue"
+    // },
+    // {
+    //     colorType: "Green"
+    // },
+    // {
+    //     colorType: "Beige"
+    // },
+    // {
+    //     colorType: "Brown"
+    // },
+    // {
+    //     colorType: "Earth Tones"
+    // },
+    // {
+    //     colorType: "Gray"
+    // },
+    // {
+    //     colorType: "Black"
+    // },
+    // {
+    //     colorType: "Colourful"
+    // },
 
 ]
 
