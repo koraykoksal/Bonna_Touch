@@ -38,7 +38,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
         <div>
 
 
-            <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }} component={'form'}>
 
 
                 <FormControl fullWidth style={{ width: '200px' }}>
@@ -46,6 +46,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
                         Coisine Type
                     </InputLabel>
                     <Select
+                    required
                         labelId="cuisineType"
                         id="cuisineType"
                         name='cuisineType'
@@ -74,6 +75,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
                         Color Type
                     </InputLabel>
                     <Select
+                    required
                         multiple
                         value={colors}
                         onChange={handleColorChange}
@@ -82,9 +84,9 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
                         MenuProps={MenuProps}
                         style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
                     >
-                        {allColors.map((color) => (
+                        {generateData_colors.map((color) => (
                             <MenuItem key={color} value={color}>
-                                <Checkbox checked={colors.indexOf(color) > -1} size='small'/>
+                                <Checkbox checked={colors.indexOf(color) > -1} size='xsmall'/>
                                 <ListItemText primary={color} />
                             </MenuItem>
                         ))}
@@ -103,6 +105,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
 
                     </InputLabel>
                     <Select
+                    required
                         labelId="styleType"
                         id="styleType"
                         name='styleType'

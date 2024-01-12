@@ -41,7 +41,6 @@ export const Home = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
-    dispatch(updatePrompts({ [name]: value }))
   }
 
 
@@ -83,7 +82,7 @@ export const Home = () => {
     e.preventDefault()
 
     if (info.prompt && user_PromptInfo) {
-      create_Leonardo_Image()
+      create_Leonardo_Image(info)
     }
     else {
       toastWarnNotify('Please enter prompt field !')
@@ -91,19 +90,21 @@ export const Home = () => {
   }
 
 
+  // useEffect(() => {
+  //   setInfo({
+  //     prompt: user_PromptInfo.prompt,
+  //     cuisineType: user_PromptInfo.cuisineType,
+  //     colorType: user_PromptInfo.colorType,
+  //     styleType: user_PromptInfo.styleType
+  //   })
+
+  // }, [])
+
+
   useEffect(() => {
-    setInfo({
-      prompt: user_PromptInfo.prompt,
-      cuisineType: user_PromptInfo.cuisineType,
-      colorType: user_PromptInfo.colorType,
-      styleType: user_PromptInfo.styleType
-    })
-
-  }, [])
-
-
-  useEffect(() => {
-    get_Leonarda_Image(leonardoGenerationID)
+    if(leonardoGenerationID){
+      get_Leonarda_Image(leonardoGenerationID)
+    }
   }, [leonardoGenerationID])
 
 
@@ -111,8 +112,6 @@ export const Home = () => {
     get_Leonarda_Image(leonardoGenerationID)
   }
 
-
-  console.log(info)
 
 
   return (
@@ -154,6 +153,7 @@ export const Home = () => {
           <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' />
 
           <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
+
           <Button onClick={run}>
             RUN
           </Button>

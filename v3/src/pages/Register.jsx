@@ -4,7 +4,7 @@ import { FcGoogle } from 'react-icons/fc'
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Box, Button, CardActionArea, Container, TextField } from '@mui/material';
+import { Box, Button, CardActionArea, Container, TextField, FormControlLabel, FormGroup } from '@mui/material';
 import { useState } from 'react';
 import { countries, companyType } from "../helper/data"
 import InputLabel from '@mui/material/InputLabel';
@@ -12,11 +12,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useAuthCall from '../hooks/useAuthCall';
+import Checkbox from '@mui/material/Checkbox';
+import ReadUnderstood from '../components/ReadUnderstood';
+
 
 export const Register = () => {
 
   const { register } = useAuthCall()
-
+  const [okudumAnladim, setokudumAnladim] = useState(false)
   const [info, setInfo] = useState({
     name: "",
     surname: "",
@@ -29,6 +32,25 @@ export const Register = () => {
     companyType: "",
 
   })
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const handleOkudumAnladim = (e) => {
+
+    if (!okudumAnladim) {
+      handleOpen()
+      setokudumAnladim(true)
+    }
+    else {
+      setokudumAnladim(false)
+      setOpen(false)
+    }
+
+  }
 
   const handleChage = (e) => {
 
@@ -47,9 +69,11 @@ export const Register = () => {
   }
 
 
+
+
   return (
 
-    <div style={{ backgroundColor: '#dddddd', minHeight: '900px' }}>
+    <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
 
       <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
@@ -198,6 +222,15 @@ export const Register = () => {
 
           </Box>
 
+          <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
+
+            <FormGroup style={{ padding: 10 }}>
+              <FormControlLabel required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
+            </FormGroup>
+
+          </Container>
+
+
           <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Register</Button>
 
           <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
@@ -205,6 +238,8 @@ export const Register = () => {
           </Box>
 
         </Container>
+
+        <ReadUnderstood open={open} handleClose={handleClose}/>
 
       </Box>
 

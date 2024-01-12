@@ -150,7 +150,9 @@ const useDalleCall = () => {
 
 
 
-    const create_Leonardo_Image = async () => {
+    const create_Leonardo_Image = async (info) => {
+
+        const userPrompt = info.cuisineType + " pattern, " + info.styleType + "," + info.prompt + ", " + info.colorType + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
         dispatch(fetchStartGeneration())
 
@@ -176,7 +178,7 @@ const useDalleCall = () => {
                 "num_inference_steps": 10,
                 "photoReal": false,
                 "presetStyle": "DYNAMIC",
-                "prompt": info,
+                "prompt": userPrompt,
                 "public": false,
                 "scheduler": "LEONARDO",
                 "sd_version": "SDXL_0_9",
@@ -222,19 +224,19 @@ const useDalleCall = () => {
             const res = await axios(options)
 
 
-            if(res.status == 200 && res?.data){
+            if (res.status == 200 && res?.data) {
 
                 const userPrompt = res?.data?.generations_by_pk?.prompt
                 const images = res?.data?.generations_by_pk?.generated_images
 
                 images.forEach(element => {
                     dizi.push({
-                        url:element.url,
-                        prompt:userPrompt
+                        url: element.url,
+                        prompt: userPrompt
                     })
-                    return {...element,element}
+                    return { ...element, element }
                 });
-                
+
             }
 
             dispatch(fetchSuccessLeonardoGenerationData(dizi))

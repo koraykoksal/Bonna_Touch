@@ -14,7 +14,7 @@ const initialState = {
     user_PromptInfo: {
         prompt:"",
         cuisineType:"",
-        colorType:"",
+        colorType:[],
         styleType:""
     },
     leonardoGenerationID: "",
@@ -72,7 +72,7 @@ const touchSlice = createSlice({
             });
         },
         updatePrompts: (state, { payload }) => {
-            state.user_PromptInfo = {...state.user_PromptInfo,...payload}
+            
         },
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
             // state.loadingGeneration = false
