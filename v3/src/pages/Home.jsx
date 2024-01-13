@@ -15,7 +15,7 @@ export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
-
+  const {userInfo} = useSelector((state)=>state.auth)
   const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
   const [colors, setColors] = useState([])
 
@@ -113,7 +113,7 @@ export const Home = () => {
   }
 
 
-
+  console.log(userInfo)
 
   return (
 

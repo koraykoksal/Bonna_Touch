@@ -59,6 +59,8 @@ const authSlice = createSlice({
             const nameSurname = payload?.name +" "+payload?.surname
 
             state.currentUser = nameSurname;
+
+            state.userInfo = payload
         
         },
         fetchFail: (state) => {

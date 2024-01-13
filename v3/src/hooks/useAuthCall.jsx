@@ -20,17 +20,49 @@ const useAuthCall = () => {
 
     dispatch(fetchStart())
 
-
     try {
 
-      const uID = uid()
-      const newDb = getDatabase()
+      // const uID = uid()
+      // const newDb = getDatabase()
 
-      await set(ref(newDb, `${url}/${uID}`), info)
-      dispatch(fetchRegisterSuccess(info))
+      // await set(ref(newDb, `${url}/${uID}`), info)
+      // dispatch(fetchRegisterSuccess(info))
 
-      navigate('/home')
-      toastSuccessNotify('Register Success')
+      // navigate('/home')
+      // toastSuccessNotify('Register Success')
+
+      const db = getDatabase()
+      const res = ref(db, `${url}`)
+      const snapshot = await get(res)
+
+
+      if (!snapshot.exists()) {
+        toastWarnNotify('There is not data !')
+      }
+      else {
+
+        const array = Object.values(snapshot.val())
+
+        const result = array.filter(item => (item.email === info.email))
+
+        if (result.length > 0) {
+          navigate('/login')
+          toastWarnNotify('This email address is being used, please login.')
+        }
+        else {
+
+          const uID = uid()
+
+          await set(ref(db, `${url}/${uID}`), info)
+          dispatch(fetchRegisterSuccess(info))
+
+          navigate('/home')
+          toastSuccessNotify('Register Success')
+
+        }
+
+      }
+
 
     } catch (error) {
       toastWarnNotify('Register Error')
@@ -78,6 +110,8 @@ const useAuthCall = () => {
     }
 
   }
+
+
 
   const logout = () => {
 
