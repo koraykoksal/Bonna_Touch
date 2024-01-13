@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { uid } from "uid";
-import { fetchFail, fetchLogoutSuccess, fetchRegisterSuccess, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
-import { getDatabase, onValue, ref, remove, set, update } from "firebase/database";
+import { fetchFail, fetchLoginSuccess, fetchLogoutSuccess, fetchRegisterSuccess, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
+import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
@@ -41,10 +41,47 @@ const useAuthCall = () => {
   }
 
 
-  const logout = () => {
+  const login = async (url, info) => {
 
     dispatch(fetchStart())
 
+    try {
+
+      const db = getDatabase()
+      const res = ref(db, `${url}`)
+      const snapshot = await get(res)
+
+
+      if (!snapshot.exists()) {
+        toastWarnNotify('There is not data !')
+      }
+      else {
+
+        const array = Object.values(snapshot.val())
+
+        const result = array.filter(item => (item.email === info.email))
+
+        if (result.length > 0) {
+          navigate('/home')
+          toastSuccessNotify('Login Success')
+          dispatch(fetchLoginSuccess(result))
+        }
+        else {
+          toastWarnNotify(`${info.email} this email address is not registered !`)
+        }
+
+      }
+
+    } catch (error) {
+      console.log("login: ", error)
+      toastErrorNotify('Login Error ! Go to Register Page Please ')
+    }
+
+  }
+
+  const logout = () => {
+
+    dispatch(fetchStart())
     dispatch(fetchLogoutSuccess())
     toastSuccessNotify('Logout Successful.')
     navigate('/')
@@ -58,6 +95,7 @@ const useAuthCall = () => {
   return {
 
     register,
+    login,
     logout
 
   }

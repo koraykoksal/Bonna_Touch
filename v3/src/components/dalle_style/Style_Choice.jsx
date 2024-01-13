@@ -3,7 +3,7 @@ import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React from 'react'
 import {generateData_style} from "../../helper/dalleGenerate"
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePrompts } from '../../features/touchSlice';
+// import { updatePrompts } from '../../features/touchSlice';
 import { useState } from 'react';
 
 
@@ -20,7 +20,7 @@ const Style_Choice = () => {
 
     const {name,value} = e.target;
     setInfo({...info,[name]:value})
-    dispatch(updatePrompts({['styleType']:value}))
+    // dispatch(updatePrompts({['styleType']:value}))
   }
 
 

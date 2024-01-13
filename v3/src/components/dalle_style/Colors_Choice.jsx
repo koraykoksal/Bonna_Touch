@@ -3,7 +3,7 @@ import { Box, FormControl, InputLabel, MenuItem } from '@mui/material'
 import React, { useState } from 'react'
 import { generateData_colors } from "../../helper/dalleGenerate"
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePrompts } from '../../features/touchSlice';
+// import { updatePrompts } from '../../features/touchSlice';
 
 const Colors_Choice = () => {
 
@@ -17,7 +17,7 @@ const Colors_Choice = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInfo({...info,[name]:value})
-    dispatch(updatePrompts({ ['colorType']: value }))
+    // dispatch(updatePrompts({ ['colorType']: value }))
 
   }
 

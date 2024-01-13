@@ -10,10 +10,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import useAuthCall from '../hooks/useAuthCall';
 
 
 const Login = () => {
 
+    const {login} = useAuthCall()
 
     const [info, setInfo] = useState({
 
@@ -33,6 +35,7 @@ const Login = () => {
     const handleSubmit = (e) => {
 
         e.preventDefault()
+        login('register',info)
 
     }
 

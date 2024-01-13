@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react'
 import { IoSend } from "react-icons/io5";
 import { toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePrompts } from '../features/touchSlice';
 import { generateData_cuisine, generateData_colors, generateData_style } from "../helper/dalleGenerate"
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
@@ -41,6 +40,7 @@ export const Home = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
+    // dispatch(updatePrompts(info))
   }
 
 
@@ -111,6 +111,7 @@ export const Home = () => {
   const run = () => {
     get_Leonarda_Image(leonardoGenerationID)
   }
+
 
 
 

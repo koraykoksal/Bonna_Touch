@@ -112,7 +112,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange }
                         label="styleType"
                         value={info.styleType}
                         onChange={handleChange}
-                        style={{ height: '45px', borderRadius: 20, fontSize: '15px' }}
+                        style={{ height: '40px', borderRadius: 20, fontSize: '15px' }}
                     >
                         {
                             generateData_style.map((item, index) => (

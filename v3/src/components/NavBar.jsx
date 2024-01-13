@@ -215,8 +215,8 @@ const NavBar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     <Box display={'flex'} flexDirection={'column'}>
-                                        <Button sx={{ color: '#000000', fontWeight: '700', textTransform: 'none' }} onClick={() => navigate('/history')}>History</Button>
-                                        <Button sx={{ color: '#C70039', fontWeight: '700', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
+                                        <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navigate('/history')}>History</Button>
+                                        <Button sx={{ color: '#C70039', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
                                     </Box>
 
                                 </Menu>

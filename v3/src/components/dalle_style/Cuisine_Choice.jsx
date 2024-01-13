@@ -4,7 +4,7 @@ import React from 'react'
 import {generateData_cuisine} from "../../helper/dalleGenerate"
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePrompts } from '../../features/touchSlice';
+// import { updatePrompts } from '../../features/touchSlice';
 
 
 const Coisine_Choice = () => {
@@ -20,7 +20,7 @@ const Coisine_Choice = () => {
 
     const {name,value} = e.target;
     setInfo({...info,[name]:value})
-    dispatch(updatePrompts({['cuisineType']:value}))
+    // dispatch(updatePrompts({['cuisineType']:value}))
   }
 
 

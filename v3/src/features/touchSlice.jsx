@@ -71,9 +71,6 @@ const touchSlice = createSlice({
                 userInfo:{...state.dalleUser_PromptInfo}
             });
         },
-        updatePrompts: (state, { payload }) => {
-            
-        },
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
             // state.loadingGeneration = false
             state.leonardoGenerationID = payload
@@ -111,7 +108,6 @@ export const {
     fetchFailGeneration,
     fetchSuccess_Generation,
     fetchSuccess_AllGeneration,
-    updatePrompts,
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationData,
     fetchSuccessLeonardoGenerationAllData

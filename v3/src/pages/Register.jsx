@@ -24,7 +24,7 @@ export const Register = () => {
     name: "",
     surname: "",
     job: "",
-    companyName: "",
+    company: "",
     country: "",
     email: "",
     tel: "",
@@ -67,8 +67,6 @@ export const Register = () => {
     register("register", info)
 
   }
-
-
 
 
   return (

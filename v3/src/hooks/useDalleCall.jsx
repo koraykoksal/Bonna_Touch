@@ -23,7 +23,7 @@ const useDalleCall = () => {
     const dispatch = useDispatch()
     const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
 
-    const info = user_PromptInfo.cuisineType + ", " + user_PromptInfo.styleType + ", " + user_PromptInfo.colorType + ", " + user_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+    // const info = user_PromptInfo.cuisineType + ", " + user_PromptInfo.styleType + ", " + user_PromptInfo.colorType + ", " + user_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
 
     const create_Dalle2_Image = (url) => {
@@ -40,7 +40,7 @@ const useDalleCall = () => {
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
                 body: JSON.stringify({
-                    "prompt": info,
+                    "prompt": "red plate",
                     "n": 1,
                     "size": "1024x1024"
                 }),
@@ -102,7 +102,7 @@ const useDalleCall = () => {
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`
                 },
                 body: JSON.stringify({
-                    "prompt": info,
+                    "prompt": "red plate",
                     "n": 1,
                     "size": "1792x1024",
                     "model": "dall-e-3"
@@ -150,9 +150,9 @@ const useDalleCall = () => {
 
 
 
-    const create_Leonardo_Image = async (info) => {
+    const create_Leonardo_Image = async (data) => {
 
-        const userPrompt = info.cuisineType + " pattern, " + info.styleType + "," + info.prompt + ", " + info.colorType + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + "," + data?.prompt + ", " + data?.colorType + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
         dispatch(fetchStartGeneration())
 
