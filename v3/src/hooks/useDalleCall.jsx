@@ -21,10 +21,6 @@ import { useState } from 'react'
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const [status, setStatus] = useState('PENDING')
-    const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
-
-    // const info = user_PromptInfo.cuisineType + ", " + user_PromptInfo.styleType + ", " + user_PromptInfo.colorType + ", " + user_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
 
     const create_Dalle2_Image = (url) => {
@@ -153,7 +149,8 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + "," + data?.prompt + ", " + data?.colorType + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + "," + data?.prompt + ", " + data?.colorType + " a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+
 
         dispatch(fetchStartGeneration())
 
@@ -232,35 +229,6 @@ const useDalleCall = () => {
             dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
             dispatch(fetchSuccessLeonardoGenerationAllData(response?.data?.generations_by_pk))
 
-            // let dizi = []
-            // const res = await axios(options)
-
-            // if(res?.data?.generations_by_pk?.status == "PENDING"){
-            //     await axios(options)
-
-            // }
-            // else{
-            //     dispatch(fetchSuccessLeonardoGenerationData(res?.data))
-            // }
-
-
-            // if (res.status == 200 && res?.data) {
-
-            //     const userPrompt = res?.data?.generations_by_pk?.prompt
-            //     const images = res?.data?.generations_by_pk?.generated_images
-
-            //     images.forEach(element => {
-            //         dizi.push({
-            //             url: element.url,
-            //             prompt: userPrompt
-            //         })
-            //         return { ...element, element }
-            //     });
-
-            // }
-
-            // dispatch(fetchSuccessLeonardoGenerationData(dizi))
-            // dispatch(fetchSuccessLeonardoGenerationAllData(dizi))
 
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)

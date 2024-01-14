@@ -31,7 +31,7 @@ export const Dalle = () => {
 
       <Box sx={{ backgroundColor: '#dddddd' }}>
 
-        {loadingGeneration && (
+        {loadingGeneration ? (
 
           <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
@@ -41,51 +41,35 @@ export const Dalle = () => {
           </Box>
 
         )
+          : (
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
+
+              {
+                leonardoGenerationData?.map((data, index) => (
+
+                  <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                    <a href={data.url} target='_blank'>
+                      <CardMedia
+                        component="img"
+                        height="450"
+                        src={data.url}
+                        sx={{ borderRadius: '0.5rem' }}
+                      />
+                    </a>
+
+                  </CardActionArea>
+
+                ))
+
+              }
+            </Box>
+
+          )
         }
 
-        <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap',gap:3 }} >
 
-          {
-            leonardoGenerationData?.map((data, index) => (
-
-              <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-                <a href={data.url} target='_blank'>
-                  <CardMedia
-                    component="img"
-                    height="450"
-                    src={data.url}
-                    sx={{ borderRadius: '0.5rem' }}
-                  />
-                </a>
-
-              </CardActionArea>
-
-            ))
-
-          }
-        </Box>
-
-
-        {/* {
-          dalleImage.filter(item => moment(currentTime) < moment(item.imgTime)).map((data, index) => (
-
-            <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-              <a href={data.imgUrl} target='_blank'>
-                <CardMedia
-                  component="img"
-                  height="450"
-                  src={data.imgUrl}
-                  sx={{ borderRadius: '0.5rem' }}
-                />
-              </a>
-
-            </CardActionArea>
-
-          ))
-
-        } */}
 
 
       </Box>

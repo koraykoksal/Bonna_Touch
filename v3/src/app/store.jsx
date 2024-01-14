@@ -20,7 +20,7 @@ export const store = configureStore({
 
   reducer: {
     auth: persistedReducer,
-    touch: persistedReducer2,
+    touch: touchReducer,
     variation: variationReducer
   },
   //consolda çıkan serileştirme hatasını göstermiyor
