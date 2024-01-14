@@ -77,17 +77,18 @@ const touchSlice = createSlice({
         },
         fetchSuccessLeonardoGenerationData:(state,{payload})=>{
             state.loadingGeneration = false
-            state.leonardoGenerationData = payload
+            state.leonardoGenerationData = payload?.generated_images
 
         },
         fetchSuccessLeonardoGenerationAllData:(state,{payload})=>{
-            // state.loadingGeneration = false
-            console.log(payload)
-            const uID = uid()
-            return {
+            state.loadingGeneration = false
+            console.log("payload: ",payload)
+            
+            // const uID = uid()
+            // return {
 
-                leonardoGenerationAllData:[...state.leonardoGenerationAllData,{id:uID,url:payload}]
-            }
+            //     leonardoGenerationAllData:[...state.leonardoGenerationAllData,{id:uID,url:payload}]
+            // }
 
 
         }

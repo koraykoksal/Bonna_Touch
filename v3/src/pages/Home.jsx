@@ -16,7 +16,7 @@ export const Home = () => {
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
   const {userInfo} = useSelector((state)=>state.auth)
-  const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
+  const { user_PromptInfo, leonardoGenerationID,leonardoGenerationData } = useSelector((state) => state.touch)
   const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
@@ -103,68 +103,31 @@ export const Home = () => {
 
   useEffect(() => {
     if(leonardoGenerationID){
-      get_Leonarda_Image(leonardoGenerationID)
+      get_Leonarda_Image(leonardoGenerationID,info)
     }
   }, [leonardoGenerationID])
 
 
-  const run = () => {
-    get_Leonarda_Image(leonardoGenerationID)
-  }
-
-
-  console.log(userInfo)
+  console.log(leonardoGenerationData)
 
   return (
 
-    <>
+    <div style={{backgroundColor: '#dddddd', height: '100vh'}}>
 
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
-        <Container >
+      
           <Dalle />
-        </Container>
+       
+          <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit}/>
+       
 
-
-        <Container>
-          <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} />
-        </Container>
-
-
-        <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 1 }}>
-
-
-          {/* <TextField
-            required
-            fullWidth
-            name='prompt'
-            label='Prompt'
-            variant='outlined'
-            type='text'
-            value={info.prompt}
-            onChange={handleChange}
-            // onKeyUp={handleEnterPress}
-            style={{ borderRadius: '30px' }}
-            inputProps={{
-              style: { height: '15px'},
-            }}
-          /> */}
-
-          <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' />
-
-          <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
-
-          <Button onClick={run}>
-            RUN
-          </Button>
-
-        </Container>
 
       </Box>
 
 
-    </>
+    </div>
 
   )
 }

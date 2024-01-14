@@ -27,9 +27,7 @@ export const Dalle = () => {
   return (
 
 
-    <>
-
-
+    <div>
 
       <Box sx={{ backgroundColor: '#dddddd' }}>
 
@@ -45,7 +43,7 @@ export const Dalle = () => {
         )
         }
 
-        <Box sx={{ display: 'flex', justifyContent: 'center' }} >
+        <Box sx={{ display: 'flex', justifyContent: 'center',flexWrap:'wrap',gap:3 }} >
 
           {
             leonardoGenerationData?.map((data, index) => (
@@ -93,7 +91,7 @@ export const Dalle = () => {
       </Box>
 
 
-    </>
+    </div>
   )
 
 

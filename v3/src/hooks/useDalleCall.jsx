@@ -15,12 +15,13 @@ import { fetchStartVariation, fetchSuccessVariation, fetchEndVariation, fetchFai
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
-
+import { useState } from 'react'
 
 
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
+    const [status, setStatus] = useState('PENDING')
     const { user_PromptInfo, leonardoGenerationID } = useSelector((state) => state.touch)
 
     // const info = user_PromptInfo.cuisineType + ", " + user_PromptInfo.styleType + ", " + user_PromptInfo.colorType + ", " + user_PromptInfo.prompt + " a round and flat plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
@@ -205,7 +206,7 @@ const useDalleCall = () => {
     }
 
 
-    const get_Leonarda_Image = async (id) => {
+    const get_Leonarda_Image = async (id,info) => {
 
 
         const options = {
@@ -214,33 +215,52 @@ const useDalleCall = () => {
             headers: {
                 'accept': 'application/json',
                 'authorization': `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
-                // 'authorization': 'Bearer fc61cfaa-a7d8-4848-819e-5517e67605a6'
             }
         };
 
         try {
 
-            let dizi = []
-            const res = await axios(options)
+            let response = await axios(options);
 
-
-            if (res.status == 200 && res?.data) {
-
-                const userPrompt = res?.data?.generations_by_pk?.prompt
-                const images = res?.data?.generations_by_pk?.generated_images
-
-                images.forEach(element => {
-                    dizi.push({
-                        url: element.url,
-                        prompt: userPrompt
-                    })
-                    return { ...element, element }
-                });
-
+            // "COMPLETE" olana kadar döngü içinde isteği tekrar et
+            while (response?.data?.generations_by_pk?.status === "PENDING") {
+                await new Promise(resolve => setTimeout(resolve, 3000)); // 3 saniye bekle
+                response = await axios(options); // Tekrar istek gönder
             }
 
-            dispatch(fetchSuccessLeonardoGenerationData(dizi))
-            dispatch(fetchSuccessLeonardoGenerationAllData(dizi))
+            // "COMPLETE" olduğunda işlem yap
+            dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
+            dispatch(fetchSuccessLeonardoGenerationAllData(response?.data?.generations_by_pk))
+
+            // let dizi = []
+            // const res = await axios(options)
+
+            // if(res?.data?.generations_by_pk?.status == "PENDING"){
+            //     await axios(options)
+
+            // }
+            // else{
+            //     dispatch(fetchSuccessLeonardoGenerationData(res?.data))
+            // }
+
+
+            // if (res.status == 200 && res?.data) {
+
+            //     const userPrompt = res?.data?.generations_by_pk?.prompt
+            //     const images = res?.data?.generations_by_pk?.generated_images
+
+            //     images.forEach(element => {
+            //         dizi.push({
+            //             url: element.url,
+            //             prompt: userPrompt
+            //         })
+            //         return { ...element, element }
+            //     });
+
+            // }
+
+            // dispatch(fetchSuccessLeonardoGenerationData(dizi))
+            // dispatch(fetchSuccessLeonardoGenerationAllData(dizi))
 
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)
