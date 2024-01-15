@@ -203,8 +203,7 @@ const useDalleCall = () => {
     }
 
 
-    const get_Leonarda_Image = async (id,info) => {
-
+    const get_Leonarda_Image = async (id) => {
 
         const options = {
             method: 'GET',
@@ -227,7 +226,7 @@ const useDalleCall = () => {
 
             // "COMPLETE" olduğunda işlem yap
             dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
-            dispatch(fetchSuccessLeonardoGenerationAllData(response?.data?.generations_by_pk,info))
+            dispatch(fetchSuccessLeonardoGenerationAllData(response?.data?.generations_by_pk))
 
 
         } catch (error) {

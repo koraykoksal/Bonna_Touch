@@ -44,7 +44,7 @@ const allColors = [
 
 ]
 
-const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,handleSubmit }) => {
+const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,handleSubmit,handleEnterPress }) => {
 
 
     return (
@@ -140,7 +140,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
                 </Container>
 
                 <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
-                    <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' />
+                    <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' onKeyUp={handleEnterPress}/>
                     <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
                 </Box>
             </Box>

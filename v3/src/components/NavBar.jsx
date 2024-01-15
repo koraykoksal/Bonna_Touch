@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { MdDashboardCustomize } from "react-icons/md";
-import bonna_bonnatouch from '../assets/img/bonnaTouchLogo.png'
+import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
 import PromptStyle_Modal from './modals/PromptStyle_Modal';
 import { AiOutlineLogout } from "react-icons/ai";
 import useAuthCall from '../hooks/useAuthCall';

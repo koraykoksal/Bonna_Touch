@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import useAuthCall from '../hooks/useAuthCall';
 import Checkbox from '@mui/material/Checkbox';
 import ReadUnderstood from '../components/ReadUnderstood';
-
+import bonnaLogo from "../assets/img/bonna-logo.png"
 
 export const Register = () => {
 
@@ -30,6 +30,7 @@ export const Register = () => {
     tel: "",
     age: "",
     companyType: "",
+    read:true
 
   })
 
@@ -71,12 +72,21 @@ export const Register = () => {
 
   return (
 
-    <div style={{ backgroundColor: '#dddddd',height:'100vh'}} >
+    <div>
 
 
-      <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
+      <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: 'auto' }}>
 
-        <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'black'} fontSize={'22px'} letterSpacing={5}>Register</Typography>
+
+        <img
+          src={bonnaLogo}
+          alt="bonnaLogo"
+          width='200px'
+          style={{ scale: '1.3px', cursor: 'pointer' }}
+        />
+
+
+        <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} letterSpacing={5}>Register</Typography>
 
 
         <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
@@ -223,21 +233,19 @@ export const Register = () => {
           <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
 
             <FormGroup style={{ padding: 10 }}>
-              <FormControlLabel sx={{fontFamily:'catamara'}} required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
+              <FormControlLabel sx={{ fontFamily: 'catamara' }} required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
             </FormGroup>
 
           </Container>
 
+          <Button variant='contained' sx={{ letterSpacing: 5}} type='submit'>Register</Button>
 
-          <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Register</Button>
+          <Link to={'/login'} style={{display:'flex',justifyContent:'center',letterSpacing:2,color: 'black'}}>I have an account.</Link>
 
-          <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
-            <Link to={'/login'} >I have an account.</Link>
-          </Box>
 
         </Container>
 
-        <ReadUnderstood open={open} handleClose={handleClose}/>
+        <ReadUnderstood open={open} handleClose={handleClose} />
 
       </Box>
 

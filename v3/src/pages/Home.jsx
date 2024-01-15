@@ -15,8 +15,8 @@ export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
-  const {userInfo} = useSelector((state)=>state.auth)
-  const { user_PromptInfo, leonardoGenerationID,leonardoGenerationData } = useSelector((state) => state.touch)
+  const { userInfo } = useSelector((state) => state.auth)
+  const { user_PromptInfo, leonardoGenerationID, leonardoGenerationData } = useSelector((state) => state.touch)
   const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
@@ -37,13 +37,14 @@ export const Home = () => {
   }
 
 
+  // input girişleri olduğunda çalıştır
   const handleChange = (e) => {
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
-    // dispatch(updatePrompts(info))
   }
 
 
+  // renk seçimi yapıldığında çalıştır
   const handleColorChange = (event) => {
 
     const {
@@ -62,14 +63,14 @@ export const Home = () => {
   };
 
 
-
+  // enter tuşlandığınd çalıştır
   const handleEnterPress = (e) => {
     e.preventDefault()
 
     if (info.prompt) {
 
       if (e.key === 'Enter') {
-        create_Leonardo_Image()
+        create_Leonardo_Image(info)
       }
     }
     else {
@@ -77,11 +78,11 @@ export const Home = () => {
     }
   }
 
-
+  // submit butonu tuşlandığında çalıştır
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (info.prompt && user_PromptInfo) {
+    if (info.prompt) {
       create_Leonardo_Image(info)
     }
     else {
@@ -90,20 +91,10 @@ export const Home = () => {
   }
 
 
-  // useEffect(() => {
-  //   setInfo({
-  //     prompt: user_PromptInfo.prompt,
-  //     cuisineType: user_PromptInfo.cuisineType,
-  //     colorType: user_PromptInfo.colorType,
-  //     styleType: user_PromptInfo.styleType
-  //   })
-
-  // }, [])
-
-
+  // leonardodan gelen image ID bilgisi true olduğu zaman çalıştır
   useEffect(() => {
-    if(leonardoGenerationID){
-      get_Leonarda_Image(leonardoGenerationID,info)
+    if (leonardoGenerationID) {
+      get_Leonarda_Image(leonardoGenerationID)
     }
   }, [leonardoGenerationID])
 
@@ -112,16 +103,16 @@ export const Home = () => {
 
   return (
 
-    <div style={{backgroundColor: '#dddddd', height: '100vh'}}>
+    <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
 
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
-      
-          <Dalle />
-       
-          <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit}/>
-       
+
+        <Dalle />
+
+        <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} />
+
 
 
       </Box>

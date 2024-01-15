@@ -11,11 +11,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useAuthCall from '../hooks/useAuthCall';
-
+import bonnaLogo from "../assets/img/bonna-logo.png"
 
 const Login = () => {
 
-    const {login} = useAuthCall()
+    const { login } = useAuthCall()
 
     const [info, setInfo] = useState({
 
@@ -35,20 +35,27 @@ const Login = () => {
     const handleSubmit = (e) => {
 
         e.preventDefault()
-        login('register',info)
+        login('register', info)
 
     }
 
 
     return (
-        <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
+        <div>
 
-            <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
+            <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
 
-                <Typography align='center' fontWeight={700} variant='subtitle2' p={3} color={'black'} fontSize={'22px'} letterSpacing={5}>Login</Typography>
+                <img
+                    src={bonnaLogo}
+                    alt="bonnaLogo"
+                    width='200px'
+                    style={{ scale: '1.3px', cursor: 'pointer' }}
+                />
 
-                <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5,p:3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
+                <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} letterSpacing={5}>Login</Typography>
+
+                <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 
                     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
 
@@ -67,9 +74,7 @@ const Login = () => {
 
                     <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Login</Button>
 
-                    <Box display={'flex'} justifyContent={'center'} color={'black'} letterSpacing={2} >
-                        <Link to={'/'} >Don't you have an account.</Link>
-                    </Box>
+                    <Link to={'/'} style={{ display: 'flex', justifyContent: 'center', color: 'black',letterSpacing:2 }}>Don't you have an account.</Link>
 
                 </Container>
 
