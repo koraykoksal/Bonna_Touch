@@ -82,8 +82,7 @@ const touchSlice = createSlice({
         },
         fetchSuccessLeonardoGenerationAllData:(state,{payload})=>{
             state.loadingGeneration = false
-            console.log("payload: ",payload)
-            
+
             // const uID = uid()
             // return {
 

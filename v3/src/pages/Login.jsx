@@ -41,7 +41,7 @@ const Login = () => {
 
 
     return (
-        <div style={{ backgroundColor: '#dddddd', minHeight: '900px' }}>
+        <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
             <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
 

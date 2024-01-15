@@ -12,15 +12,14 @@ const persistConfig = {
 }
 
 const persistedReducer = persistReducer(persistConfig, authReducer)
-const persistedReducer2 = persistReducer(persistConfig, touchReducer)
-// const persisted2Reducer = persistReducer(persistConfig, variationReducer)
+const persistedTouchReducer = persistReducer(persistConfig, touchReducer);
 
 //store created
 export const store = configureStore({
 
   reducer: {
     auth: persistedReducer,
-    touch: touchReducer,
+    touch: persistedTouchReducer,
     variation: variationReducer
   },
   //consolda çıkan serileştirme hatasını göstermiyor

@@ -71,7 +71,7 @@ export const Register = () => {
 
   return (
 
-    <div style={{ backgroundColor: '#dddddd',maxHeight:'1100px'}} >
+    <div style={{ backgroundColor: '#dddddd',height:'100vh'}} >
 
 
       <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3}>
