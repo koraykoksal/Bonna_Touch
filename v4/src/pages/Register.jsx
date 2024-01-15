@@ -15,8 +15,7 @@ import useAuthCall from '../hooks/useAuthCall';
 import Checkbox from '@mui/material/Checkbox';
 import ReadUnderstood from '../components/ReadUnderstood';
 import bonnaLogo from "../assets/img/bonna-logo.png"
-
-
+import okudum from "../assets/documents/PrivacyPolicy.pdf"
 
 export const Register = () => {
 
@@ -45,12 +44,14 @@ export const Register = () => {
   const handleOkudumAnladim = (e) => {
 
     if (!okudumAnladim) {
-      handleOpen()
+      window.open(okudum, '_blank')
+      // handleOpen()
       setokudumAnladim(true)
     }
     else {
+      // window.open(okudum, '_blank')
       setokudumAnladim(false)
-      setOpen(false)
+      // setOpen(false)
     }
 
   }
@@ -77,7 +78,7 @@ export const Register = () => {
     <div>
 
 
-      <Box display={'flex'} flexDirection={'column'} gap={5} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: 'auto' }}>
+      <Box display={'flex'} flexDirection={'column'} gap={10} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: 'auto'}}>
 
 
         <img
@@ -247,7 +248,7 @@ export const Register = () => {
 
         </Container>
 
-        <ReadUnderstood open={open} handleClose={handleClose} />
+        {/* <ReadUnderstood open={open} handleClose={handleClose} /> */}
 
       </Box>
 
