@@ -3,7 +3,6 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, Typography } from '@mui/material';
 
-
 const style = {
     position: 'absolute',
     top: '50%',
@@ -29,10 +28,6 @@ const ReadUnderstood = ({ open, handleClose }) => {
                 <Box sx={style}>
 
                     <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={() => { handleClose() }} />
-
-                    <Typography variant='h6' align='center'>
-                        İşbu form, Kişisel Verileri Koruma Kanunu kapsamında belirli, açık ve meşru olarak Performans Değerlendirme Süreçlerinin Yürütülmesi amacıyla bağlantılı, sınırlı ve ölçülü olma ilkeleri gözetilerek oluşturulmuştur. Yukarıda doldurduğum bilgilerin doğruluğunu ve gizliliğini kabul ediyorum.
-                    </Typography>
 
                 </Box>
 
