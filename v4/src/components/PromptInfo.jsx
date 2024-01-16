@@ -9,7 +9,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import { IoSend } from "react-icons/io5";
 import { BsArrowRightSquare } from "react-icons/bs";
 import { bgColor } from '../styles/Global.styles';
-
+import createGenerateIcon from "../assets/img/createGenerate-icon.png"
 
 const ITEM_HEIGHT = 78;
 const ITEM_PADDING_TOP = 8;
@@ -26,7 +26,7 @@ const MenuProps = {
 const inputStyle = {
     backgroundColor: 'transparent',
     border: '2px solid #858484',
-    borderRadius: '20px',
+    borderRadius: '30px',
     height: '45px',
     width: '80%',
     padding: 10,
@@ -130,9 +130,13 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
                 </Container>
 
                 <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
+
                     <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' onKeyUp={handleEnterPress}/>
-                    {/* <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} /> */}
-                    <BsArrowRightSquare size={35} color='#858484' cursor='pointer' onClick={handleSubmit} />
+
+                    {/* <BsArrowRightSquare size={60} color='#858484' cursor='pointer' onClick={handleSubmit} /> */}
+
+                    <img src={createGenerateIcon} height={'60px'} style={{ cursor: 'pointer' }} onClick={handleSubmit}/>
+                    
                 </Box>
             </Box>
 

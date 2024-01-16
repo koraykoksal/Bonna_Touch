@@ -23,22 +23,26 @@ import PromptStyle_Modal from './modals/PromptStyle_Modal';
 import { AiOutlineLogout } from "react-icons/ai";
 import useAuthCall from '../hooks/useAuthCall';
 import { bgColor } from '../styles/Global.styles';
-
+import generateIcon from "../assets/img/generate-icon.png"
+import historyIcon from "../assets/img/history-icon.png"
+import accountIcon from "../assets/img/account-icon.png"
 
 const pages = [
     {
         title: "Generate",
-        url: "/home"
+        url: "/home",
     },
     // {
     //     title: "Variation",
     //     url: "variation"
     // },
-    // {
-    //     title: 'History',
-    //     url: '/history'
-    // },
+    {
+        title: 'History',
+        url: '/history'
+    },
 ];
+
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
@@ -137,16 +141,6 @@ const NavBar = () => {
                             }}
                         >
                             {pages.map((page, index) => (
-                                // <MenuItem key={index} onClick={() => {
-                                //     navigate(page.url)
-                                //     handleCloseNavMenu()
-                                // }}>
-
-                                //     <ListItemButton sx={{ textTransform: 'none' }}>
-                                //         <ListItemText>{page.title}</ListItemText>
-                                //     </ListItemButton>
-
-                                // </MenuItem>
                                 <Box key={index}>
                                     <Button sx={{ textTransform: 'none', color: '#000000', fontSize: '16px' }} onClick={() => {
                                         navigate(page.url)
@@ -161,7 +155,7 @@ const NavBar = () => {
 
                     {/* PAGES MENU */}
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
+                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
                         {pages.map((page, index) => (
                             <Button
                                 key={index}
@@ -175,6 +169,18 @@ const NavBar = () => {
                             </Button>
                         ))}
 
+                    </Box> */}
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
+                        <img src={generateIcon} height={'35px'} style={{ cursor: 'pointer' }} onClick={() => {
+                            navigate('/home')
+                            handleCloseNavMenu()
+                        }} />
+
+                        <img src={historyIcon} height={'35px'} style={{ cursor: 'pointer' }} onClick={() => {
+                            navigate('/history')
+                            handleCloseNavMenu()
+                        }} />
                     </Box>
 
 
@@ -183,18 +189,19 @@ const NavBar = () => {
                     <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} marginLeft={5}>
 
                         {/* STYLE BAR BUTTON */}
-                        {/* <MdDashboardCustomize cursor='pointer' size={33} style={{ color: '#000000' }} onClick={handleOpen} /> */}
-
-                        {/* <Typography sx={{ textTransform: 'none' }} variant='subtitle2' color={'black'} fontSize={18}>{currentUser}</Typography>
-
-                        <AiOutlineLogout color='red' size={25} cursor={'pointer'}/> */}
-
 
                         <Box sx={{ flexGrow: 0, display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center' }}>
 
                             <Box>
 
-                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer', backgroundColor: 'black' }} >{avatarNick()}</Avatar>
+                                {/* <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer', backgroundColor: 'black' }} >{avatarNick()}</Avatar> */}
+
+                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer',backgroundColor:'transparent' }} 
+                                >
+                                   <img src={accountIcon} height={'100%'}/>
+                                </Avatar>
+
+                                
 
                                 <Menu
                                     sx={{ mt: '45px' }}
@@ -213,7 +220,6 @@ const NavBar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     <Box display={'flex'} flexDirection={'column'}>
-                                        <Button sx={{ color: '#000000', textTransform: 'none' }} onClick={() => navigate('/history')}>History</Button>
                                         <Button sx={{ color: '#C70039', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
                                     </Box>
 
