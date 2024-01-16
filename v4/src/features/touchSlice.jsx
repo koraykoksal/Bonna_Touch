@@ -8,18 +8,16 @@ import { uid } from "uid";
 const initialState = {
     loadingGeneration: false,
     error: false,
-    dalleData: [],
-    dalleImage: [],
     userPrompt: "",
     user_PromptInfo: {
-        prompt:"",
-        cuisineType:"",
-        colorType:[],
-        styleType:""
+        prompt: "",
+        cuisineType: "",
+        colorType: [],
+        styleType: ""
     },
     leonardoGenerationID: "",
-    leonardoGenerationData:[],
-    leonardoGenerationAllData:[]
+    leonardoGenerationData: [],
+    leonardoGenerationAllData: []
 }
 
 const touchSlice = createSlice({
@@ -32,8 +30,8 @@ const touchSlice = createSlice({
         fetchStartGeneration: (state) => {
             state.loadingGeneration = true;
             state.error = false;
-            state.dalleImage = []
             state.leonardoGenerationID = ""
+            state.leonardoGenerationData=[]
         },
         fetchEndGeneration: (state) => {
             state.loadingGeneration = false;
@@ -43,54 +41,20 @@ const touchSlice = createSlice({
             state.loadingGeneration = false;
             state.error = true;
         },
-        fetchSuccess_Generation: (state, { payload }) => {
-
-            state.loadingGeneration = false
-            const createdTime = moment().add(1, 'hours').format()
-            const uID = uid()
-
-            state.dalleImage.push({
-                id:uID,
-                imgTime: createdTime,
-                imgUrl: payload?.res?.data[0].url,
-                revisedPrompt: payload?.res?.data[0].revised_prompt,
-                userInfo:{...state.dalleUser_PromptInfo}
-            });
-        },
-        fetchSuccess_AllGeneration: (state, { payload }) => {
-
-            state.loadingGeneration = false
-            const createdTime = moment().add(1, 'hours').format()
-            const uID = uid()
-
-            state.dalleData.push({
-                id:uID,
-                imgTime: createdTime,
-                imgUrl: payload?.res?.data[0].url,
-                revisedPrompt: payload?.res?.data[0].revised_prompt,
-                userInfo:{...state.dalleUser_PromptInfo}
-            });
-        },
+        //! post isteği atıldığında leonardo tarafından gelen ID bilgisi
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
-            // state.loadingGeneration = false
             state.leonardoGenerationID = payload
         },
-        fetchSuccessLeonardoGenerationData:(state,{payload})=>{
-            console.log("generate data: ",payload)
+        fetchSuccessLeonardoGenerationData: (state, { payload }) => {
+            // console.log(payload)
             state.loadingGeneration = false
-            state.leonardoGenerationData = payload?.generated_images
-
+            state.leonardoGenerationData = payload?.generated_images;
         },
-        fetchSuccessLeonardoGenerationAllData:(state,{payload})=>{
-            console.log("generate all data: ",payload)
+        fetchSuccessLeonardoGenerationAllData: (state, { payload }) => {
 
-            state.loadingGeneration = false
-
-            const uID = uid()
-            state.leonardoGenerationAllData.push({
-                id:uID,
-                url:payload?.generated_images
-            })
+            return {
+                leonardoGenerationAllData: [...state.leonardoGenerationAllData, ...payload]
+            };
 
 
         }
@@ -109,8 +73,6 @@ export const {
     fetchStartGeneration,
     fetchEndGeneration,
     fetchFailGeneration,
-    fetchSuccess_Generation,
-    fetchSuccess_AllGeneration,
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationData,
     fetchSuccessLeonardoGenerationAllData

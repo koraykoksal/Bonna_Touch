@@ -4,24 +4,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import generateGift from '../assets/gift/generateGift.gif'
-import generateGift2 from '../assets/gift/generationGift2.gif'
+import generateGift from '../assets/gift/generationGift2.gif'
 import moment from 'moment';
 
 
 export const Dalle = () => {
 
 
-  const {
-    loadingGeneration,
-    firstRender,
-    dalleImage,
-    dalleData,
-    dalleUser_PromptInfo,
-    leonardoGenerationData
-
-  } = useSelector((state) => state.touch)
-  const currentTime = moment().format()
+  const {loadingGeneration,leonardoGenerationData} = useSelector((state)=>state.touch)
 
 
   return (
@@ -35,8 +25,7 @@ export const Dalle = () => {
 
           <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
-            {/* <img src={generateGift} alt="" style={{ objectFit: 'cover' }} /> */}
-            <img src={generateGift2} alt="" style={{ objectFit: 'cover' }} />
+            <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} />
 
           </Box>
 
@@ -45,7 +34,7 @@ export const Dalle = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
 
-              {
+              {/* {
                 leonardoGenerationData?.map((data, index) => (
 
                   <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
@@ -63,7 +52,7 @@ export const Dalle = () => {
 
                 ))
 
-              }
+              } */}
             </Box>
 
           )

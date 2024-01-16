@@ -1,6 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import touchReducer from '../features/touchSlice'
-import variationReducer from '../features/variationSlice'
 import authReducer from "../features/authSlice"
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
@@ -19,8 +18,7 @@ export const store = configureStore({
 
   reducer: {
     auth: persistedReducer,
-    touch: persistedTouchReducer,
-    variation: variationReducer
+    touch: touchReducer,
   },
   //consolda çıkan serileştirme hatasını göstermiyor
   middleware: getDefaultMiddleware({

@@ -15,8 +15,7 @@ export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const dispatch = useDispatch()
-  const { userInfo } = useSelector((state) => state.auth)
-  const { user_PromptInfo, leonardoGenerationID, leonardoGenerationData } = useSelector((state) => state.touch)
+  const {leonardoGenerationID } = useSelector((state) => state.touch)
   const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
@@ -25,16 +24,6 @@ export const Home = () => {
     colorType: "",
     styleType: ""
   })
-
-  const inputStyle = {
-    backgroundColor: 'transparent',
-    border: '0.7px solid #706b6b',
-    borderRadius: '20px',
-    height: '45px',
-    width: '80%',
-    padding: 10,
-    color: '#000000'
-  }
 
 
   // input girişleri olduğunda çalıştır
@@ -99,8 +88,7 @@ export const Home = () => {
   }, [leonardoGenerationID])
 
 
-  console.log(leonardoGenerationData)
-
+  
   return (
 
     <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>

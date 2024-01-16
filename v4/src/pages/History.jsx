@@ -17,8 +17,11 @@ import { FaHeart } from "react-icons/fa";
 export default function History() {
 
   const { leonardoGenerationAllData } = useSelector((state) => state.touch)
-  
-  const currentTime = moment().format()
+
+  const [urls, setUrls] = useState([])
+
+
+
 
   // FaHeart'ların tıklama durumunu saklamak için bir state oluşturun
   const [selectedIds, setSelectedIds] = useState(() => {
@@ -42,12 +45,10 @@ export default function History() {
     });
   };
 
-  const data = JSON.stringify(leonardoGenerationAllData)
-  console.log(data)
 
   return (
 
-    <>
+    <div>
 
       <Box sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
@@ -55,9 +56,9 @@ export default function History() {
         <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2, pt: 5 }}>
 
 
-          {leonardoGenerationAllData?.map((data) => (
+          {leonardoGenerationAllData?.map((data,index) => (
 
-            <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={data.id}>
+            <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={index}>
 
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 
@@ -70,8 +71,8 @@ export default function History() {
                   />
                 </a>
 
-                <FaHeart onClick={() => toggleHeart(data.id)}
-                  color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'} />
+                <FaHeart onClick={() => toggleHeart(index)}
+                  color={selectedIds[index] ? 'red' : 'grey'} cursor={'pointer'} />
               </Box>
 
             </Card>
@@ -82,6 +83,6 @@ export default function History() {
         </Box>
       </Box>
 
-    </>
+    </div>
   );
 }

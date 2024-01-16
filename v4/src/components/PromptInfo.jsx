@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IoSend } from "react-icons/io5";
+import { BsArrowRightSquare } from "react-icons/bs";
 
 
 const ITEM_HEIGHT = 78;
@@ -23,7 +24,7 @@ const MenuProps = {
 
 const inputStyle = {
     backgroundColor: 'transparent',
-    border: '0.7px solid #706b6b',
+    border: '2px solid #858484',
     borderRadius: '20px',
     height: '45px',
     width: '80%',
@@ -58,7 +59,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
 
                     <FormControl fullWidth style={{ width: '200px' }}>
                         <InputLabel id="cuisineType" sx={{ fontSize: '15px', margin: '-5px 0 5px' }}>
-                            Coisine Type
+                            Coisine
                         </InputLabel>
                         <Select
                             required
@@ -87,7 +88,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
                                 margin: '-5px 0 5px'
                             }}
                         >
-                            Color Type
+                            Color
                         </InputLabel>
                         <Select
                             required
@@ -116,7 +117,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
                                 margin: '-5px 0 5px'
                             }}
                         >
-                            Style Type
+                            Style
 
                         </InputLabel>
                         <Select
@@ -141,7 +142,8 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
 
                 <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
                     <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' onKeyUp={handleEnterPress}/>
-                    <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} />
+                    {/* <IoSend size={35} color='#000000' cursor='pointer' onClick={handleSubmit} /> */}
+                    <BsArrowRightSquare size={35} color='#858484' cursor='pointer' onClick={handleSubmit} />
                 </Box>
             </Box>
 
