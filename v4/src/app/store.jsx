@@ -11,9 +11,10 @@ const persistConfig = {
 }
 
 const persistedReducer = persistReducer(persistConfig, authReducer)
+// const persistedTouchReducer = persistReducer(persistConfig, touchReducer)
 
 //store created
-export const store = configureStore({
+const store = configureStore({
 
   reducer: {
     auth: persistedReducer,
@@ -27,3 +28,4 @@ export const store = configureStore({
 })
 
 export const persistor = persistStore(store)
+export default store

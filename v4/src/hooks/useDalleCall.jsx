@@ -13,13 +13,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
 import { useState } from 'react'
-
+import { uid } from "uid";
 
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const [urls, setUrls] = useState([])
-
 
 
     const create_Leonardo_Image = async (data) => {
@@ -77,7 +75,9 @@ const useDalleCall = () => {
     }
 
 
-    const get_Leonarda_Image = async (id) => {
+    const get_Leonarda_Image = async (id,info) => {
+
+
 
         const options = {
             method: 'GET',
@@ -90,6 +90,7 @@ const useDalleCall = () => {
 
         try {
 
+            const uID = uid()
             let response = await axios(options);
 
             // "COMPLETE" olana kadar döngü içinde isteği tekrar et
@@ -101,15 +102,14 @@ const useDalleCall = () => {
 
             const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
                 url: element.url,
-                // id: element.id,
+                text:info,
+                id: element.id,
                     
             }));
 
             // "COMPLETE" olduğunda işlem yap
             dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
-
-            // console.log(data)
 
             
 
@@ -121,10 +121,17 @@ const useDalleCall = () => {
     }
 
 
+    const post_imageDataDB=async ()=>{
+
+
+
+    }
+
 
     return {
         create_Leonardo_Image,
-        get_Leonarda_Image
+        get_Leonarda_Image,
+        post_imageDataDB
 
     }
 

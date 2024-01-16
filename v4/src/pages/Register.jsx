@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -13,7 +12,6 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useAuthCall from '../hooks/useAuthCall';
 import Checkbox from '@mui/material/Checkbox';
-import ReadUnderstood from '../components/ReadUnderstood';
 import bonnaLogo from "../assets/img/bonna-logo.png"
 import okudum from "../assets/documents/PrivacyPolicy.pdf"
 
@@ -35,23 +33,16 @@ export const Register = () => {
 
   })
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false)
-  }
 
   const handleOkudumAnladim = (e) => {
 
     if (!okudumAnladim) {
       window.open(okudum, '_blank')
-      // handleOpen()
       setokudumAnladim(true)
     }
     else {
       // window.open(okudum, '_blank')
       setokudumAnladim(false)
-      // setOpen(false)
     }
 
   }
@@ -248,7 +239,6 @@ export const Register = () => {
 
         </Container>
 
-        {/* <ReadUnderstood open={open} handleClose={handleClose} /> */}
 
       </Box>
 

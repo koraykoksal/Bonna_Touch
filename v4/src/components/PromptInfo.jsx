@@ -25,122 +25,124 @@ const MenuProps = {
 
 const inputStyle = {
     backgroundColor: 'transparent',
-    border: '2px solid #858484',
+    border: '3px solid #858484',
     borderRadius: '30px',
-    height: '45px',
+    height: '30px',
     width: '80%',
     padding: 10,
-    color: '#000000'
+    color: '#000000',
+    fontSize: '17px'
 }
 
 
-const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,handleSubmit,handleEnterPress }) => {
+const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress }) => {
 
 
     return (
 
-        <div style={{backgroundColor:`${bgColor}`}}>
-
-            <Box display={'flex'} flexDirection={'column'} gap={6} p={5}>
-
-                <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
 
 
-                    <FormControl fullWidth style={{ width: '200px' }}>
-                        <InputLabel id="cuisineType" sx={{ fontSize: '15px', margin: '-5px 0 5px' }}>
-                            Coisine
-                        </InputLabel>
-                        <Select
-                            required
-                            labelId="cuisineType"
-                            id="cuisineType"
-                            name='cuisineType'
-                            label="cuisineType"
-                            value={info.cuisineType}
-                            onChange={handleChange}
-                            style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
+        <Box display={'flex'} flexDirection={'column'} gap={6} p={5}>
 
-                        >
-                            {
-                                generateData_cuisine.map((item, index) => (
-                                    <MenuItem key={index} value={item.cuisineType}>{item.cuisineType}</MenuItem>
-                                ))
-                            }
-                        </Select>
-                    </FormControl>
+            <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
 
 
-                    <FormControl style={{ width: '200px' }}>
-                        <InputLabel id="colorType"
-                            sx={{
-                                fontSize: '15px',
-                                margin: '-5px 0 5px'
-                            }}
-                        >
-                            Color
-                        </InputLabel>
-                        <Select
-                            required
-                            multiple
-                            value={colors}
-                            onChange={handleColorChange}
-                            input={<OutlinedInput label="Tag" />}
-                            renderValue={(selected) => selected.join(', ')}
-                            MenuProps={MenuProps}
-                            style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
-                        >
-                            {generateData_colors.map((color) => (
-                                <MenuItem key={color} value={color}>
-                                    <Checkbox checked={colors.indexOf(color) > -1} size='xsmall' />
-                                    <ListItemText primary={color} />
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                <FormControl fullWidth style={{ width: '200px' }}>
+                    <InputLabel id="cuisineType" sx={{ fontSize: '15px', margin: '-5px 0 5px' }}>
+                        Coisine
+                    </InputLabel>
+                    <Select
+                        required
+                        labelId="cuisineType"
+                        id="cuisineType"
+                        name='cuisineType'
+                        label="cuisineType"
+                        value={info.cuisineType}
+                        onChange={handleChange}
+                        style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
+
+                    >
+                        {
+                            generateData_cuisine.map((item, index) => (
+                                <MenuItem key={index} value={item.cuisineType}>{item.cuisineType}</MenuItem>
+                            ))
+                        }
+                    </Select>
+                </FormControl>
 
 
-                    <FormControl style={{ width: '200px' }}>
-                        <InputLabel id="styleType"
-                            sx={{
-                                fontSize: '15px',
-                                margin: '-5px 0 5px'
-                            }}
-                        >
-                            Style
+                <FormControl style={{ width: '200px' }}>
+                    <InputLabel id="colorType"
+                        sx={{
+                            fontSize: '15px',
+                            margin: '-5px 0 5px'
+                        }}
+                    >
+                        Color
+                    </InputLabel>
+                    <Select
+                        required
+                        multiple
+                        value={colors}
+                        onChange={handleColorChange}
+                        input={<OutlinedInput label="Tag" />}
+                        renderValue={(selected) => selected.join(', ')}
+                        MenuProps={MenuProps}
+                        style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
+                    >
+                        {generateData_colors.map((color) => (
+                            <MenuItem key={color} value={color}>
+                                <Checkbox checked={colors.indexOf(color) > -1} size='xsmall' />
+                                <ListItemText primary={color} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
 
-                        </InputLabel>
-                        <Select
-                            required
-                            labelId="styleType"
-                            id="styleType"
-                            name='styleType'
-                            label="styleType"
-                            value={info.styleType}
-                            onChange={handleChange}
-                            style={{ height: '40px', borderRadius: 20, fontSize: '15px' }}
-                        >
-                            {
-                                generateData_style.map((item, index) => (
-                                    <MenuItem key={index} value={item.style}>{item.style}</MenuItem>
-                                ))
-                            }
-                        </Select>
-                    </FormControl>
 
-                </Container>
+                <FormControl style={{ width: '200px' }}>
+                    <InputLabel id="styleType"
+                        sx={{
+                            fontSize: '15px',
+                            margin: '-5px 0 5px'
+                        }}
+                    >
+                        Style
 
-                <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
+                    </InputLabel>
+                    <Select
+                        required
+                        labelId="styleType"
+                        id="styleType"
+                        name='styleType'
+                        label="styleType"
+                        value={info.styleType}
+                        onChange={handleChange}
+                        style={{ height: '40px', borderRadius: 20, fontSize: '15px' }}
+                    >
+                        {
+                            generateData_style.map((item, index) => (
+                                <MenuItem key={index} value={item.style}>{item.style}</MenuItem>
+                            ))
+                        }
+                    </Select>
+                </FormControl>
 
-                    <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Prompt' onKeyUp={handleEnterPress}/>
+            </Container>
 
-                    {/* <BsArrowRightSquare size={60} color='#858484' cursor='pointer' onClick={handleSubmit} /> */}
+            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
 
-                    <img src={createGenerateIcon} height={'60px'} style={{ cursor: 'pointer' }} onClick={handleSubmit}/>
-                    
-                </Box>
+                <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Enter prompt here...' onKeyUp={handleEnterPress} />
+
+                {/* <BsArrowRightSquare size={60} color='#858484' cursor='pointer' onClick={handleSubmit} /> */}
+
+                <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
+
+
             </Box>
+        </Box>
 
-        </div>
+
     )
 }
 

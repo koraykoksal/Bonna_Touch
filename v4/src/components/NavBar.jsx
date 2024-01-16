@@ -9,18 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import styleIcon from "../assets/img/styleIcon.png"
 import { CardMedia, ListItemButton, ListItemText } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
-import { RiLogoutCircleRLine } from "react-icons/ri";
-import { MdDashboardCustomize } from "react-icons/md";
 import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
-import PromptStyle_Modal from './modals/PromptStyle_Modal';
-import { AiOutlineLogout } from "react-icons/ai";
 import useAuthCall from '../hooks/useAuthCall';
 import { bgColor } from '../styles/Global.styles';
 import generateIcon from "../assets/img/generate-icon.png"
@@ -50,14 +42,11 @@ const NavBar = () => {
     const { currentUser } = useSelector((state) => state.auth)
 
     const { logout } = useAuthCall()
+    
     let avatarName = ""
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
 
     const navigate = useNavigate()
 
-    const { dalleImage } = useSelector((state) => state.touch)
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);

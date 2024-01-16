@@ -4,7 +4,7 @@ import { uid } from "uid";
 const initialState = {
     loadingGeneration: false,
     error: false,
-    userPrompt: "",
+    promptData: {},
     user_PromptInfo: {
         prompt: "",
         cuisineType: "",
@@ -45,16 +45,11 @@ const touchSlice = createSlice({
         fetchSuccessLeonardoGenerationData: (state, { payload }) => {
             state.loadingGeneration = false
             // state.leonardoGenerationData = payload?.generated_images;
-
-            // console.log(state.leonardoGenerationData )
         },
         fetchSuccessLeonardoGenerationAllData: (state, { payload }) => {
-
             return {
                 leonardoGenerationAllData: [...state.leonardoGenerationAllData, ...payload]
             };
-
-
         }
 
 
@@ -73,7 +68,7 @@ export const {
     fetchFailGeneration,
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationData,
-    fetchSuccessLeonardoGenerationAllData
+    fetchSuccessLeonardoGenerationAllData,
 
 
 } = touchSlice.actions

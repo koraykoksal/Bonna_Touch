@@ -15,7 +15,7 @@ export const AppRouter = () => {
 
   return (
 
-    <>
+  
       <BrowserRouter>
         
         <Routes>
@@ -33,6 +33,6 @@ export const AppRouter = () => {
         </Routes>
       </BrowserRouter>
 
-    </>
+
   )
 }

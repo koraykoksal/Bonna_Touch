@@ -11,7 +11,7 @@ import { bgColor } from '../styles/Global.styles';
 export const Dalle = () => {
 
 
-  const { loadingGeneration, leonardoGenerationAllData } = useSelector((state) => state.touch)
+  const { loadingGeneration, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
   const [urls, setUrls] = useState([])
 
 
@@ -27,80 +27,58 @@ export const Dalle = () => {
   }, [leonardoGenerationAllData])
 
 
-
-
-
+  console.log(leonardoGenerationData)
 
   return (
 
 
-   
 
-      <Box sx={{ backgroundColor: `${bgColor}` }}>
 
-        {loadingGeneration ? (
+    <Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
+      {loadingGeneration ? (
 
-            <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} />
+        <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
+
+          <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} />
+
+        </Box>
+
+      )
+        : (
+
+          <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 2}} >
+
+            {
+              urls?.map((data, index) => (
+
+                <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                  <a href={data.url} target='_blank'>
+                    <CardMedia
+                      component="img"
+                      height="450"
+                      src={data.url}
+                      sx={{ borderRadius: '0.5rem' }}
+                    />
+                  </a>
+
+                </CardActionArea>
+
+              ))
+
+            }
+
 
           </Box>
 
         )
-          : (
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
-
-              {/* {
-                leonardoGenerationData?.map((data, index) => (
-
-                  <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-                    <a href={data.url} target='_blank'>
-                      <CardMedia
-                        component="img"
-                        height="450"
-                        src={data.url}
-                        sx={{ borderRadius: '0.5rem' }}
-                      />
-                    </a>
-
-                  </CardActionArea>
-
-                ))
-
-              } */}
-
-              {
-                urls?.map((data, index) => (
-
-                  <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-                    <a href={data.url} target='_blank'>
-                      <CardMedia
-                        component="img"
-                        height="450"
-                        src={data.url}
-                        sx={{ borderRadius: '0.5rem' }}
-                      />
-                    </a>
-
-                  </CardActionArea>
-
-                ))
-
-              }
-
-
-            </Box>
-
-          )
-        }
+      }
 
 
 
 
-      </Box>
+    </Box>
 
 
 

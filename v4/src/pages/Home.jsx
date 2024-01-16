@@ -10,14 +10,18 @@ import { generateData_cuisine, generateData_colors, generateData_style } from ".
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
 import PromptInfo from '../components/PromptInfo'
-import {bgColor} from "../styles/Global.styles"
+import { bgColor } from "../styles/Global.styles"
+import { fetchPromptdata } from '../features/touchSlice'
 
 
 
 export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
-  const { leonardoGenerationID } = useSelector((state) => state.touch)
+  const { leonardoGenerationID,promptData } = useSelector((state) => state.touch)
+
+  const dispatch=useDispatch()
+
   const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
@@ -86,30 +90,22 @@ export const Home = () => {
   // leonardodan gelen image ID bilgisi true olduğu zaman çalıştır
   useEffect(() => {
     if (leonardoGenerationID) {
-      get_Leonarda_Image(leonardoGenerationID)
+      get_Leonarda_Image(leonardoGenerationID,info)
     }
   }, [leonardoGenerationID])
 
 
-
   return (
 
-    // <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px' }}>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column',height: '100vh' ,overflow:'auto',backgroundColor:`${bgColor}` }}>
+      <Dalle />
 
+      <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} />
 
-        <Dalle />
+    </Box>
 
-        <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} />
-
-
-
-      </Box>
-
-
-    // </div>
 
   )
 }
