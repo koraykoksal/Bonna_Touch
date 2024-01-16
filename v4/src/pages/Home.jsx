@@ -10,11 +10,13 @@ import { generateData_cuisine, generateData_colors, generateData_style } from ".
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
 import PromptInfo from '../components/PromptInfo'
+import {bgColor} from "../styles/Global.styles"
+
+
 
 export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
-  const dispatch = useDispatch()
   const { leonardoGenerationID } = useSelector((state) => state.touch)
   const [colors, setColors] = useState([])
 
@@ -92,10 +94,10 @@ export const Home = () => {
 
   return (
 
-    <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
+    // <div style={{ backgroundColor: '#dddddd', height: '100vh' }}>
 
 
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column',height: '100vh' ,overflow:'auto',backgroundColor:`${bgColor}` }}>
 
 
         <Dalle />
@@ -107,7 +109,7 @@ export const Home = () => {
       </Box>
 
 
-    </div>
+    // </div>
 
   )
 }

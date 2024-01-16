@@ -6,21 +6,15 @@ import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Container } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { BiDownload } from 'react-icons/bi'
-import axios from 'axios'
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
-import moment from 'moment'
 import { FaHeart } from "react-icons/fa";
+import { bgColor } from '../styles/Global.styles';
 
 
 
 export default function History() {
 
   const { leonardoGenerationAllData } = useSelector((state) => state.touch)
-
-  const [urls, setUrls] = useState([])
-
-
 
 
   // FaHeart'ların tıklama durumunu saklamak için bir state oluşturun
@@ -48,9 +42,9 @@ export default function History() {
 
   return (
 
-    <div>
 
-      <Box sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
+
+      <Box sx={{ backgroundColor: `${bgColor}`, height: '100vh',overflow:'auto',py:5 }}>
 
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap-reverse', justifyContent: 'center', gap: 2, pt: 5 }}>
@@ -58,7 +52,7 @@ export default function History() {
 
           {leonardoGenerationAllData?.map((data,index) => (
 
-            <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#dddddd' }} key={index}>
+            <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#d8d8d8' }} key={index}>
 
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 
@@ -83,6 +77,6 @@ export default function History() {
         </Box>
       </Box>
 
-    </div>
+
   );
 }

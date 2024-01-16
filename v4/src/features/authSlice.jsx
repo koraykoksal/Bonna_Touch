@@ -32,19 +32,6 @@ const authSlice = createSlice({
             state.currentUser = nameSurname;
 
             state.userInfo = payload[0]
-
-            // return {
-            //     userInfo:[...state.userInfo,{
-            //         nameSurname:payload[0]?.name+" "+payload[0]?.surname,
-            //         job:payload[0]?.job,
-            //         email:payload[0]?.email,
-            //         country:payload[0]?.country,
-            //         company:payload[0]?.company,
-            //         companyType:payload[0]?.companyType,
-            //         age:payload[0]?.age,
-            //         tel:payload[0]?.tel
-            //     }]
-            // }
         },
         fetchLogoutSuccess: (state) => {
             state.loading = false;

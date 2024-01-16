@@ -26,7 +26,6 @@ const useDalleCall = () => {
 
         const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + "," + data?.prompt + ", " + data?.colorType + " a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
-
         dispatch(fetchStartGeneration())
 
         const options = {
@@ -106,12 +105,8 @@ const useDalleCall = () => {
                     
             }));
 
-       
-
             // "COMPLETE" olduğunda işlem yap
-            console.log(response?.data?.generations_by_pk)
             dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
-            console.log(response?.data?.generations_by_pk)
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
 
             // console.log(data)

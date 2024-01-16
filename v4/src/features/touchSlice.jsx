@@ -1,8 +1,4 @@
-
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { createElement, useEffect } from "react";
-import moment from "moment";
 import { uid } from "uid";
 
 const initialState = {
@@ -23,9 +19,10 @@ const initialState = {
 const touchSlice = createSlice({
 
     name: "touch",
-    initialState,
-    reducers: {
 
+    initialState,
+
+    reducers: {
 
         fetchStartGeneration: (state) => {
             state.loadingGeneration = true;
@@ -46,9 +43,10 @@ const touchSlice = createSlice({
             state.leonardoGenerationID = payload
         },
         fetchSuccessLeonardoGenerationData: (state, { payload }) => {
-            // console.log(payload)
             state.loadingGeneration = false
-            state.leonardoGenerationData = payload?.generated_images;
+            // state.leonardoGenerationData = payload?.generated_images;
+
+            // console.log(state.leonardoGenerationData )
         },
         fetchSuccessLeonardoGenerationAllData: (state, { payload }) => {
 

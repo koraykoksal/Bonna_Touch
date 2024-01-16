@@ -8,6 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IoSend } from "react-icons/io5";
 import { BsArrowRightSquare } from "react-icons/bs";
+import { bgColor } from '../styles/Global.styles';
 
 
 const ITEM_HEIGHT = 78;
@@ -33,24 +34,12 @@ const inputStyle = {
 }
 
 
-const allColors = [
-    "Blue",
-    "Green",
-    "Beige",
-    "Brown",
-    "Earth Tones",
-    "Gray",
-    "Black",
-    "Colourful",
-
-]
-
 const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,handleSubmit,handleEnterPress }) => {
 
 
     return (
 
-        <div style={{backgroundColor:'#dddddd'}}>
+        <div style={{backgroundColor:`${bgColor}`}}>
 
             <Box display={'flex'} flexDirection={'column'} gap={6} p={5}>
 
@@ -146,9 +135,6 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange,h
                     <BsArrowRightSquare size={35} color='#858484' cursor='pointer' onClick={handleSubmit} />
                 </Box>
             </Box>
-
-
-
 
         </div>
     )

@@ -11,7 +11,6 @@ const persistConfig = {
 }
 
 const persistedReducer = persistReducer(persistConfig, authReducer)
-const persistedTouchReducer = persistReducer(persistConfig, touchReducer);
 
 //store created
 export const store = configureStore({

@@ -3,23 +3,40 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generationGift2.gif'
-import moment from 'moment';
-
+import { useState, useEffect } from 'react';
+import { bgColor } from '../styles/Global.styles';
 
 export const Dalle = () => {
 
 
-  const {loadingGeneration,leonardoGenerationData} = useSelector((state)=>state.touch)
+  const { loadingGeneration, leonardoGenerationAllData } = useSelector((state) => state.touch)
+  const [urls, setUrls] = useState([])
+
+
+  useEffect(() => {
+
+    const lastTwoData = leonardoGenerationAllData.slice(-2)
+    const newData = lastTwoData.map(item => ({
+      url: item.url
+    }))
+
+    setUrls(newData)
+
+  }, [leonardoGenerationAllData])
+
+
+
+
 
 
   return (
 
 
-    <div>
+   
 
-      <Box sx={{ backgroundColor: '#dddddd' }}>
+      <Box sx={{ backgroundColor: `${bgColor}` }}>
 
         {loadingGeneration ? (
 
@@ -53,6 +70,28 @@ export const Dalle = () => {
                 ))
 
               } */}
+
+              {
+                urls?.map((data, index) => (
+
+                  <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                    <a href={data.url} target='_blank'>
+                      <CardMedia
+                        component="img"
+                        height="450"
+                        src={data.url}
+                        sx={{ borderRadius: '0.5rem' }}
+                      />
+                    </a>
+
+                  </CardActionArea>
+
+                ))
+
+              }
+
+
             </Box>
 
           )
@@ -64,7 +103,7 @@ export const Dalle = () => {
       </Box>
 
 
-    </div>
+
   )
 
 

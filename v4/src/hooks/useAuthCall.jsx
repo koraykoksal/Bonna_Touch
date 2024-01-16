@@ -22,15 +22,6 @@ const useAuthCall = () => {
 
     try {
 
-      // const uID = uid()
-      // const newDb = getDatabase()
-
-      // await set(ref(newDb, `${url}/${uID}`), info)
-      // dispatch(fetchRegisterSuccess(info))
-
-      // navigate('/home')
-      // toastSuccessNotify('Register Success')
-
       const db = getDatabase()
       const res = ref(db, `${url}`)
       const snapshot = await get(res)

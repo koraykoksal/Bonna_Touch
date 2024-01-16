@@ -22,6 +22,7 @@ import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
 import PromptStyle_Modal from './modals/PromptStyle_Modal';
 import { AiOutlineLogout } from "react-icons/ai";
 import useAuthCall from '../hooks/useAuthCall';
+import { bgColor } from '../styles/Global.styles';
 
 
 const pages = [
@@ -87,13 +88,10 @@ const NavBar = () => {
 
     return (
 
-        <AppBar position="static" sx={{ backgroundColor: '#dddddd', boxShadow: 0 }}>
+        <AppBar position="static" sx={{ backgroundColor: '#d8d8d8', boxShadow: 0 }}>
+
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
-
-
-
-
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
                         <img
