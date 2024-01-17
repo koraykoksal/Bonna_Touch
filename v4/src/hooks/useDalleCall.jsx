@@ -20,7 +20,7 @@ import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/da
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const {userInfo}=useSelector((state)=>state.auth)
+    const { userInfo } = useSelector((state) => state.auth)
 
     const create_Leonardo_Image = async (data) => {
 
@@ -123,9 +123,13 @@ const useDalleCall = () => {
     }
 
 
-    const post_imageDataDB = async (id, data) => {
+    const post_imageDataDB = async (id, data, { likeStatus }) => {
 
-        const combinedObject = {...userInfo,...data}
+        console.log("idddd: ",id)
+
+        console.log("like status: ", likeStatus)
+        // console.log(userInfo)
+        const combinedObject = { ...userInfo, ...data }
 
         try {
 
@@ -134,9 +138,43 @@ const useDalleCall = () => {
             const res = ref(db, 'customerAIdata')
             const snapshot = await get(res)
 
-            await set(ref(db, `customerAIdata/${uID}`), combinedObject)
+            if (likeStatus) {
+                await set(ref(db, `customerAIdata/${userInfo.name + userInfo.surname}/${uID}`), combinedObject)
+                toastSuccessNotify('Liked')
+            }
+            else {
 
-            toastSuccessNotify('Liked')
+                if (snapshot.exists()) {
+
+                    // const test = { ...snapshot.val() }
+
+                    // const data = Object.values(snapshot.val())
+
+                    // const result = data.filter(element => element.id == id)
+
+                    const dizi = []
+
+                    Object.values(snapshot.val()).forEach(item => {
+
+                        if (typeof item == 'object' && item != null) {
+
+                            const result = Object.keys(item).map(key => { return { IDs: key, ...item[key] } })
+
+                            result.map(item => {
+                                dizi.push(item)
+                                return { ...item, item }
+                            })
+
+                        }
+
+                    })
+                    
+                    // const unlikedData = dizi.filter(item=>item.IDs == id)
+                    console.log(dizi)
+
+
+                }
+            }
 
         } catch (error) {
             console.log("register, ", error)

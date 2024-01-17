@@ -42,8 +42,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
     return (
 
 
-
-        <Box display={'flex'} flexDirection={'column'} gap={6} p={5}>
+        <Container display={'flex'} flexDirection={'column'} gap={6} p={5}>
 
             <Container sx={{ mt: 5, justifyContent: 'center', display: 'flex', alignItems: 'center', gap: 5 }}>
 
@@ -131,17 +130,16 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
 
             </Container>
 
-            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'}>
+            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} mt={8}>
 
                 <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Enter prompt here...' onKeyUp={handleEnterPress} />
 
                 {/* <BsArrowRightSquare size={60} color='#858484' cursor='pointer' onClick={handleSubmit} /> */}
 
-                <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
-
-
+                <img src={createGenerateIcon}  height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
+             
             </Box>
-        </Box>
+        </Container>
 
 
     )

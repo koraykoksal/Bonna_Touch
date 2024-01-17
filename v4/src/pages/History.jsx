@@ -14,9 +14,11 @@ import useDalleCall from '../hooks/useDalleCall';
 
 export default function History() {
 
+  const { post_imageDataDB } = useDalleCall()
   const { leonardoGenerationAllData } = useSelector((state) => state.touch)
   const [selectedData, setSelectedData] = useState([]);
-  const {post_imageDataDB} = useDalleCall()
+
+
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
@@ -47,7 +49,16 @@ export default function History() {
       return newSelected;
     });
 
-    post_imageDataDB(id,data)
+    if (!selectedIds[id]) {
+      //! like butonuna basıldığında hook çalıştır
+      post_imageDataDB(id, data, {likeStatus:true})
+    }
+    else {
+      //! like butonuna basıldığında hook çalıştır
+      post_imageDataDB(id, data, {likeStatus:false})
+    }
+
+
   };
 
 
@@ -56,9 +67,6 @@ export default function History() {
     setOpen(true);
   };
 
-
-
-  console.log(selectedIds)
 
 
   return (
@@ -82,7 +90,7 @@ export default function History() {
                 component="img"
                 height="290"
                 image={data.url}
-                sx={{ borderRadius: '0.5rem',cursor:'pointer' }}
+                sx={{ borderRadius: '0.5rem', cursor: 'pointer' }}
                 onClick={() => handleCardClick(data)}
               />
               {/* </a> */}

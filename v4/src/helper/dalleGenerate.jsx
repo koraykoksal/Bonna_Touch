@@ -3,13 +3,10 @@
 export const generateData_cuisine = [
 
     {
-        cuisineType: "Asian / Asia"
+        cuisineType: "Asia"
     },
-    // {
-    //     cuisineType: "Mediterranean / Mediterranean"
-    // },
     {
-        cuisineType: "Latin"
+        cuisineType: "Africa"
     },
     {
         cuisineType: "Italian"
@@ -18,20 +15,17 @@ export const generateData_cuisine = [
         cuisineType: "French"
     },
     {
-        cuisineType: "World Cuisine"
+        cuisineType: "Spain"
     },
-    // {
-    //     cuisineType: "Buffet"
-    // },
-    // {
-    //     cuisineType: "Tea & Coffee"
-    // },
-    // {
-    //     cuisineType: "Clean Eating / Wellness Spaces / Bowl Food"
-    // },
-    // {
-    //     cuisineType: "Sustainable Kitchens"
-    // }
+    {
+        cuisineType: "Mexican"
+    },
+    {
+        cuisineType: "Indian"
+    },
+    {
+        cuisineType: "World Cuisine"
+    }
 ]
 
 

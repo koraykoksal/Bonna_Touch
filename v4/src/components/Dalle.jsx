@@ -7,12 +7,21 @@ import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generationGift2.gif'
 import { useState, useEffect } from 'react';
 import { bgColor } from '../styles/GlobalStyle';
+import ImageDetail_Modal from './modals/ImageDetail_Modal';
 
 export const Dalle = () => {
 
 
   const { loadingGeneration, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
   const [urls, setUrls] = useState([])
+
+  const [selectedData, setSelectedData] = useState([]);
+
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+  }
 
 
   useEffect(() => {
@@ -27,7 +36,12 @@ export const Dalle = () => {
   }, [leonardoGenerationAllData])
 
 
-  console.log(leonardoGenerationData)
+  const handleCardClick = (data) => {
+    setSelectedData(data);
+    setOpen(true);
+  };
+
+
 
   return (
 
@@ -47,21 +61,22 @@ export const Dalle = () => {
       )
         : (
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 2}} >
+          <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
 
             {
               urls?.map((data, index) => (
 
                 <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
 
-                  <a href={data.url} target='_blank'>
+                  {/* <a href={data.url} target='_blank'> */}
                     <CardMedia
                       component="img"
                       height="450"
                       src={data.url}
                       sx={{ borderRadius: '0.5rem' }}
+                      onClick={() => handleCardClick(data)}
                     />
-                  </a>
+                  {/* </a> */}
 
                 </CardActionArea>
 
@@ -69,8 +84,9 @@ export const Dalle = () => {
 
             }
 
+            <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
 
-          </Box>
+          </Container>
 
         )
       }
