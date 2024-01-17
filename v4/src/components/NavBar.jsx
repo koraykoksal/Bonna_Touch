@@ -18,6 +18,7 @@ import { bgColor } from '../styles/Global.styles';
 import generateIcon from "../assets/img/generate-icon.png"
 import historyIcon from "../assets/img/history-icon.png"
 import accountIcon from "../assets/img/account-icon.png"
+import sendIcon from "../assets/img/send-icon.png"
 
 const pages = [
     {
@@ -42,7 +43,7 @@ const NavBar = () => {
     const { currentUser } = useSelector((state) => state.auth)
 
     const { logout } = useAuthCall()
-    
+
     let avatarName = ""
 
     const navigate = useNavigate()
@@ -161,15 +162,20 @@ const NavBar = () => {
                     </Box> */}
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
-                        <img src={generateIcon} height={'35px'} style={{ cursor: 'pointer' }} onClick={() => {
+                        <img src={generateIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
                             navigate('/home')
                             handleCloseNavMenu()
                         }} />
 
-                        <img src={historyIcon} height={'35px'} style={{ cursor: 'pointer' }} onClick={() => {
+                        <img src={historyIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
                             navigate('/history')
                             handleCloseNavMenu()
                         }} />
+
+                        <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={() => {
+                            alert('here..')
+                        }} />
+
                     </Box>
 
 
@@ -185,12 +191,12 @@ const NavBar = () => {
 
                                 {/* <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer', backgroundColor: 'black' }} >{avatarNick()}</Avatar> */}
 
-                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer',backgroundColor:'transparent' }} 
+                                <Avatar onClick={handleOpenUserMenu} sx={{ cursor: 'pointer', backgroundColor: 'transparent' }}
                                 >
-                                   <img src={accountIcon} height={'100%'}/>
+                                    <img src={accountIcon} style={{ height: '38px', objectFit: 'cover' }} />
                                 </Avatar>
 
-                                
+
 
                                 <Menu
                                     sx={{ mt: '45px' }}
@@ -228,8 +234,6 @@ const NavBar = () => {
             <Box>
                 <Outlet />
             </Box>
-
-            {/* <PromptStyle_Modal handleOpen={handleOpen} open={open} setOpen={setOpen} /> */}
 
 
         </AppBar>
