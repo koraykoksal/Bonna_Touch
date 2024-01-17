@@ -19,6 +19,8 @@ import generateIcon from "../assets/img/generate-icon.png"
 import historyIcon from "../assets/img/history-icon.png"
 import accountIcon from "../assets/img/account-icon.png"
 import sendIcon from "../assets/img/send-icon.png"
+import { useState } from 'react';
+import Mail_Modal from './modals/Mail_Modal';
 
 const pages = [
     {
@@ -40,11 +42,16 @@ const pages = [
 const NavBar = () => {
 
     const { loadingGeneration, leonardoGenerationAllData } = useSelector((state) => state.touch)
-    const { currentUser } = useSelector((state) => state.auth)
+    const { currentUser,userInfo } = useSelector((state) => state.auth)
     const { logout } = useAuthCall()
     let avatarName = ""
     const navigate = useNavigate()
 
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -179,9 +186,7 @@ const NavBar = () => {
                             handleCloseNavMenu()
                         }} />
 
-                        <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={() => {
-                            alert('here..')
-                        }} />
+                        <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={handleOpen} />
 
                     </Box>
 
@@ -242,6 +247,7 @@ const NavBar = () => {
                 <Outlet />
             </Box>
 
+            <Mail_Modal open={open} handleClose={handleClose} userInfo={userInfo}/>
 
         </AppBar>
 

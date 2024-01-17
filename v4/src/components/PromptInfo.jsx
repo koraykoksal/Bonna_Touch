@@ -23,18 +23,6 @@ const MenuProps = {
 };
 
 
-// const inputStyle = {
-//     backgroundColor: 'transparent',
-//     border: '3px solid #858484',
-//     borderRadius: '30px',
-//     height: '30px',
-//     width: '80%',
-//     padding: 10,
-//     color: '#000000',
-//     fontSize: '17px',
-//     fontFamily: 'catamaran',
-// }
-
 
 const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress }) => {
 
