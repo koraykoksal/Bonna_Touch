@@ -6,12 +6,9 @@ import { useState, useEffect } from 'react'
 import { IoSend } from "react-icons/io5";
 import { toastWarnNotify } from '../helper/ToastNotify'
 import { useDispatch, useSelector } from 'react-redux'
-import { generateData_cuisine, generateData_colors, generateData_style } from "../helper/dalleGenerate"
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
 import PromptInfo from '../components/PromptInfo'
-import { bgColor } from "../styles/Global.styles"
-import { fetchPromptdata } from '../features/touchSlice'
 
 
 

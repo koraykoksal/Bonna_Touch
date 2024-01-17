@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router';
 import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
 import useAuthCall from '../hooks/useAuthCall';
-import { bgColor } from '../styles/Global.styles';
+import { bgColor } from '../styles/GlobalStyle';
 import generateIcon from "../assets/img/generate-icon.png"
 import historyIcon from "../assets/img/history-icon.png"
 import accountIcon from "../assets/img/account-icon.png"

@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IoSend } from "react-icons/io5";
 import { BsArrowRightSquare } from "react-icons/bs";
-import { bgColor } from '../styles/Global.styles';
+import { bgColor, fontStyle, inputStyle } from '../styles/GlobalStyle';
 import createGenerateIcon from "../assets/img/createGenerate-icon.png"
 
 const ITEM_HEIGHT = 78;
@@ -23,16 +23,17 @@ const MenuProps = {
 };
 
 
-const inputStyle = {
-    backgroundColor: 'transparent',
-    border: '3px solid #858484',
-    borderRadius: '30px',
-    height: '30px',
-    width: '80%',
-    padding: 10,
-    color: '#000000',
-    fontSize: '17px'
-}
+// const inputStyle = {
+//     backgroundColor: 'transparent',
+//     border: '3px solid #858484',
+//     borderRadius: '30px',
+//     height: '30px',
+//     width: '80%',
+//     padding: 10,
+//     color: '#000000',
+//     fontSize: '17px',
+//     fontFamily: 'catamaran',
+// }
 
 
 const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress }) => {
@@ -64,7 +65,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_cuisine.map((item, index) => (
-                                <MenuItem key={index} value={item.cuisineType}>{item.cuisineType}</MenuItem>
+                                <MenuItem key={index} value={item.cuisineType} sx={fontStyle}>{item.cuisineType}</MenuItem>
                             ))
                         }
                     </Select>
@@ -91,9 +92,9 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                         style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
                     >
                         {generateData_colors.map((color) => (
-                            <MenuItem key={color} value={color}>
+                            <MenuItem key={color} value={color} >
                                 <Checkbox checked={colors.indexOf(color) > -1} size='xsmall' />
-                                <ListItemText primary={color} />
+                                <ListItemText primary={color} sx={fontStyle}/>
                             </MenuItem>
                         ))}
                     </Select>
@@ -122,7 +123,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_style.map((item, index) => (
-                                <MenuItem key={index} value={item.style}>{item.style}</MenuItem>
+                                <MenuItem key={index} value={item.style} sx={fontStyle}>{item.style}</MenuItem>
                             ))
                         }
                     </Select>

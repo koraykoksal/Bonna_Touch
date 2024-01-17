@@ -6,7 +6,7 @@ import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generationGift2.gif'
 import { useState, useEffect } from 'react';
-import { bgColor } from '../styles/Global.styles';
+import { bgColor } from '../styles/GlobalStyle';
 
 export const Dalle = () => {
 

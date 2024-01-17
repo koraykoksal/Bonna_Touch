@@ -14,11 +14,13 @@ import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
 import { useState } from 'react'
 import { uid } from "uid";
+import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
+
 
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-
+    const {userInfo}=useSelector((state)=>state.auth)
 
     const create_Leonardo_Image = async (data) => {
 
@@ -75,7 +77,7 @@ const useDalleCall = () => {
     }
 
 
-    const get_Leonarda_Image = async (id,info) => {
+    const get_Leonarda_Image = async (id, info) => {
 
 
 
@@ -102,16 +104,16 @@ const useDalleCall = () => {
 
             const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
                 url: element.url,
-                text:info,
+                text: info,
                 id: element.id,
-                    
+
             }));
 
             // "COMPLETE" olduğunda işlem yap
             dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
 
-            
+
 
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)
@@ -121,9 +123,24 @@ const useDalleCall = () => {
     }
 
 
-    const post_imageDataDB=async ()=>{
+    const post_imageDataDB = async (id, data) => {
 
+        const combinedObject = {...userInfo,...data}
 
+        try {
+
+            const uID = uid()
+            const db = getDatabase()
+            const res = ref(db, 'customerAIdata')
+            const snapshot = await get(res)
+
+            await set(ref(db, `customerAIdata/${uID}`), combinedObject)
+
+            toastSuccessNotify('Liked')
+
+        } catch (error) {
+            console.log("register, ", error)
+        }
 
     }
 
@@ -131,6 +148,7 @@ const useDalleCall = () => {
     return {
         create_Leonardo_Image,
         get_Leonarda_Image,
+        post_imageDataDB,
         post_imageDataDB
 
     }

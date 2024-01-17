@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import ImageDetail_Modal from '../components/modals/ImageDetail_Modal';
+import useDalleCall from '../hooks/useDalleCall';
 
 
 
@@ -15,7 +16,7 @@ export default function History() {
 
   const { leonardoGenerationAllData } = useSelector((state) => state.touch)
   const [selectedData, setSelectedData] = useState([]);
-
+  const {post_imageDataDB} = useDalleCall()
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
@@ -40,10 +41,13 @@ export default function History() {
 
   // FaHeart tıklama işlevi
   const toggleHeart = (id, data) => {
+
     setSelectedIds(prev => {
       const newSelected = { ...prev, [id]: !prev[id] };
       return newSelected;
     });
+
+    post_imageDataDB(id,data)
   };
 
 
@@ -51,6 +55,10 @@ export default function History() {
     setSelectedData(data);
     setOpen(true);
   };
+
+
+
+  console.log(selectedIds)
 
 
   return (
@@ -67,10 +75,6 @@ export default function History() {
 
           <Card sx={{ maxWidth: 380, boxShadow: 0, backgroundColor: '#d8d8d8' }} key={data.id}>
 
-            <Box display={'flex'} justifyContent={'center'} gap={1}>
-              <Typography variant='subtitle2' color={'black'}>Cuisine Type: {data?.text?.cuisineType} - Style Type: {data?.text?.styleType}</Typography>
-            </Box>
-
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 
               {/* <a href={data.url} target='_blank'> */}
@@ -86,7 +90,6 @@ export default function History() {
               <Box display={'flex'} justifyContent={'flex-start'}>
                 <FaHeart size={25} onClick={() => toggleHeart(data.id, data)}
                   color={selectedIds[data.id] ? 'red' : 'grey'} cursor={'pointer'} />
-                {/* <LuSend size={25} cursor={'pointer'} color='grey' /> */}
               </Box>
 
             </Box>
