@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { toastInfoNotify, toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { uid } from "uid";
-import { fetchFail, fetchLoginSuccess, fetchLogoutSuccess, fetchRegisterSuccess, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
+import { fetchFail, fetchLoginSuccess, fetchLogoutSuccess, fetchRegisterSuccess, fetchStart } from "../features/authSlice";
+import {fetchLogOutLeonardoData} from '../features/touchSlice'
 import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
@@ -107,7 +108,10 @@ const useAuthCall = () => {
   const logout = () => {
 
     dispatch(fetchStart())
+    //! login bilgilerini temizle
     dispatch(fetchLogoutSuccess())
+    //! leonardo generation bilgilerini temizle
+    dispatch(fetchLogOutLeonardoData())
     toastSuccessNotify('Logout Successful.')
     navigate('/')
 

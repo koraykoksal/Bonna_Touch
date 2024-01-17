@@ -29,7 +29,8 @@ export const Dalle = () => {
 
     const lastTwoData = leonardoGenerationAllData.slice(-2)
     const newData = lastTwoData.map(item => ({
-      url: item.url
+      url: item.url,
+      text:item.text
     }))
 
     setUrls(newData)

@@ -64,7 +64,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_cuisine.map((item, index) => (
-                                <MenuItem key={index} value={item.cuisineType} sx={fontStyle}>{item.cuisineType}</MenuItem>
+                                <MenuItem key={index} value={item.cuisineType} sx={{fontStyle}}>{item.cuisineType}</MenuItem>
                             ))
                         }
                     </Select>
@@ -93,7 +93,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                         {generateData_colors.map((color) => (
                             <MenuItem key={color} value={color} >
                                 <Checkbox checked={colors.indexOf(color) > -1} size='xsmall' />
-                                <ListItemText primary={color} sx={fontStyle}/>
+                                <ListItemText primary={color} sx={{fontStyle}}/>
                             </MenuItem>
                         ))}
                     </Select>
@@ -122,7 +122,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_style.map((item, index) => (
-                                <MenuItem key={index} value={item.style} sx={fontStyle}>{item.style}</MenuItem>
+                                <MenuItem key={index} value={item.style} sx={{fontStyle}}>{item.style}</MenuItem>
                             ))
                         }
                     </Select>

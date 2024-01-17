@@ -14,6 +14,7 @@ import useAuthCall from '../hooks/useAuthCall';
 import Checkbox from '@mui/material/Checkbox';
 import bonnaLogo from "../assets/img/bonna-logo.png"
 import okudum from "../assets/documents/PrivacyPolicy.pdf"
+import { fontStyle } from '../styles/GlobalStyle';
 
 export const Register = () => {
 
@@ -80,7 +81,7 @@ export const Register = () => {
         />
 
 
-        <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} letterSpacing={5}>Register</Typography>
+        <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} fontFamily={fontStyle} letterSpacing={5}>Register</Typography>
 
 
         <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
@@ -224,17 +225,17 @@ export const Register = () => {
 
           </Box>
 
-          <Container sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, my: 3 ,alignItems:'center'}}>
 
-            <FormGroup style={{ padding: 10 }}>
-              <FormControlLabel sx={{ fontFamily: 'catamara' }} required control={<Checkbox onClick={handleOkudumAnladim} />} label="I have read and understood the information provided" />
-            </FormGroup>
+            <FormControlLabel sx={{fontStyle}} required control={<Checkbox/>} label="I have read and understood the information provided" />
+           
+              <Link onClick={handleOkudumAnladim} style={{fontFamily:'Catamaran',color:'black'}}>Read</Link>
 
-          </Container>
+          </Box>
 
-          <Button variant='contained' sx={{ letterSpacing: 5}} type='submit'>Register</Button>
+          <Button variant='contained' sx={{fontStyle,letterSpacing:5}} type='submit'>Register</Button>
 
-          <Link to={'/login'} style={{display:'flex',justifyContent:'center',letterSpacing:2,color: 'black'}}>I have an account.</Link>
+          <Link to={'/login'} style={{display:'flex',justifyContent:'center',letterSpacing:2,color: 'black',fontFamily:fontStyle}}>I have an account.</Link>
 
 
         </Container>

@@ -38,6 +38,7 @@ const authSlice = createSlice({
             state.currentUser = null;
             state.token = null;
             state.userInfo = []
+            
         },
         fetchRegisterSuccess: (state, { payload }) => {
             state.loading = false;

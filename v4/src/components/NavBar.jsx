@@ -36,7 +36,6 @@ const pages = [
 ];
 
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
 
@@ -80,9 +79,14 @@ const NavBar = () => {
     }
 
 
+    const handleSingOut=()=>{
+        localStorage.removeItem('selectedHearts')
+        logout()
+    }
+
     return (
 
-        <AppBar position="static" sx={{ backgroundColor: '#d8d8d8', boxShadow: 0 }}>
+        <AppBar position="static" sx={{ backgroundColor: bgColor, boxShadow: 0 }}>
 
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
@@ -215,7 +219,7 @@ const NavBar = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     <Box display={'flex'} flexDirection={'column'}>
-                                        <Button sx={{ color: '#C70039', textTransform: 'none' }} onClick={() => logout()}>Logout</Button>
+                                        <Button sx={{ color: '#C70039', textTransform: 'none' }} onClick={handleSingOut}>Logout</Button>
                                     </Box>
 
                                 </Menu>

@@ -50,7 +50,13 @@ const touchSlice = createSlice({
             return {
                 leonardoGenerationAllData: [...state.leonardoGenerationAllData, ...payload]
             };
-        }
+        },
+        fetchLogOutLeonardoData: (state) => {
+            state.error = false;
+            state.leonardoGenerationID = ""
+            state.leonardoGenerationData=[]
+            state.leonardoGenerationAllData=[]
+        },
 
 
     }
@@ -69,6 +75,7 @@ export const {
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationData,
     fetchSuccessLeonardoGenerationAllData,
+    fetchLogOutLeonardoData
 
 
 } = touchSlice.actions

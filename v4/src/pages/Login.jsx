@@ -12,6 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import useAuthCall from '../hooks/useAuthCall';
 import bonnaLogo from "../assets/img/bonna-logo.png"
+import { fontStyle } from '../styles/GlobalStyle';
 
 const Login = () => {
 
@@ -53,7 +54,7 @@ const Login = () => {
                     style={{ scale: '1.3px', cursor: 'pointer' }}
                 />
 
-                <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} letterSpacing={5}>Login</Typography>
+                <Typography align='center' variant='subtitle2' p={1} color={'black'} fontSize={'18px'} letterSpacing={5} fontFamily={fontStyle}>Login</Typography>
 
                 <Container sx={{ display: 'flex', flexDirection: 'column', gap: 5, p: 3 }} maxWidth='lg' component={'form'} onSubmit={handleSubmit}>
 
@@ -72,9 +73,9 @@ const Login = () => {
 
                     </Box>
 
-                    <Button variant='contained' sx={{ letterSpacing: 5 }} type='submit'>Login</Button>
+                    <Button variant='contained' sx={{fontStyle,letterSpacing:5}}  type='submit'>Login</Button>
 
-                    <Link to={'/'} style={{ display: 'flex', justifyContent: 'center', color: 'black',letterSpacing:2 }}>Don't you have an account.</Link>
+                    <Link to={'/'} style={{ display: 'flex', justifyContent: 'center', color: 'black',letterSpacing:2,fontFamily:fontStyle }}>Don't you have an account.</Link>
 
                 </Container>
 

@@ -71,8 +71,6 @@ export default function History() {
 
   return (
 
-
-
     <Box sx={{ minHeight: '900px', py: 5 }}>
 
 

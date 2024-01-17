@@ -6,8 +6,7 @@ import {
     fetchFailGeneration,
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationData,
-    fetchSuccessLeonardoGenerationAllData,
-
+    fetchSuccessLeonardoGenerationAllData
 } from '../features/touchSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
@@ -110,7 +109,7 @@ const useDalleCall = () => {
             }));
 
             // "COMPLETE" olduğunda işlem yap
-            dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
+            // dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
 
 
@@ -125,10 +124,6 @@ const useDalleCall = () => {
 
     const post_imageDataDB = async (id, data, { likeStatus }) => {
 
-        console.log("idddd: ", id)
-
-        // console.log("like status: ", likeStatus)
-        // console.log(currentUser)
         const combinedObject = { ...userInfo, ...data }
 
         try {
@@ -146,12 +141,6 @@ const useDalleCall = () => {
             else {
 
                 if (snapshot.exists()) {
-
-                    // const test = { ...snapshot.val() }
-
-                    // const data = Object.values(snapshot.val())
-
-                    // const result = data.filter(element => element.id == id)
 
                     const dizi = []
 
