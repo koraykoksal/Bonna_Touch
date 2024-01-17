@@ -83,7 +83,6 @@ export default function History() {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
 
-              {/* <a href={data.url} target='_blank'> */}
               <CardMedia
                 component="img"
                 height="290"
@@ -91,7 +90,6 @@ export default function History() {
                 sx={{ borderRadius: '0.5rem', cursor: 'pointer' }}
                 onClick={() => handleCardClick(data)}
               />
-              {/* </a> */}
 
               <Box display={'flex'} justifyContent={'flex-start'}>
                 <FaHeart size={25} onClick={() => toggleHeart(data.id, data)}
@@ -107,6 +105,7 @@ export default function History() {
 
       </Box>
     </Box>
+
 
 
   );

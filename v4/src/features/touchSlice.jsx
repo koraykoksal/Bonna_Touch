@@ -3,6 +3,7 @@ import { uid } from "uid";
 
 const initialState = {
     loadingGeneration: false,
+    showLogo:true,
     error: false,
     promptData: {},
     user_PromptInfo: {
@@ -26,6 +27,7 @@ const touchSlice = createSlice({
 
         fetchStartGeneration: (state) => {
             state.loadingGeneration = true;
+            state.showLogo=false
             state.error = false;
             state.leonardoGenerationID = ""
             state.leonardoGenerationData=[]

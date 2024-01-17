@@ -39,12 +39,10 @@ const pages = [
 
 const NavBar = () => {
 
+    const { loadingGeneration, leonardoGenerationAllData } = useSelector((state) => state.touch)
     const { currentUser } = useSelector((state) => state.auth)
-
     const { logout } = useAuthCall()
-
     let avatarName = ""
-
     const navigate = useNavigate()
 
 
@@ -79,7 +77,7 @@ const NavBar = () => {
     }
 
 
-    const handleSingOut=()=>{
+    const handleSingOut = () => {
         localStorage.removeItem('selectedHearts')
         logout()
     }
@@ -92,13 +90,18 @@ const NavBar = () => {
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
-                        <img
-                            src={bonna_bonnatouch}
-                            alt="bonnaLogo"
-                            width='200px'
-                            style={{ scale: '1.3px', cursor: 'pointer' }}
-                            onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
-                        />
+
+                        {leonardoGenerationAllData.length > 0 &&
+                            <img
+                                src={bonna_bonnatouch}
+                                alt="bonnaLogo"
+                                width='200px'
+                                style={{ scale: '1.3px', cursor: 'pointer' }}
+                                onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
+                            />
+
+                        }
+
                     </Box>
 
 

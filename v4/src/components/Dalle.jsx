@@ -4,16 +4,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useSelector } from 'react-redux';
-import generateGift from '../assets/gift/generationGift2.gif'
 import BonnaTouchSlogan from '../assets/gift/BonnaTouchSlogan.gif'
 import { useState, useEffect } from 'react';
-import { bgColor } from '../styles/GlobalStyle';
 import ImageDetail_Modal from './modals/ImageDetail_Modal';
+import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
 
 export const Dalle = () => {
 
 
-  const { loadingGeneration, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
+  const { loadingGeneration, showLogo, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
   const [urls, setUrls] = useState([])
 
   const [selectedData, setSelectedData] = useState([]);
@@ -30,7 +29,7 @@ export const Dalle = () => {
     const lastTwoData = leonardoGenerationAllData.slice(-2)
     const newData = lastTwoData.map(item => ({
       url: item.url,
-      text:item.text
+      text: item.text
     }))
 
     setUrls(newData)
@@ -48,57 +47,101 @@ export const Dalle = () => {
   return (
 
 
+    // <Box>
+
+    //   {loadingGeneration ? (
+
+    //     <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
+
+    //       <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
+
+    //     </Box>
+
+    //   )
+    //     : (
+
+    //       <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
+
+    //         {
+    //           urls?.map((data, index) => (
+
+    //             <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+    //                 <CardMedia
+    //                   component="img"
+    //                   height="450"
+    //                   src={data.url}
+    //                   sx={{ borderRadius: '0.5rem' }}
+    //                   onClick={() => handleCardClick(data)}
+    //                 />
+
+    //             </CardActionArea>
+
+    //           ))
+
+    //         }
+
+    //         <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
+
+    //       </Container>
+
+    //     )
+    //   }
+
+
+
+
+    // </Box>
+
 
 
     <Box>
 
-      {loadingGeneration ? (
+      {
+        loadingGeneration && (
 
-        <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
+          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
-          {/* <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} /> */}
-          <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
+            <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
 
-        </Box>
-
-      )
-        : (
-
-          <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
-
-            {
-              urls?.map((data, index) => (
-
-                <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-                  {/* <a href={data.url} target='_blank'> */}
-                    <CardMedia
-                      component="img"
-                      height="450"
-                      src={data.url}
-                      sx={{ borderRadius: '0.5rem' }}
-                      onClick={() => handleCardClick(data)}
-                    />
-                  {/* </a> */}
-
-                </CardActionArea>
-
-              ))
-
-            }
-
-            <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
-
-          </Container>
+          </Box>
 
         )
       }
 
+      {
+        showLogo && <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={bonna_bonnatouch} height={250} alt="bonnatouchlogo" style={{ objectFit: 'cover' }} />
+        </Container>
+      }
 
+      <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
+
+        {
+          urls.map((data, index) => (
+
+            <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+              <CardMedia
+                component="img"
+                height="450"
+                src={data.url}
+                sx={{ borderRadius: '0.5rem' }}
+                onClick={() => handleCardClick(data)}
+              />
+
+            </CardActionArea>
+
+          ))
+
+        }
+
+        <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
+
+      </Container>
 
 
     </Box>
-
 
 
   )
