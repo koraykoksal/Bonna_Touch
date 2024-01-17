@@ -11,7 +11,7 @@ import {
 } from '../features/touchSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { toastInfoNotify, toastSuccessNotify, toastErrorNotify } from '../helper/ToastNotify'
+import { toastInfoNotify, toastSuccessNotify, toastErrorNotify, toastWarnNotify } from '../helper/ToastNotify'
 import { useState } from 'react'
 import { uid } from "uid";
 import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/database";
@@ -20,7 +20,7 @@ import { getDatabase, onValue, ref, remove, set, update, get } from "firebase/da
 const useDalleCall = () => {
 
     const dispatch = useDispatch()
-    const { userInfo } = useSelector((state) => state.auth)
+    const { userInfo, currentUser } = useSelector((state) => state.auth)
 
     const create_Leonardo_Image = async (data) => {
 
@@ -125,21 +125,22 @@ const useDalleCall = () => {
 
     const post_imageDataDB = async (id, data, { likeStatus }) => {
 
-        console.log("idddd: ",id)
+        console.log("idddd: ", id)
 
-        console.log("like status: ", likeStatus)
-        // console.log(userInfo)
+        // console.log("like status: ", likeStatus)
+        // console.log(currentUser)
         const combinedObject = { ...userInfo, ...data }
 
         try {
 
             const uID = uid()
             const db = getDatabase()
-            const res = ref(db, 'customerAIdata')
+            const res = ref(db, 'customerLikeData')
             const snapshot = await get(res)
 
             if (likeStatus) {
-                await set(ref(db, `customerAIdata/${userInfo.name + userInfo.surname}/${uID}`), combinedObject)
+                // await set(ref(db, `customerAIdata/${userInfo.name + userInfo.surname}/${uID}`), combinedObject)
+                await set(ref(db, `customerLikeData/${currentUser}/${uID}`), combinedObject)
                 toastSuccessNotify('Liked')
             }
             else {
@@ -168,9 +169,14 @@ const useDalleCall = () => {
                         }
 
                     })
-                    
-                    // const unlikedData = dizi.filter(item=>item.IDs == id)
-                    console.log(dizi)
+
+                    const unLikedData = dizi.filter(item=>item.id == id)
+                    console.log(unLikedData)
+
+                    if(unLikedData.length>0){
+                        await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
+                        toastWarnNotify('Unliked')
+                    }
 
 
                 }

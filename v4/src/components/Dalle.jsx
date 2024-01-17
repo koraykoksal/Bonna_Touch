@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container } from '@mui/material';
 import { useSelector } from 'react-redux';
 import generateGift from '../assets/gift/generationGift2.gif'
+import BonnaTouchSlogan from '../assets/gift/BonnaTouchSlogan.gif'
 import { useState, useEffect } from 'react';
 import { bgColor } from '../styles/GlobalStyle';
 import ImageDetail_Modal from './modals/ImageDetail_Modal';
@@ -54,7 +55,8 @@ export const Dalle = () => {
 
         <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
-          <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} />
+          {/* <img src={generateGift} alt="generateGift" style={{ objectFit: 'cover' }} /> */}
+          <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
 
         </Box>
 

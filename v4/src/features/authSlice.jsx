@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    currentUser:"",
+    currentUser: "",
     userInfo: [],
     loading: false,
     error: false,
@@ -20,14 +20,14 @@ const authSlice = createSlice({
         fetchStart: (state) => {
             state.loading = true;
             state.error = false;
-            state.currentUser =""
-            state.userInfo=[]
+            state.currentUser = ""
+            state.userInfo = []
         },
         fetchLoginSuccess: (state, { payload }) => {
             state.loading = false;
             state.error = false;
 
-            const nameSurname = payload[0]?.name +" "+payload[0]?.surname
+            const nameSurname = payload[0]?.name[0] + payload[0]?.surname
 
             state.currentUser = nameSurname;
 
@@ -37,18 +37,18 @@ const authSlice = createSlice({
             state.loading = false;
             state.currentUser = null;
             state.token = null;
-            state.userInfo=[]
+            state.userInfo = []
         },
         fetchRegisterSuccess: (state, { payload }) => {
             state.loading = false;
             state.error = false;
 
-            const nameSurname = payload?.name +" "+payload?.surname
+            const nameSurname = payload?.name + " " + payload?.surname
 
             state.currentUser = nameSurname;
 
             state.userInfo = payload
-        
+
         },
         fetchFail: (state) => {
             state.loading = false;

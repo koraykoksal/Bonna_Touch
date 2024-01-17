@@ -95,7 +95,7 @@ export const Home = () => {
   return (
 
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px' ,gap:5}}>
 
       <Dalle />
 
