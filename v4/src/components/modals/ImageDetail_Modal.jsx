@@ -14,8 +14,10 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 960,
     height: 700,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    borderRadius:'5px',
+    // bgcolor: 'background.paper',
+    bgcolor: '#dddddd',
+    // border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };
@@ -33,6 +35,7 @@ const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
                 onClose={() => { handleClose() }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                
             >
                 <Box sx={style}>
 
@@ -48,7 +51,7 @@ const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
                     </Box>
 
                     <Box display={'flex'} justifyContent={'center'}>
-                        <img src={selectedData.url} height={'600'} style={{ display: 'flex', justifyContent: 'center' }} />
+                        <img src={selectedData.url} height={'600'} style={{ display: 'flex', justifyContent: 'center',borderRadius:'5px' }} />
                     </Box>
 
 
