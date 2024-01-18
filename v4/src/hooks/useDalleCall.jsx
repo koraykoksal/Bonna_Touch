@@ -23,7 +23,12 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + "," + data?.prompt + ", " + data?.colorType + " a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+        // const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style, " + data?.prompt + " model " + data?.colorType + " color a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+
+        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " color a round flat porcelain plate. Show only top view."
+
+        console.log(data)
+        console.log(userPrompt)
 
         dispatch(fetchStartGeneration())
 
@@ -43,7 +48,7 @@ const useDalleCall = () => {
                 "height": 512,
                 "highContrast": false,
                 "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
-                "negative_prompt": "",
+                "negative_prompt": "Remove background, noise, plate holder and interference.",
                 "nsfw": true,
                 "num_images": 2,
                 "num_inference_steps": 10,

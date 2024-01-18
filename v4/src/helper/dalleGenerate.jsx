@@ -3,7 +3,10 @@
 export const generateData_cuisine = [
 
     {
-        cuisineType: "Asia"
+        cuisineType: "Turkish"
+    },
+    {
+        cuisineType: "Asian"
     },
     {
         cuisineType: "Africa"
@@ -18,18 +21,27 @@ export const generateData_cuisine = [
         cuisineType: "Spain"
     },
     {
+        cuisineType: "Scandinavian"
+    },
+    {
         cuisineType: "Mexican"
+    },
+    {
+        cuisineType: "Nordic"
     },
     {
         cuisineType: "Indian"
     },
     {
+        cuisineType: "Mediterranean"
+    },
+    {
+        cuisineType: "Middle East"
+    },
+    {
         cuisineType: "World Cuisine"
     }
 ]
-
-
-
 
 
 export const generateData_colors = [
@@ -73,9 +85,6 @@ export const generateData_colors = [
 ]
 
 
-
-
-
 export const generateData_style = [
 
     {
@@ -87,9 +96,9 @@ export const generateData_style = [
     {
         style: "Rustic"
     },
-    // {
-    //     style: "Abstract / Surreal"
-    // },
+    {
+        style: "Vintage"
+    },
     {
         style: "Geometric"
     },

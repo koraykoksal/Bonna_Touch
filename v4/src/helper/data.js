@@ -199,6 +199,8 @@ export const countries = [
 ]
 
 export const companyType = [
+    { name: "Distributor" },
+    { name: "Sales" },
     { name: "Hotel" },
     { name: "Restaurant" },
     { name: "Cafe" }

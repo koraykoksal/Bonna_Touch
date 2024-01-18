@@ -8,8 +8,11 @@ import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IoSend } from "react-icons/io5";
 import { BsArrowRightSquare } from "react-icons/bs";
-import { bgColor, fontStyle, inputStyle } from '../styles/GlobalStyle';
+import { fontStyle, inputStyle } from '../styles/GlobalStyle';
 import createGenerateIcon from "../assets/img/createGenerate-icon.png"
+import { LuDices } from "react-icons/lu";
+
+
 
 const ITEM_HEIGHT = 78;
 const ITEM_PADDING_TOP = 8;
@@ -37,7 +40,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
 
                 <FormControl fullWidth style={{ width: '200px' }}>
                     <InputLabel id="cuisineType" sx={{ fontSize: '15px', margin: '-5px 0 5px' }}>
-                        Coisine
+                        Cuisine
                     </InputLabel>
                     <Select
                         required
@@ -52,7 +55,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_cuisine.map((item, index) => (
-                                <MenuItem key={index} value={item.cuisineType} sx={{fontStyle}}>{item.cuisineType}</MenuItem>
+                                <MenuItem key={index} value={item.cuisineType} sx={{ fontStyle }}>{item.cuisineType}</MenuItem>
                             ))
                         }
                     </Select>
@@ -81,7 +84,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                         {generateData_colors.map((color) => (
                             <MenuItem key={color} value={color} >
                                 <Checkbox checked={colors.indexOf(color) > -1} size='xsmall' />
-                                <ListItemText primary={color} sx={{fontStyle}}/>
+                                <ListItemText primary={color} sx={{ fontStyle }} />
                             </MenuItem>
                         ))}
                     </Select>
@@ -110,7 +113,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     >
                         {
                             generateData_style.map((item, index) => (
-                                <MenuItem key={index} value={item.style} sx={{fontStyle}}>{item.style}</MenuItem>
+                                <MenuItem key={index} value={item.style} sx={{ fontStyle }}>{item.style}</MenuItem>
                             ))
                         }
                     </Select>
@@ -120,13 +123,32 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
 
             <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} mt={8}>
 
-                <input type='text' required name='prompt' value={info.prompt} onChange={handleChange} style={inputStyle} placeholder='Enter prompt here...' onKeyUp={handleEnterPress} />
 
-                {/* <BsArrowRightSquare size={60} color='#858484' cursor='pointer' onClick={handleSubmit} /> */}
+                <input style={inputStyle} type='text' name='prompt' value={info.prompt} onChange={handleChange} placeholder='Enter prompt here...' onKeyUp={handleEnterPress} />
 
-                <img src={createGenerateIcon}  height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
-             
+
+                <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
+
             </Box>
+
+            <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
+
+                <Button variant='outlined' size='small' 
+                startIcon={<LuDices color='black' size={20} />}
+                sx={{
+                    p: 0.3,
+                    height:'auto',
+                    fontSize: 15,
+                    fontFamily: fontStyle,
+                    textTransform: 'none',
+                    letterSpacing: 3,
+                    color: 'black',
+                    border: 'none',
+                    ':hover': { border: 'none', backgroundColor: 'transparent', textDecoration: 'underline' }
+                }}>Create for me</Button>
+
+            </Container>
+
         </Container>
 
 

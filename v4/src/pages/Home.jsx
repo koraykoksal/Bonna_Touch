@@ -15,9 +15,9 @@ import PromptInfo from '../components/PromptInfo'
 export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
-  const { leonardoGenerationID,promptData } = useSelector((state) => state.touch)
+  const { leonardoGenerationID, promptData } = useSelector((state) => state.touch)
 
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const [colors, setColors] = useState([])
 
@@ -60,42 +60,50 @@ export const Home = () => {
   const handleEnterPress = (e) => {
     e.preventDefault()
 
-    if (info.prompt) {
+    // if (info.prompt) {
+    //   if (e.key === 'Enter') {
+    //     create_Leonardo_Image(info)
+    //   }
+    // }
+    // else {
+    //   toastWarnNotify('Please enter prompt field !')
+    // }
 
-      if (e.key === 'Enter') {
-        create_Leonardo_Image(info)
-      }
-    }
-    else {
-      toastWarnNotify('Please enter prompt field !')
-    }
+    create_Leonardo_Image(info)
+
   }
 
   // submit butonu tuşlandığında çalıştır
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    if (info.prompt) {
-      create_Leonardo_Image(info)
-    }
-    else {
-      toastWarnNotify('Please enter prompt field !')
-    }
+    // if (info.prompt) {
+    //   create_Leonardo_Image(info)
+    // }
+    // else {
+    //   toastWarnNotify('Please enter prompt field !')
+    // }
+
+    create_Leonardo_Image(info)
+
   }
+
 
 
   // leonardodan gelen image ID bilgisi true olduğu zaman çalıştır
   useEffect(() => {
     if (leonardoGenerationID) {
-      get_Leonarda_Image(leonardoGenerationID,info)
+      get_Leonarda_Image(leonardoGenerationID, info)
     }
   }, [leonardoGenerationID])
+
+
 
 
   return (
 
 
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px' ,gap:5}}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px', gap: 5 }}>
 
       <Dalle />
 

@@ -176,16 +176,20 @@ const NavBar = () => {
                     </Box> */}
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
+
+                        {/* generation iconu */}
                         <img src={generateIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
                             navigate('/home')
                             handleCloseNavMenu()
                         }} />
 
+                        {/* history iconu */}
                         <img src={historyIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
                             navigate('/history')
                             handleCloseNavMenu()
                         }} />
 
+                        {/* mail gönder iconu */}
                         <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={handleOpen} />
 
                     </Box>
