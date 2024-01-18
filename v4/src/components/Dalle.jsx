@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import ImageDetail_Modal from './modals/ImageDetail_Modal';
 import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
 import CircularProgress from '@mui/material/CircularProgress';
+import { fontStyle } from '../styles/GlobalStyle';
 
 
 
@@ -75,55 +76,6 @@ export const Dalle = () => {
 
   return (
 
-
-    // <Box>
-
-    //   {loadingGeneration ? (
-
-    //     <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
-
-    //       <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
-
-    //     </Box>
-
-    //   )
-    //     : (
-
-    //       <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
-
-    //         {
-    //           urls?.map((data, index) => (
-
-    //             <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-    //                 <CardMedia
-    //                   component="img"
-    //                   height="450"
-    //                   src={data.url}
-    //                   sx={{ borderRadius: '0.5rem' }}
-    //                   onClick={() => handleCardClick(data)}
-    //                 />
-
-    //             </CardActionArea>
-
-    //           ))
-
-    //         }
-
-    //         <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
-
-    //       </Container>
-
-    //     )
-    //   }
-
-
-
-
-    // </Box>
-
-
-
     <Box>
 
       {
@@ -138,9 +90,7 @@ export const Dalle = () => {
 
 
             <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
-              <Typography variant='subtitle1' color={'#000000'}>Loading {timer / 1000}%</Typography>
-              {/* <CircularProgress variant="determinate" value={timer / 1000} /> */}
-
+              <Typography variant='subtitle1' color={'#000000'} fontFamily={fontStyle}>Loading {timer / 1000}%</Typography>
             </Box>
 
           </Box>

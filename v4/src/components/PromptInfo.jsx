@@ -27,9 +27,8 @@ const MenuProps = {
 
 
 
-const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress }) => {
-
-
+const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+    
     return (
 
 
@@ -134,6 +133,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
             <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
 
                 <Button variant='outlined' size='small' 
+                onClick={handleRandom}
                 startIcon={<LuDices color='black' size={20} />}
                 sx={{
                     p: 0.3,

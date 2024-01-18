@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
 import PromptInfo from '../components/PromptInfo'
-
+import { generateData_cuisine, generateData_colors, generateData_style } from "../helper/dalleGenerate"
 
 
 export const Home = () => {
@@ -22,6 +22,13 @@ export const Home = () => {
   const [colors, setColors] = useState([])
 
   const [info, setInfo] = useState({
+    prompt: "",
+    cuisineType: "",
+    colorType: "",
+    styleType: ""
+  })
+
+  const [randomData, setRandomData] = useState({
     prompt: "",
     cuisineType: "",
     colorType: "",
@@ -98,7 +105,42 @@ export const Home = () => {
   }, [leonardoGenerationID])
 
 
+  const handleRandom = () => {
 
+    setInfo({
+      prompt: "",
+      cuisineType: "",
+      colorType: "",
+      styleType: ""
+    })
+
+    // Rastgele bir indeks oluştur
+    const cuisineTypeIndex = Math.floor(Math.random() * generateData_cuisine.length);
+    const styleTypeIndex = Math.floor(Math.random() * generateData_style.length);
+    const colorTypeIndex = Math.floor(Math.random() * generateData_colors.length);
+
+
+    // Rastgele seçilen mutfak tipini al
+    const selectedCuisineType = generateData_cuisine[cuisineTypeIndex].cuisineType;
+    const selectedStyleType = generateData_style[styleTypeIndex].style;
+    const selectedColorType = generateData_colors[colorTypeIndex];
+
+    setInfo({
+      ...info,
+      ['cuisineType']: selectedCuisineType,
+      ['styleType']: selectedStyleType,
+      ['colorType']: [selectedColorType],
+    })
+    setColors([selectedColorType])
+  }
+
+
+  useEffect(() => {
+    if (info.cuisineType) {
+      create_Leonardo_Image(info)
+    }
+  }, [info])
+  
 
   return (
 
@@ -107,7 +149,7 @@ export const Home = () => {
 
       <Dalle />
 
-      <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} />
+      <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
 
     </Box>
 

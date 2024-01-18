@@ -25,10 +25,8 @@ const useDalleCall = () => {
 
         // const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style, " + data?.prompt + " model " + data?.colorType + " color a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
 
-        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " color a round flat porcelain plate. Show only top view."
+        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " solid color a round flat porcelain plate. Show only top view."
 
-        console.log(data)
-        console.log(userPrompt)
 
         dispatch(fetchStartGeneration())
 
