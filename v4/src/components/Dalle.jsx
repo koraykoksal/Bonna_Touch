@@ -8,14 +8,22 @@ import BonnaTouchSlogan from '../assets/gift/BonnaTouchSlogan.gif'
 import { useState, useEffect } from 'react';
 import ImageDetail_Modal from './modals/ImageDetail_Modal';
 import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+
 
 export const Dalle = () => {
 
 
-  const { loadingGeneration, showLogo, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
+  const { loadingStatus, loadingGeneration, showLogo, leonardoGenerationAllData, leonardoGenerationData } = useSelector((state) => state.touch)
   const [urls, setUrls] = useState([])
-
   const [selectedData, setSelectedData] = useState([]);
+
+  const [timer, setTimer] = useState(0);
+  const [timerInterval, setTimerInterval] = useState(null);
+
+  // let interval = 0
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
@@ -41,6 +49,27 @@ export const Dalle = () => {
     setSelectedData(data);
     setOpen(true);
   };
+
+
+  // API çağrısı başladığında zamanlayıcıyı başlat
+  useEffect(() => {
+    if (loadingGeneration) {
+      const interval = setInterval(() => {
+        setTimer(oldTimer => oldTimer + 1000); // Her saniye timer'ı arttır
+      }, 1000);
+
+      setTimerInterval(interval); // Zamanlayıcı referansını kaydet
+    }
+  }, [loadingGeneration]);
+
+  // loadingStatus değiştiğinde zamanlayıcıyı durdur ve sıfırla
+  useEffect(() => {
+    if (!loadingStatus) {
+      clearInterval(timerInterval); // Zamanlayıcıyı durdur
+      setTimer(0); // Timer'ı sıfırla
+    }
+  }, [loadingStatus, timerInterval]);
+
 
 
 
@@ -99,10 +128,20 @@ export const Dalle = () => {
 
       {
         loadingGeneration ? (
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
+            <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
-            <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover', height: 'auto' }} />
+              <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover', height: 'auto' }} />
+
+            </Box>
+
+
+            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
+              <Typography variant='subtitle1' color={'#000000'}>Loading {timer / 1000}%</Typography>
+              {/* <CircularProgress variant="determinate" value={timer / 1000} /> */}
+
+            </Box>
 
           </Box>
 

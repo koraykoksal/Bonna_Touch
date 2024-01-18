@@ -36,12 +36,14 @@ export const generateData_colors = [
 
     "Blue",
     "Green",
+    "Yellow",
     "Beige",
     "Brown",
     "Earth Tones",
     "Gray",
     "Black",
     "Colourful",
+    
 
     // {
     //     colorType: "Blue"

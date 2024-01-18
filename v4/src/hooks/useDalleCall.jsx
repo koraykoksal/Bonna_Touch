@@ -110,6 +110,7 @@ const useDalleCall = () => {
 
             // "COMPLETE" olduğunda işlem yap
             // dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
+            dispatch(fetchSuccessLeonardoGenerationData());
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
 
 

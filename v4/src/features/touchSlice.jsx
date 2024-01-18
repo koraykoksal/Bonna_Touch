@@ -3,6 +3,7 @@ import { uid } from "uid";
 
 const initialState = {
     loadingGeneration: false,
+    loadingStatus:false,
     showLogo:true,
     error: false,
     promptData: {},
@@ -27,6 +28,7 @@ const touchSlice = createSlice({
 
         fetchStartGeneration: (state) => {
             state.loadingGeneration = true;
+            state.loadingStatus = true
             state.showLogo=false
             state.error = false;
             state.leonardoGenerationID = ""
@@ -46,6 +48,7 @@ const touchSlice = createSlice({
         },
         fetchSuccessLeonardoGenerationData: (state, { payload }) => {
             state.loadingGeneration = false
+            state.loadingStatus = false
             // state.leonardoGenerationData = payload?.generated_images;
         },
         fetchSuccessLeonardoGenerationAllData: (state, { payload }) => {
