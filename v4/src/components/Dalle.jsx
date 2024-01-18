@@ -98,47 +98,51 @@ export const Dalle = () => {
     <Box>
 
       {
-        loadingGeneration && (
+        loadingGeneration ? (
 
           <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
-            <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover' }} />
+            <img src={BonnaTouchSlogan} alt="generateGift" style={{ objectFit: 'cover', height: 'auto' }} />
 
           </Box>
 
         )
+          : (
+            <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
+
+              {
+                urls.map((data, index) => (
+
+                  <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
+
+                    <CardMedia
+                      component="img"
+                      height="450"
+                      src={data.url}
+                      sx={{ borderRadius: '0.5rem', height: 'auto' }}
+                      onClick={() => handleCardClick(data)}
+                    />
+
+                  </CardActionArea>
+
+                ))
+
+              }
+
+              <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
+
+            </Container>
+          )
       }
 
       {
-        showLogo && <Container sx={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={bonna_bonnatouch} height={250} alt="bonnatouchlogo" style={{ objectFit: 'cover' }} />
+        showLogo &&
+        <Container sx={{ display: 'flex', justifyContent: 'center' }}>
+          <img src={bonna_bonnatouch} alt="bonnatouchlogo" style={{ objectFit: 'cover', maxWidth: '60%', height: 'auto' }} />
         </Container>
       }
 
-      <Container sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }} >
 
-        {
-          urls.map((data, index) => (
-
-            <CardActionArea key={index} sx={{ maxWidth: 500 }} style={{ margin: "auto", marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-
-              <CardMedia
-                component="img"
-                height="450"
-                src={data.url}
-                sx={{ borderRadius: '0.5rem' }}
-                onClick={() => handleCardClick(data)}
-              />
-
-            </CardActionArea>
-
-          ))
-
-        }
-
-        <ImageDetail_Modal open={open} handleClose={handleClose} selectedData={selectedData} />
-
-      </Container>
 
 
     </Box>

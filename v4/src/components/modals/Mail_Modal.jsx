@@ -55,8 +55,6 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
 
 
-    console.log(info)
-
 
     return (
         <div>
@@ -99,7 +97,7 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
                         </FormControl>
 
 
-                        <Button variant='contained' type='submit' sx={{ fontStyle, borderRadius: 20, mt: 5 }}>Send</Button>
+                        <Button variant='contained' type='submit' sx={{ fontStyle, borderRadius: 20, mt: 5,letterSpacing:5 }}>Send</Button>
 
                     </Box>
 

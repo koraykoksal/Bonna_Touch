@@ -12,8 +12,8 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 960,
-    height: 700,
+    maxWidth: '80%',
+    height: 'auto',
     borderRadius:'5px',
     // bgcolor: 'background.paper',
     bgcolor: '#dddddd',
@@ -51,7 +51,7 @@ const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
                     </Box>
 
                     <Box display={'flex'} justifyContent={'center'}>
-                        <img src={selectedData.url} height={'600'} style={{ display: 'flex', justifyContent: 'center',borderRadius:'5px' }} />
+                        <img src={selectedData.url}  style={{ display: 'flex', justifyContent: 'center',borderRadius:'5px' ,maxWidth:'100%',height:'auto' }} />
                     </Box>
 
 
