@@ -27,10 +27,8 @@ const MenuProps = {
 
 
 
-const PromptInfo = ({ handleChange, info, randomData,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+const PromptInfo = ({ handleChange, info,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
 
-    console.log(randomData)
-    console.log(colors)
     
     return (
 
@@ -126,7 +124,7 @@ const PromptInfo = ({ handleChange, info, randomData,colors, setColors, handleCo
             <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} mt={8}>
 
 
-                <input style={inputStyle} type='text' name='prompt' value={info.prompt} onChange={handleChange} placeholder='Enter prompt here...' onKeyUp={handleEnterPress} />
+                <input style={inputStyle} type='text' name='prompt' value={info.prompt} onChange={handleChange} placeholder='Enter prompt here...' />
 
 
                 <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
