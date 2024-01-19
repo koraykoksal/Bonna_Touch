@@ -27,7 +27,10 @@ const MenuProps = {
 
 
 
-const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+const PromptInfo = ({ handleChange, info, randomData,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+
+    console.log(randomData)
+    console.log(colors)
     
     return (
 
@@ -130,7 +133,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
 
             </Box>
 
-            <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
+            {/* <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
 
                 <Button variant='outlined' size='small' 
                 onClick={handleRandom}
@@ -147,7 +150,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                     ':hover': { border: 'none', backgroundColor: 'transparent', textDecoration: 'underline' }
                 }}>Create for me</Button>
 
-            </Container>
+            </Container> */}
 
         </Container>
 

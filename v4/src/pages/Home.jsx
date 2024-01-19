@@ -107,7 +107,7 @@ export const Home = () => {
 
   const handleRandom = () => {
 
-    setInfo({
+    setRandomData({
       prompt: "",
       cuisineType: "",
       colorType: "",
@@ -125,22 +125,23 @@ export const Home = () => {
     const selectedStyleType = generateData_style[styleTypeIndex].style;
     const selectedColorType = generateData_colors[colorTypeIndex];
 
-    setInfo({
-      ...info,
+    setRandomData({
+      ...randomData,
       ['cuisineType']: selectedCuisineType,
       ['styleType']: selectedStyleType,
       ['colorType']: [selectedColorType],
     })
     setColors([selectedColorType])
+
   }
 
 
   useEffect(() => {
-    if (info.cuisineType) {
+    if (randomData.cuisineType && randomData.styleType && randomData.colorType) {
       create_Leonardo_Image(info)
     }
-  }, [info])
-  
+  }, [randomData])
+
 
   return (
 
@@ -149,7 +150,7 @@ export const Home = () => {
 
       <Dalle />
 
-      <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
+      <PromptInfo handleChange={handleChange} randomData={randomData} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
 
     </Box>
 
