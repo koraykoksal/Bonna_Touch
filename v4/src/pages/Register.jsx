@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, Container, TextField, FormControlLabel, FormGroup } from '@mui/material';
 import { useState } from 'react';
-import { countries, companyType } from "../helper/data"
+import { countries, companyType, jobType } from "../helper/data"
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -113,16 +113,32 @@ export const Register = () => {
 
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3 }}>
 
-          <TextField
-            fullWidth
-            required
-            type='text'
-            id='job'
-            name='job'
-            label='Job'
-            variant="outlined"
-            onChange={handleChage}
-          />
+          <FormControl fullWidth>
+            <InputLabel id="job">Job</InputLabel>
+            <Select
+              required
+              labelId="job"
+              id="job"
+              name='job'
+              label="job"
+              value={info.job}
+              onChange={handleChage}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 300, // Bu değeri istediğiniz maksimum yüksekliğe göre ayarlayabilirsiniz
+                    overflow: 'auto',
+                  },
+                },
+              }}
+            >
+              {
+                jobType?.map(({ title, index }) => (
+                  <MenuItem key={index} value={title}>{title}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
 
           <TextField
             fullWidth
@@ -146,6 +162,14 @@ export const Register = () => {
               label="Country"
               value={info.country}
               onChange={handleChage}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 300, // Bu değeri istediğiniz maksimum yüksekliğe göre ayarlayabilirsiniz
+                    overflow: 'auto',
+                  },
+                },
+              }}
             >
               {
                 countries?.map(({ name, index }) => (
@@ -182,6 +206,14 @@ export const Register = () => {
               label="CompanyType"
               value={info.companyType}
               onChange={handleChage}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 300, // Bu değeri istediğiniz maksimum yüksekliğe göre ayarlayabilirsiniz
+                    overflow: 'auto',
+                  },
+                },
+              }}
             >
               {
                 companyType?.map(({ name, index }) => (

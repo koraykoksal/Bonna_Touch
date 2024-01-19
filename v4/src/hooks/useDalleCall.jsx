@@ -23,9 +23,11 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        // const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style, " + data?.prompt + " model " + data?.colorType + " color a round flat porcelain plate with a clear, blurred background, showcasing a top-down view. Remove noise and interference."
+        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
 
-        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " solid color a round flat porcelain plate. Show only top view."
+        // const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
+
+        // const userPrompt = "Create a round, flat plate with an Turkish style design. Reflect modern motifs only along the edges of the plate. Use a soft blue,beige color to color the motifs."
 
 
         dispatch(fetchStartGeneration())

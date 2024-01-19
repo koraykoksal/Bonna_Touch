@@ -207,6 +207,26 @@ export const companyType = [
 ]
 
 
+export const jobType = [
+
+    { "title": "Agency" },
+    { "title": "Architect" },
+    { "title": "Barista" },
+    { "title": "Chef" },
+    { "title": "Consultant" },
+    { "title": "Distributor" },
+    { "title": "Executive Chef" },
+    { "title": "Marketing Professional" },
+    { "title": "Media" },
+    { "title": "Patissier" },
+    { "title": "Purchasing" },
+    { "title": "Restaurant Professional" },
+    { "title": "Sales Professional" },
+    { "title": "Hotel Professional" },
+    { "title": "Other.." },
+]
+
+
 export const salesData = [
     {
         "code": "TR",

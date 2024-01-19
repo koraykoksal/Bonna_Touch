@@ -49,7 +49,7 @@ const PromptInfo = ({ handleChange, info, colors, setColors, handleColorChange, 
                         label="cuisineType"
                         value={info.cuisineType}
                         onChange={handleChange}
-                        style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
+                        style={{ maxHeight: '40px',borderRadius: 20, fontSize: '15px' }}
 
                     >
                         {
