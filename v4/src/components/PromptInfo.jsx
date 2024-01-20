@@ -27,9 +27,8 @@ const MenuProps = {
 
 
 
-const PromptInfo = ({ handleChange, info,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+const PromptInfo = ({ handleChange,randomData, info,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
 
-    console.log("colors: ",colors)
     
     return (
 
@@ -49,7 +48,7 @@ const PromptInfo = ({ handleChange, info,colors, setColors, handleColorChange, h
                         id="cuisineType"
                         name='cuisineType'
                         label="cuisineType"
-                        value={info.cuisineType}
+                        value={info.cuisineType || randomData.cuisineType}
                         onChange={handleChange}
                         style={{ maxHeight: '40px',borderRadius: 20, fontSize: '15px' }}
 
@@ -108,7 +107,7 @@ const PromptInfo = ({ handleChange, info,colors, setColors, handleColorChange, h
                         id="styleType"
                         name='styleType'
                         label="styleType"
-                        value={info.styleType}
+                        value={info.styleType || randomData.styleType}
                         onChange={handleChange}
                         style={{ height: '40px', borderRadius: 20, fontSize: '15px' }}
                     >

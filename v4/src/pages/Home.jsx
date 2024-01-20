@@ -61,48 +61,7 @@ export const Home = () => {
   };
 
 
-  // enter tuşlandığınd çalıştır
-  const handleEnterPress = (e) => {
-    e.preventDefault()
-
-    // if (info.prompt) {
-    //   if (e.key === 'Enter') {
-    //     create_Leonardo_Image(info)
-    //   }
-    // }
-    // else {
-    //   toastWarnNotify('Please enter prompt field !')
-    // }
-
-    create_Leonardo_Image(info)
-
-  }
-
-  // submit butonu tuşlandığında çalıştır
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    // if (info.prompt) {
-    //   create_Leonardo_Image(info)
-    // }
-    // else {
-    //   toastWarnNotify('Please enter prompt field !')
-    // }
-
-    create_Leonardo_Image(info)
-
-  }
-
-
-
-  // leonardodan gelen image ID bilgisi true olduğu zaman çalıştır
-  useEffect(() => {
-    if (leonardoGenerationID) {
-      get_Leonarda_Image(leonardoGenerationID, info)
-    }
-  }, [leonardoGenerationID])
-
-
+  // create for me butonu
   const handleRandom = () => {
 
     setRandomData({
@@ -134,7 +93,35 @@ export const Home = () => {
   }
 
 
+  // enter tuşlandığınd çalıştır
+  const handleEnterPress = (e) => {
+    e.preventDefault()
 
+    create_Leonardo_Image(info)
+
+  }
+
+  // submit butonu tuşlandığında çalıştır
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    create_Leonardo_Image(info)
+
+  }
+
+
+
+  // leonardodan gelen image ID bilgisi true mu kontrol et
+  // info bilgisini ve randomData bilgisine göre get isteği gönder
+  useEffect(() => {
+    if (leonardoGenerationID) {
+      (info.cuisineType && info.colorType && info.styleType) ? get_Leonarda_Image(leonardoGenerationID, info) : get_Leonarda_Image(leonardoGenerationID, randomData)
+
+    }
+  }, [leonardoGenerationID])
+
+
+  // randomData bilgisine göre image generation işlemi yap
   useEffect(() => {
     if (randomData.cuisineType) {
       create_Leonardo_Image(randomData)
@@ -150,9 +137,9 @@ export const Home = () => {
 
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px', gap: 5 }}>
 
-      <Dalle randomData={randomData} />
+      <Dalle />
 
-      <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
+      <PromptInfo handleChange={handleChange} randomData={randomData} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
 
     </Box>
 

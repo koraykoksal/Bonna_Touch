@@ -21,13 +21,10 @@ const useDalleCall = () => {
     const dispatch = useDispatch()
     const { userInfo, currentUser } = useSelector((state) => state.auth)
 
+
     const create_Leonardo_Image = async (data) => {
 
-        const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
-
-        // const userPrompt = data?.cuisineType + " pattern, " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
-
-        // const userPrompt = "Create a round, flat plate with an Turkish style design. Reflect modern motifs only along the edges of the plate. Use a soft blue,beige color to color the motifs."
+        const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
 
 
         dispatch(fetchStartGeneration())
@@ -115,7 +112,7 @@ const useDalleCall = () => {
 
             // "COMPLETE" olduğunda işlem yap
             // dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
-            dispatch(fetchSuccessLeonardoGenerationData());
+            // dispatch(fetchSuccessLeonardoGenerationData());
             dispatch(fetchSuccessLeonardoGenerationAllData(data))
 
 

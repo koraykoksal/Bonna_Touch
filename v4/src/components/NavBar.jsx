@@ -103,8 +103,8 @@ const NavBar = () => {
                                 src={bonna_bonnatouch}
                                 alt="bonnaLogo"
                                 width='200px'
-                                style={{ scale: '1.3px', cursor: 'pointer' }}
-                                onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
+                                style={{ scale: '1.3px' }}
+                                // onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
                             />
 
                         }
