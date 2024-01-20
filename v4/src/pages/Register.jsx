@@ -15,7 +15,7 @@ import Checkbox from '@mui/material/Checkbox';
 import bonnaLogo from "../assets/img/bonna-logo.png"
 import okudum from "../assets/documents/PrivacyPolicy.pdf"
 import { fontStyle } from '../styles/GlobalStyle';
-import '../index.css'
+
 
 
 export const Register = () => {
@@ -71,7 +71,7 @@ export const Register = () => {
 
 
 
-    <Box display={'flex'} flexDirection={'column'} gap={3} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
+    <Box display={'flex'} flexDirection={'column'} gap={3} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: '100%' }}>
 
 
       <img

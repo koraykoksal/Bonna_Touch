@@ -6,7 +6,6 @@
 }
 
 
-html,body {
-    font-family: 'Catamaran', sans-serif;
-    /* background-color: '#dddddd'; */
+html,body{
+    background: '#000000';
 }

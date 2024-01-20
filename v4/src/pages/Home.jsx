@@ -16,9 +16,6 @@ export const Home = () => {
 
   const { create_Leonardo_Image, get_Leonarda_Image } = useDalleCall()
   const { leonardoGenerationID, promptData } = useSelector((state) => state.touch)
-  const [status, setstatus] = useState(null)
-
-  const dispatch = useDispatch()
 
   const [colors, setColors] = useState([])
 
@@ -108,45 +105,41 @@ export const Home = () => {
 
   const handleRandom = () => {
 
-    // setInfo({
-    //   prompt: "",
-    //   cuisineType: "",
-    //   colorType: "",
-    //   styleType: ""
-    // })
+    setRandomData({
+      prompt: "",
+      cuisineType: "",
+      colorType: "",
+      styleType: ""
+    })
 
-    // // Rastgele bir indeks oluştur
-    // const cuisineTypeIndex = Math.floor(Math.random() * generateData_cuisine.length);
-    // const styleTypeIndex = Math.floor(Math.random() * generateData_style.length);
-    // const colorTypeIndex = Math.floor(Math.random() * generateData_colors.length);
-
-
-    // // Rastgele seçilen mutfak tipini al
-    // const selectedCuisineType = generateData_cuisine[cuisineTypeIndex].cuisineType;
-    // const selectedStyleType = generateData_style[styleTypeIndex].style;
-    // const selectedColorType = generateData_colors[colorTypeIndex];
-
-    // setInfo({
-    //   ...info,
-    //   ['cuisineType']: selectedCuisineType,
-    //   ['styleType']: selectedStyleType,
-    //   ['colorType']: [selectedColorType],
-    // })
-    // setColors([selectedColorType])
+    // Rastgele bir indeks oluştur
+    const cuisineTypeIndex = Math.floor(Math.random() * generateData_cuisine.length);
+    const styleTypeIndex = Math.floor(Math.random() * generateData_style.length);
+    const colorTypeIndex = Math.floor(Math.random() * generateData_colors.length);
 
 
-    // setstatus(true)
+    // Rastgele seçilen mutfak tipini al
+    const selectedCuisineType = generateData_cuisine[cuisineTypeIndex].cuisineType;
+    const selectedStyleType = generateData_style[styleTypeIndex].style;
+    const selectedColorType = generateData_colors[colorTypeIndex];
+
+    setRandomData({
+      ...randomData,
+      ['cuisineType']: selectedCuisineType,
+      ['styleType']: selectedStyleType,
+      ['colorType']: [selectedColorType],
+    })
+    setColors([selectedColorType])
 
   }
 
 
 
-  // useEffect(() => {
-  //   if (status) {
-  //     create_Leonardo_Image(info)
-  //     setstatus(false)
-  //   }
-  // }, [status])
+  useEffect(() => {
+    if (randomData.cuisineType) {
+      create_Leonardo_Image(randomData)
+    }
+  }, [randomData])
 
 
 
@@ -157,7 +150,7 @@ export const Home = () => {
 
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '900px', gap: 5 }}>
 
-      <Dalle />
+      <Dalle randomData={randomData} />
 
       <PromptInfo handleChange={handleChange} info={info} colors={colors} setColors={setColors} handleColorChange={handleColorChange} handleSubmit={handleSubmit} handleEnterPress={handleEnterPress} handleRandom={handleRandom} />
 

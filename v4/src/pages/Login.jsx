@@ -44,7 +44,7 @@ const Login = () => {
     return (
 
 
-        <Box display={'flex'} flexDirection={'column'} gap={10} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: '100vh' }}>
+        <Box display={'flex'} flexDirection={'column'} gap={3} alignItems={'center'} p={3} sx={{ backgroundColor: '#dddddd', height: '100%' }}>
 
 
             <img
