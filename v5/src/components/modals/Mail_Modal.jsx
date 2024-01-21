@@ -11,6 +11,8 @@ import { useState, useEffect } from 'react';
 import { Button, Container, FormControl, Grid, TextField } from '@mui/material'
 import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
+import useDalleCall from '../../hooks/useDalleCall';
+import { useSelector } from 'react-redux';
 
 
 const style = {
@@ -30,6 +32,8 @@ const style = {
 
 const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
+    const {sendMail} = useDalleCall()
+    const {leonardoGenerationAllData} = useSelector((state)=>state.touch)
     const [data, setdata] = useState([])
     const [info, setinfo] = useState({
         selectedSales: ""
@@ -53,7 +57,10 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
         setinfo({ ...info, [name]: value })
     }
 
-
+    const handleSubmit=(e)=>{
+        e.preventDefault()
+        sendMail(info,leonardoGenerationAllData)
+    }
 
 
     return (
@@ -72,7 +79,7 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
 
 
-                    <Box display={'flex'} flexDirection={'column'} gap={2} mt={3} p={5} component={'form'}>
+                    <Box display={'flex'} flexDirection={'column'} gap={2} mt={3} p={5} component={'form'} onSubmit={handleSubmit}>
 
                         <Typography variant='subtitle1' style={fontStyle} align='left'>Choice Sales Personnel</Typography>
 

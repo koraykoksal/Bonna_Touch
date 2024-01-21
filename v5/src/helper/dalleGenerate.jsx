@@ -55,32 +55,6 @@ export const generateData_colors = [
     "Gray",
     "Black",
     "Colourful",
-    
-
-    // {
-    //     colorType: "Blue"
-    // },
-    // {
-    //     colorType: "Green"
-    // },
-    // {
-    //     colorType: "Beige"
-    // },
-    // {
-    //     colorType: "Brown"
-    // },
-    // {
-    //     colorType: "Earth Tones"
-    // },
-    // {
-    //     colorType: "Gray"
-    // },
-    // {
-    //     colorType: "Black"
-    // },
-    // {
-    //     colorType: "Colourful"
-    // },
 
 ]
 

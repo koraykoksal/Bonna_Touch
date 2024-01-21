@@ -162,10 +162,10 @@ const useDalleCall = () => {
 
                     })
 
-                    const unLikedData = dizi.filter(item=>item.id == id)
+                    const unLikedData = dizi.filter(item => item.id == id)
                     console.log(unLikedData)
 
-                    if(unLikedData.length>0){
+                    if (unLikedData.length > 0) {
                         await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
                         toastWarnNotify('Unliked')
                     }
@@ -181,11 +181,40 @@ const useDalleCall = () => {
     }
 
 
+    const sendMail = async (mailAddress, info) => {
+
+        console.log(mailAddress)
+        console.log(info)
+
+        const config = {
+            method: 'post',
+            url: process.env.REACT_APP_MAIL_SERVER || 'https://bonnatouch-mailserver.vercel.app/api/email', // Eğer .env değişkeni yoksa, doğrudan URL
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: {
+                to: mailAddress?.selectedSales,
+                data: JSON.stringify(info)
+            }
+        };
+
+        try {
+            const res = await axios(config);
+            console.log(res);
+        } catch (error) {
+            console.error('Axios error:', error);
+        }
+
+
+    }
+
+
     return {
         create_Leonardo_Image,
         get_Leonarda_Image,
         post_imageDataDB,
-        post_imageDataDB
+        post_imageDataDB,
+        sendMail
 
     }
 
