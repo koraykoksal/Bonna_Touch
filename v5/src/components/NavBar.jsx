@@ -42,7 +42,7 @@ const pages = [
 const NavBar = () => {
 
     const { loadingGeneration, leonardoGenerationAllData } = useSelector((state) => state.touch)
-    const { currentUser,userInfo } = useSelector((state) => state.auth)
+    const { currentUser, userInfo } = useSelector((state) => state.auth)
     const { logout } = useAuthCall()
     let avatarName = ""
     const navigate = useNavigate()
@@ -104,7 +104,7 @@ const NavBar = () => {
                                 alt="bonnaLogo"
                                 width='200px'
                                 style={{ scale: '1.3px' }}
-                                // onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
+                            // onClick={() => window.open('https://www.bonna.com.tr', '_blank')}
                             />
 
                         }
@@ -159,40 +159,35 @@ const NavBar = () => {
 
                     {/* PAGES MENU */}
 
-                    {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
-                        {pages.map((page, index) => (
-                            <Button
-                                key={index}
-                                onClick={() => {
-                                    navigate(page.url)
-                                    handleCloseNavMenu()
-                                }}
-                                sx={{ my: 2, fontSize: '18px', color: '#000000', display: 'block', '&:hover': { color: '#ffffff', backgroundColor: 'transparent' }, textTransform: 'none' }}
-                            >
-                                {page.title}
-                            </Button>
-                        ))}
+                    {
+                        loadingGeneration ?
+                            (
+                                ""
+                            )
+                            :
+                            (
+                                <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
 
-                    </Box> */}
+                                    {/* generation iconu */}
+                                    <img src={generateIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
+                                        navigate('/home')
+                                        handleCloseNavMenu()
+                                    }} />
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'end', gap: 5, alignItems: 'center' }}>
+                                    {/* history iconu */}
+                                    <img src={historyIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
+                                        navigate('/history')
+                                        handleCloseNavMenu()
+                                    }} />
 
-                        {/* generation iconu */}
-                        <img src={generateIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
-                            navigate('/home')
-                            handleCloseNavMenu()
-                        }} />
+                                    {/* mail gönder iconu */}
+                                    <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={handleOpen} />
 
-                        {/* history iconu */}
-                        <img src={historyIcon} style={{ cursor: 'pointer', height: '35px', objectFit: 'cover' }} onClick={() => {
-                            navigate('/history')
-                            handleCloseNavMenu()
-                        }} />
+                                </Box>
+                            )
+                    }
 
-                        {/* mail gönder iconu */}
-                        <img src={sendIcon} style={{ cursor: 'pointer', height: '36px', objectFit: 'cover' }} onClick={handleOpen} />
 
-                    </Box>
 
 
                     {/* USER MENU */}
@@ -251,7 +246,7 @@ const NavBar = () => {
                 <Outlet />
             </Box>
 
-            <Mail_Modal open={open} handleClose={handleClose} userInfo={userInfo}/>
+            <Mail_Modal open={open} handleClose={handleClose} userInfo={userInfo} />
 
         </AppBar>
 

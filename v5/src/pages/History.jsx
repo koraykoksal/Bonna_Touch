@@ -15,8 +15,11 @@ import useDalleCall from '../hooks/useDalleCall';
 export default function History() {
 
   const { post_imageDataDB } = useDalleCall()
+  const  {userInfo} = useSelector((state)=>state.auth)
   const { leonardoGenerationAllData } = useSelector((state) => state.touch)
   const [selectedData, setSelectedData] = useState([]);
+
+  const [likedData, setlikedData] = useState([])
 
 
 
@@ -52,6 +55,14 @@ export default function History() {
     if (!selectedIds[id]) {
       //! like butonuna basıldığında hook çalıştır
       post_imageDataDB(id, data, {likeStatus:true})
+      
+
+      //?* beğenilen verileri ve user bilgisini ayrnı bir state içinde birleştir
+      setlikedData(prevLikedData=>{
+        const item = {id:data?.id,url:data?.url,text:data?.text,user:userInfo}
+        return [...prevLikedData,item]
+      })
+
     }
     else {
       //! like butonuna basıldığında hook çalıştır

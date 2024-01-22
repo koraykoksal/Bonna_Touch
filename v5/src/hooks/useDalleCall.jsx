@@ -163,7 +163,6 @@ const useDalleCall = () => {
                     })
 
                     const unLikedData = dizi.filter(item => item.id == id)
-                    console.log(unLikedData)
 
                     if (unLikedData.length > 0) {
                         await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
@@ -181,26 +180,31 @@ const useDalleCall = () => {
     }
 
 
-    const sendMail = async (mailAddress, info) => {
-
-        console.log(mailAddress)
-        console.log(info)
+    const sendMail = async (mailAddress, info,mailSubject) => {
 
         const config = {
             method: 'post',
-            url: process.env.REACT_APP_MAIL_SERVER || 'https://bonnatouch-mailserver.vercel.app/api/email', // Eğer .env değişkeni yoksa, doğrudan URL
+            url: process.env.REACT_APP_MAIL_SERVER, // Eğer .env değişkeni yoksa, doğrudan URL
             headers: {
                 'Content-Type': 'application/json'
             },
             data: {
                 to: mailAddress?.selectedSales,
-                data: JSON.stringify(info)
+                subject:mailSubject,
+                data: info
             }
         };
 
         try {
             const res = await axios(config);
-            console.log(res);
+
+            if(res.data.response.status = 200){
+                toastSuccessNotify('Successful')
+            }
+            else{
+                toastWarnNotify('Something went wrong')
+            }
+
         } catch (error) {
             console.error('Axios error:', error);
         }
