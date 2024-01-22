@@ -34,7 +34,7 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
     const mailSubject = 'Bonna Touch Design AI Support Information'
     const { sendMail } = useDalleCall()
-    const { leonardoGenerationAllData } = useSelector((state) => state.touch)
+    const { leonardoGenerationAllData,leonardoLikedImages } = useSelector((state) => state.touch)
     const [data, setdata] = useState([])
     const [info, setinfo] = useState({
         selectedSales: "",
@@ -61,7 +61,7 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        sendMail(info, leonardoGenerationAllData, mailSubject)
+        sendMail(info, leonardoLikedImages, mailSubject)
     }
 
 

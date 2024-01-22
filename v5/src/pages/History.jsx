@@ -4,21 +4,22 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Container } from '@mui/material';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import ImageDetail_Modal from '../components/modals/ImageDetail_Modal';
 import useDalleCall from '../hooks/useDalleCall';
+import { fetchLikedData } from '../features/touchSlice';
 
 
 export default function History() {
 
   const { post_imageDataDB } = useDalleCall()
-  const  {userInfo} = useSelector((state)=>state.auth)
-  const { leonardoGenerationAllData } = useSelector((state) => state.touch)
+  const { userInfo } = useSelector((state) => state.auth)
+  const { leonardoGenerationAllData,leonardoLikedImages } = useSelector((state) => state.touch)
   const [selectedData, setSelectedData] = useState([]);
-
-  const [likedData, setlikedData] = useState([])
+  const dispatch = useDispatch()
+  const [likedData, setLikedData] = useState([])
 
 
 
@@ -53,25 +54,28 @@ export default function History() {
 
     if (!selectedIds[id]) {
       //! like butonuna basıldığında hook çalıştır
-      post_imageDataDB(id, data, {likeStatus:true})
-      
+      post_imageDataDB(id, data, { likeStatus: true })
 
       //?* beğenilen verileri ve user bilgisini ayrnı bir state içinde birleştir
-      setlikedData(prevLikedData=>{
-        const item = {id:data?.id,url:data?.url,text:data?.text,user:userInfo}
-        return [...prevLikedData,item]
-      })
+      setLikedData(prevLikedData => {
+        const item = { id: data?.id, url: data?.url, text: data?.text, user: userInfo };
+        const updatedLikedData = [...prevLikedData, item];
+        dispatch(fetchLikedData(updatedLikedData)); // Redux store'una gönder
+        return updatedLikedData;
+      });
 
     }
     else {
       //! like butonuna basıldığında hook çalıştır
-      post_imageDataDB(id, data, {likeStatus:false})
-      //?* unliked işlemin de state içinden ilgili datayı siler
-      setlikedData(prevLikedData => {
-        return prevLikedData.filter(item => item.id !== id);
+      post_imageDataDB(id, data, { likeStatus: false })
+
+      //?* Unliked işleminde state içinden ilgili datayı siler
+      setLikedData(prevLikedData => {
+        const updatedLikedData = prevLikedData.filter(item => item.id !== id);
+        dispatch(fetchLikedData(updatedLikedData)); // Redux store'una güncellenmiş veriyi gönder
+        return updatedLikedData;
       });
     }
-
 
   };
 
@@ -82,8 +86,8 @@ export default function History() {
   };
 
 
-  console.log("likedData: ",likedData)
 
+  
 
   return (
 

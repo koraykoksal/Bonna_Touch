@@ -112,18 +112,32 @@ const useDalleCall = () => {
                 response = await axios(options); // Tekrar istek gönder
             }
 
-
-            const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
-                url: element.url,
-                text: info,
-                id: element.id,
-
-            }));
-
-            // "COMPLETE" olduğunda işlem yap
-            if(data.length > 0){
-                dispatch(fetchSuccessLeonardoGenerationAllData(data))
+            // `generated_images`'ın varlığını ve içeriğini kontrol et
+            const generatedImages = response?.data?.generations_by_pk?.generated_images;
+            if (!generatedImages || generatedImages.length === 0) {
+                // `generated_images` boş veya tanımsızsa, uygun bir işlem yap
+                console.log('generated_images boş veya tanımsız.');
+                // Burada boş bir dizi göndermek veya bir hata mesajı göndermek gibi işlemler yapabilirsiniz.
+                dispatch(fetchSuccessLeonardoGenerationAllData([]));
+            } else {
+                // `generated_images` var ve içerik içeriyorsa, işlem yap
+                const data = generatedImages.map(element => ({
+                    url: element.url,
+                    text: info,
+                    id: element.id,
+                }));
+                dispatch(fetchSuccessLeonardoGenerationAllData(data));
             }
+
+
+            // const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
+            //     url: element.url,
+            //     text: info,
+            //     id: element.id,
+
+            // }));
+            // dispatch(fetchSuccessLeonardoGenerationAllData(data))
+
 
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)
@@ -220,7 +234,7 @@ const useDalleCall = () => {
     }
 
 
-    const sendMail = async (mailAddress, info, mailSubject) => {
+    const sendMail = async (mailInfo, imageInfo, mailSubject) => {
 
         const config = {
             method: 'post',
@@ -229,9 +243,10 @@ const useDalleCall = () => {
                 'Content-Type': 'application/json'
             },
             data: {
-                to: mailAddress?.selectedSales,
-                subject: mailSubject || "",
-                data: info || ""
+                to: mailInfo?.selectedSales, //zorunlu alan
+                note: mailInfo?.note,
+                subject: mailSubject || "", //zorunlu alan
+                data: imageInfo || "" //zorunlu alan
             }
         };
 
@@ -251,7 +266,7 @@ const useDalleCall = () => {
 
     }
 
-    
+
 
     return {
         create_Leonardo_Image,

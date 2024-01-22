@@ -53,7 +53,7 @@ const touchSlice = createSlice({
         },
         fetchLikedData:(state,{payload})=>{
             return {
-                leonardoLikedImages: [...state.leonardoLikedImages, ...payload]
+                ...state,leonardoLikedImages:payload,
             };
         },
         fetchLogOutLeonardoData: (state) => {
