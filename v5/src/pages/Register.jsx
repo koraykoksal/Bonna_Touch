@@ -53,12 +53,11 @@ export const Register = () => {
   const handleChage = (e) => {
 
     const { name, value } = e.target
-
     setInfo({ ...info, [name]: value })
-
 
   }
 
+  
   const handleSubmit = (e) => {
 
     e.preventDefault()
@@ -68,8 +67,6 @@ export const Register = () => {
 
 
   return (
-
-
 
     <Box display={'flex'} flexDirection={'column'} gap={3} alignItems={'center'} p={3} sx={{ backgroundColor: bgColor, height: '100%' }}>
 
@@ -145,7 +142,7 @@ export const Register = () => {
           <TextField
             fullWidth
             required
-            type='text'
+            type='email'
             id='email'
             name='email'
             label='Email'

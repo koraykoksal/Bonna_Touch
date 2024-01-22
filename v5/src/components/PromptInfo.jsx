@@ -6,11 +6,10 @@ import Select from '@mui/material/Select';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { IoSend } from "react-icons/io5";
-import { BsArrowRightSquare } from "react-icons/bs";
 import { fontStyle, inputStyle } from '../styles/GlobalStyle';
 import createGenerateIcon from "../assets/img/createGenerate-icon.png"
 import { LuDices } from "react-icons/lu";
+import { useSelector } from 'react-redux';
 
 
 
@@ -27,9 +26,10 @@ const MenuProps = {
 
 
 
-const PromptInfo = ({ handleChange,randomData, info,colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
+const PromptInfo = ({ handleChange, randomData, info, colors, setColors, handleColorChange, handleSubmit, handleEnterPress, handleRandom }) => {
 
-    
+    const { loadingGeneration } = useSelector((state) => state.touch)
+
     return (
 
 
@@ -50,7 +50,7 @@ const PromptInfo = ({ handleChange,randomData, info,colors, setColors, handleCol
                         label="cuisineType"
                         value={info.cuisineType || randomData.cuisineType}
                         onChange={handleChange}
-                        style={{ maxHeight: '40px',borderRadius: 20, fontSize: '15px' }}
+                        style={{ maxHeight: '40px', borderRadius: 20, fontSize: '15px' }}
 
                     >
                         {
@@ -121,34 +121,54 @@ const PromptInfo = ({ handleChange,randomData, info,colors, setColors, handleCol
 
             </Container>
 
-            <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} mt={8}>
+            {
+                loadingGeneration ?
+                    (
+                        ""
+                    )
+                    :
+                    (
+                        <Box display={'flex'} justifyContent={'center'} gap={3} alignItems={'center'} mt={8}>
+
+                            <input style={inputStyle} type='text' name='prompt' value={info.prompt} onChange={handleChange} placeholder='Enter prompt here...' />
+
+                            <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
+
+                        </Box>
+                    )
+            }
+
+            {
+                loadingGeneration ?
+                    (
+                        ""
+                    )
+                    :
+                    (
+                        <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
+
+                            <Button variant='outlined' size='small'
+                                onClick={handleRandom}
+                                startIcon={<LuDices color='black' size={20} />}
+                                sx={{
+                                    p: 0.3,
+                                    height: 'auto',
+                                    fontSize: 15,
+                                    fontFamily: fontStyle,
+                                    textTransform: 'none',
+                                    letterSpacing: 3,
+                                    color: 'black',
+                                    border: 'none',
+                                    ':hover': { border: 'none', backgroundColor: 'transparent', textDecoration: 'underline' }
+                                }}>Create for me</Button>
+
+                        </Container>
+                    )
+            }
 
 
-                <input style={inputStyle} type='text' name='prompt' value={info.prompt} onChange={handleChange} placeholder='Enter prompt here...' />
 
 
-                <img src={createGenerateIcon} height={'50px'} style={{ cursor: 'pointer' }} onClick={handleSubmit} />
-
-            </Box>
-
-            <Container sx={{ display: 'flex', justifyContent: 'center', gap: 1, alignItems: 'center', mt: 3 }}>
-
-                <Button variant='outlined' size='small' 
-                onClick={handleRandom}
-                startIcon={<LuDices color='black' size={20} />}
-                sx={{
-                    p: 0.3,
-                    height:'auto',
-                    fontSize: 15,
-                    fontFamily: fontStyle,
-                    textTransform: 'none',
-                    letterSpacing: 3,
-                    color: 'black',
-                    border: 'none',
-                    ':hover': { border: 'none', backgroundColor: 'transparent', textDecoration: 'underline' }
-                }}>Create for me</Button>
-
-            </Container>
 
         </Container>
 

@@ -61,19 +61,31 @@ const useDalleCall = () => {
             }
         };
 
-        await axios
-            .request(options)
-            .then(function (response) {
 
-                if (response?.data) {
-                    const data = response?.data?.sdGenerationJob?.generationId
-                    dispatch(fetchSuccessLeonardoGeneration(data))
-                }
+        try {
+            const response = await axios.request(options);
+            const generationId = response?.data?.sdGenerationJob?.generationId;
+            if (generationId) {
+                dispatch(fetchSuccessLeonardoGeneration(generationId));
+            }
+        } catch (error) {
+            console.error(error);
+            // Burada hata yönetimi için ek işlemler yapılabilir.
+        }
 
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+        // await axios
+        //     .request(options)
+        //     .then(function (response) {
+
+        //         if (response?.data) {
+        //             const data = response?.data?.sdGenerationJob?.generationId
+        //             dispatch(fetchSuccessLeonardoGeneration(data))
+        //         }
+
+        //     })
+        //     .catch(function (error) {
+        //         console.error(error);
+        //     });
 
     }
 
@@ -91,35 +103,59 @@ const useDalleCall = () => {
             }
         };
 
-        try {
 
-            const uID = uid()
+        try {
+            const uID = uid(); // Bu uID değişkeni kullanılmıyor gibi görünüyor.
             let response = await axios(options);
+            let attempts = 0;
+            const maxAttempts = 10; // Örneğin, maksimum 10 deneme
 
             // "COMPLETE" olana kadar döngü içinde isteği tekrar et
-            while (response?.data?.generations_by_pk?.status === "PENDING") {
-                await new Promise(resolve => setTimeout(resolve, 3000)); // 3 saniye bekle
+            while (response?.data?.generations_by_pk?.status === "PENDING" && attempts < maxAttempts) {
+                await new Promise(resolve => setTimeout(resolve, 2000)); // 3 saniye bekle
                 response = await axios(options); // Tekrar istek gönder
+                attempts++;
             }
 
-
-            const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
-                url: element.url,
-                text: info,
-                id: element.id,
-
-            }));
-
-            // "COMPLETE" olduğunda işlem yap
-            // dispatch(fetchSuccessLeonardoGenerationData(response?.data?.generations_by_pk));
-            // dispatch(fetchSuccessLeonardoGenerationData());
-            dispatch(fetchSuccessLeonardoGenerationAllData(data))
-
-
-
+            if (response?.data?.generations_by_pk?.status === "COMPLETE") {
+                const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
+                    url: element.url,
+                    text: info,
+                    id: element.id,
+                }));
+                dispatch(fetchSuccessLeonardoGenerationAllData(data));
+            }
         } catch (error) {
-            console.log("get_Leonarda_Image: ", error)
+            console.error("getLeonardoImage Error: ", error);
         }
+
+        // try {
+
+        //     const uID = uid()
+        //     let response = await axios(options);
+
+        //     // "COMPLETE" olana kadar döngü içinde isteği tekrar et
+        //     while (response?.data?.generations_by_pk?.status === "PENDING") {
+        //         await new Promise(resolve => setTimeout(resolve, 3000)); // 3 saniye bekle
+        //         response = await axios(options); // Tekrar istek gönder
+        //     }
+
+
+        //     const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
+        //         url: element.url,
+        //         text: info,
+        //         id: element.id,
+
+        //     }));
+
+        //     // "COMPLETE" olduğunda işlem yap
+        //     dispatch(fetchSuccessLeonardoGenerationAllData(data))
+
+
+
+        // } catch (error) {
+        //     console.log("get_Leonarda_Image: ", error)
+        // }
 
 
     }
@@ -129,58 +165,90 @@ const useDalleCall = () => {
 
         const combinedObject = { ...userInfo, ...data }
 
-        try {
 
-            const uID = uid()
-            const db = getDatabase()
-            const res = ref(db, 'customerLikeData')
-            const snapshot = await get(res)
+        try {
+            const uID = uid();
+            const db = getDatabase();
+            const res = ref(db, 'customerLikeData');
+            const snapshot = await get(res);
 
             if (likeStatus) {
-                // await set(ref(db, `customerAIdata/${userInfo.name + userInfo.surname}/${uID}`), combinedObject)
-                await set(ref(db, `customerLikeData/${currentUser}/${uID}`), combinedObject)
-                toastSuccessNotify('Liked')
-            }
-            else {
-
+                await set(ref(db, `customerLikeData/${currentUser}/${uID}`), combinedObject);
+                toastSuccessNotify('Liked');
+            } else {
                 if (snapshot.exists()) {
-
-                    const dizi = []
-
-                    Object.values(snapshot.val()).forEach(item => {
-
-                        if (typeof item == 'object' && item != null) {
-
-                            const result = Object.keys(item).map(key => { return { IDs: key, ...item[key] } })
-
-                            result.map(item => {
-                                dizi.push(item)
-                                return { ...item, item }
-                            })
-
+                    const dizi = [];
+                    Object.entries(snapshot.val()).forEach(([key, item]) => {
+                        if (item && typeof item === 'object') {
+                            Object.entries(item).forEach(([innerKey, value]) => {
+                                dizi.push({ IDs: innerKey, ...value });
+                            });
                         }
+                    });
 
-                    })
-
-                    const unLikedData = dizi.filter(item => item.id == id)
-
-                    if (unLikedData.length > 0) {
-                        await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
-                        toastWarnNotify('Unliked')
+                    const unLikedData = dizi.find(item => item.id === id);
+                    if (unLikedData) {
+                        await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData.IDs}`));
+                        toastWarnNotify('Unliked');
                     }
-
-
                 }
             }
-
         } catch (error) {
-            console.log("register, ", error)
+            console.error("Error in postImageDataToDB: ", error);
         }
+
+
+        // try {
+
+        //     const uID = uid()
+        //     const db = getDatabase()
+        //     const res = ref(db, 'customerLikeData')
+        //     const snapshot = await get(res)
+
+        //     if (likeStatus) {
+        //         await set(ref(db, `customerLikeData/${currentUser}/${uID}`), combinedObject)
+        //         toastSuccessNotify('Liked')
+        //     }
+        //     else {
+
+        //         if (snapshot.exists()) {
+
+        //             const dizi = []
+
+        //             Object.values(snapshot.val()).forEach(item => {
+
+        //                 if (typeof item == 'object' && item != null) {
+
+        //                     const result = Object.keys(item).map(key => { return { IDs: key, ...item[key] } })
+
+        //                     result.map(item => {
+        //                         dizi.push(item)
+        //                         return { ...item, item }
+        //                     })
+
+        //                 }
+
+        //             })
+
+        //             const unLikedData = dizi.filter(item => item.id == id)
+
+        //             if (unLikedData.length > 0) {
+        //                 await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
+        //                 toastWarnNotify('Unliked')
+        //             }
+
+
+        //         }
+        //     }
+
+        // } catch (error) {
+        //     console.log("register, ", error)
+        // }
 
     }
 
 
-    const sendMail = async (mailAddress, info,mailSubject) => {
+    const sendMail = async (mailAddress, info, mailSubject) => {
 
         const config = {
             method: 'post',
@@ -190,28 +258,28 @@ const useDalleCall = () => {
             },
             data: {
                 to: mailAddress?.selectedSales,
-                subject:mailSubject,
-                data: info
+                subject: mailSubject || "",
+                data: info || ""
             }
         };
 
         try {
             const res = await axios(config);
 
-            if(res.data.response.status = 200){
-                toastSuccessNotify('Successful')
+            if (res.data.response.status === 200) {
+                toastSuccessNotify('Mail Sent Successfully');
+            } else {
+                toastWarnNotify('Mail Sending Failed');
             }
-            else{
-                toastWarnNotify('Something went wrong')
-            }
-
         } catch (error) {
-            console.error('Axios error:', error);
+            console.error('Send Mail Error:', error.message || error);
+            toastErrorNotify('Error in Sending Mail');
         }
 
 
     }
 
+    
 
     return {
         create_Leonardo_Image,
