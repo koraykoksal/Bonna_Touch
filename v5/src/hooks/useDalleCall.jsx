@@ -5,7 +5,6 @@ import {
     fetchEndGeneration,
     fetchFailGeneration,
     fetchSuccessLeonardoGeneration,
-    fetchSuccessLeonardoGenerationData,
     fetchSuccessLeonardoGenerationAllData
 } from '../features/touchSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,37 +61,35 @@ const useDalleCall = () => {
         };
 
 
-        try {
-            const response = await axios.request(options);
-            const generationId = response?.data?.sdGenerationJob?.generationId;
-            if (generationId) {
-                dispatch(fetchSuccessLeonardoGeneration(generationId));
-            }
-        } catch (error) {
-            console.error(error);
-            // Burada hata yönetimi için ek işlemler yapılabilir.
-        }
+        // try {
+        //     const response = await axios.request(options);
+        //     const generationId = response?.data?.sdGenerationJob?.generationId;
+        //     if (generationId) {
+        //         dispatch(fetchSuccessLeonardoGeneration(generationId));
+        //     }
+        // } catch (error) {
+        //     console.error(error);
+        //     // Burada hata yönetimi için ek işlemler yapılabilir.
+        // }
 
-        // await axios
-        //     .request(options)
-        //     .then(function (response) {
+        await axios
+            .request(options)
+            .then(function (response) {
 
-        //         if (response?.data) {
-        //             const data = response?.data?.sdGenerationJob?.generationId
-        //             dispatch(fetchSuccessLeonardoGeneration(data))
-        //         }
+                if (response?.data) {
+                    const data = response?.data?.sdGenerationJob?.generationId
+                    dispatch(fetchSuccessLeonardoGeneration(data))
+                }
 
-        //     })
-        //     .catch(function (error) {
-        //         console.error(error);
-        //     });
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
 
     }
 
 
     const get_Leonarda_Image = async (id, info) => {
-
-
 
         const options = {
             method: 'GET',
@@ -105,57 +102,32 @@ const useDalleCall = () => {
 
 
         try {
-            const uID = uid(); // Bu uID değişkeni kullanılmıyor gibi görünüyor.
+
+            const uID = uid()
             let response = await axios(options);
-            let attempts = 0;
-            const maxAttempts = 10; // Örneğin, maksimum 10 deneme
 
             // "COMPLETE" olana kadar döngü içinde isteği tekrar et
-            while (response?.data?.generations_by_pk?.status === "PENDING" && attempts < maxAttempts) {
-                await new Promise(resolve => setTimeout(resolve, 2000)); // 3 saniye bekle
+            while (response?.data?.generations_by_pk?.status === "PENDING") {
+                await new Promise(resolve => setTimeout(resolve, 3000)); // 3 saniye bekle
                 response = await axios(options); // Tekrar istek gönder
-                attempts++;
             }
 
-            if (response?.data?.generations_by_pk?.status === "COMPLETE") {
-                const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
-                    url: element.url,
-                    text: info,
-                    id: element.id,
-                }));
-                dispatch(fetchSuccessLeonardoGenerationAllData(data));
+
+            const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
+                url: element.url,
+                text: info,
+                id: element.id,
+
+            }));
+
+            // "COMPLETE" olduğunda işlem yap
+            if(data.length > 0){
+                dispatch(fetchSuccessLeonardoGenerationAllData(data))
             }
+
         } catch (error) {
-            console.error("getLeonardoImage Error: ", error);
+            console.log("get_Leonarda_Image: ", error)
         }
-
-        // try {
-
-        //     const uID = uid()
-        //     let response = await axios(options);
-
-        //     // "COMPLETE" olana kadar döngü içinde isteği tekrar et
-        //     while (response?.data?.generations_by_pk?.status === "PENDING") {
-        //         await new Promise(resolve => setTimeout(resolve, 3000)); // 3 saniye bekle
-        //         response = await axios(options); // Tekrar istek gönder
-        //     }
-
-
-        //     const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
-        //         url: element.url,
-        //         text: info,
-        //         id: element.id,
-
-        //     }));
-
-        //     // "COMPLETE" olduğunda işlem yap
-        //     dispatch(fetchSuccessLeonardoGenerationAllData(data))
-
-
-
-        // } catch (error) {
-        //     console.log("get_Leonarda_Image: ", error)
-        // }
 
 
     }

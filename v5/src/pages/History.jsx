@@ -4,12 +4,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Container } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import ImageDetail_Modal from '../components/modals/ImageDetail_Modal';
 import useDalleCall from '../hooks/useDalleCall';
-
 
 
 export default function History() {
@@ -67,6 +66,10 @@ export default function History() {
     else {
       //! like butonuna basıldığında hook çalıştır
       post_imageDataDB(id, data, {likeStatus:false})
+      //?* unliked işlemin de state içinden ilgili datayı siler
+      setlikedData(prevLikedData => {
+        return prevLikedData.filter(item => item.id !== id);
+      });
     }
 
 
@@ -78,6 +81,8 @@ export default function History() {
     setOpen(true);
   };
 
+
+  console.log("likedData: ",likedData)
 
 
   return (

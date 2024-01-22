@@ -51,18 +51,14 @@ export const Register = () => {
   }
 
   const handleChage = (e) => {
-
     const { name, value } = e.target
     setInfo({ ...info, [name]: value })
-
   }
 
   
   const handleSubmit = (e) => {
-
     e.preventDefault()
     register("register", info)
-
   }
 
 

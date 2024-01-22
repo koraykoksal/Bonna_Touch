@@ -3,7 +3,6 @@ import { uid } from "uid";
 
 const initialState = {
     loadingGeneration: false,
-    loadingStatus:false,
     showLogo:true,
     error: false,
     promptData: {},
@@ -15,7 +14,8 @@ const initialState = {
     },
     leonardoGenerationID: "",
     leonardoGenerationData: [],
-    leonardoGenerationAllData: []
+    leonardoGenerationAllData: [],
+    leonardoLikedImages:[]
 }
 
 const touchSlice = createSlice({
@@ -46,14 +46,14 @@ const touchSlice = createSlice({
         fetchSuccessLeonardoGeneration: (state, { payload }) => {
             state.leonardoGenerationID = payload
         },
-        fetchSuccessLeonardoGenerationData: (state, { payload }) => {
-            state.loadingGeneration = false
-            state.loadingStatus = false
-            // state.leonardoGenerationData = payload?.generated_images;
-        },
         fetchSuccessLeonardoGenerationAllData: (state, { payload }) => {
             return {
                 leonardoGenerationAllData: [...state.leonardoGenerationAllData, ...payload]
+            };
+        },
+        fetchLikedData:(state,{payload})=>{
+            return {
+                leonardoLikedImages: [...state.leonardoLikedImages, ...payload]
             };
         },
         fetchLogOutLeonardoData: (state) => {
@@ -78,9 +78,9 @@ export const {
     fetchEndGeneration,
     fetchFailGeneration,
     fetchSuccessLeonardoGeneration,
-    fetchSuccessLeonardoGenerationData,
     fetchSuccessLeonardoGenerationAllData,
-    fetchLogOutLeonardoData
+    fetchLogOutLeonardoData,
+    fetchLikedData
 
 
 } = touchSlice.actions

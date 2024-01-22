@@ -24,8 +24,6 @@ export const Dalle = () => {
   const [timer, setTimer] = useState(0);
   const [timerInterval, setTimerInterval] = useState(null);
 
-  // let interval = 0
-
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true);
   const handleClose = () => {

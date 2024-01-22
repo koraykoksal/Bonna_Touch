@@ -63,7 +63,7 @@ const Login = () => {
                     <TextField
                         fullWidth
                         required
-                        type='text'
+                        type='email'
                         id='email'
                         name='email'
                         label='Email'

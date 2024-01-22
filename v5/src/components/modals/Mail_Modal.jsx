@@ -21,7 +21,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 560,
-    height: 400,
+    height: 500,
     borderRadius: '5px',
     // bgcolor: 'background.paper',
     bgcolor: '#dddddd',
@@ -33,11 +33,12 @@ const style = {
 const Mail_Modal = ({ open, handleClose, userInfo }) => {
 
     const mailSubject = 'Bonna Touch Design AI Support Information'
-    const {sendMail} = useDalleCall()
-    const {leonardoGenerationAllData} = useSelector((state)=>state.touch)
+    const { sendMail } = useDalleCall()
+    const { leonardoGenerationAllData } = useSelector((state) => state.touch)
     const [data, setdata] = useState([])
     const [info, setinfo] = useState({
-        selectedSales: ""
+        selectedSales: "",
+        note: ""
     })
 
     useEffect(() => {
@@ -58,9 +59,9 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
         setinfo({ ...info, [name]: value })
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault()
-        sendMail(info,leonardoGenerationAllData,mailSubject)
+        sendMail(info, leonardoGenerationAllData, mailSubject)
     }
 
 
@@ -79,8 +80,7 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
                     <CloseIcon sx={{ color: '#C70039', fontSize: 28, mr: 1, '&:hover': { cursor: 'pointer', color: '#900C3F' } }} onClick={() => { handleClose() }} />
 
 
-
-                    <Box display={'flex'} flexDirection={'column'} gap={2} mt={3} p={5} component={'form'} onSubmit={handleSubmit}>
+                    <Box display={'flex'} alignItems={'center'} flexDirection={'column'} gap={5} p={3} component={'form'} onSubmit={handleSubmit}>
 
                         <Typography variant='subtitle1' style={fontStyle} align='left'>Choice Sales Personnel</Typography>
 
@@ -104,8 +104,18 @@ const Mail_Modal = ({ open, handleClose, userInfo }) => {
                             </Select>
                         </FormControl>
 
+                        <TextField
+                            fullWidth
+                            label="Note"
+                            type='text'
+                            name='note'
+                            id='note'
+                            variant='outlined'
+                            onChange={handleChange}
+                        />
 
-                        <Button variant='contained' type='submit' sx={{ fontStyle, borderRadius: 20, mt: 5,letterSpacing:5 }}>Send</Button>
+
+                        <Button variant='contained' type='submit' sx={{ fontStyle, borderRadius: 20, mt: 5, letterSpacing: 5 }}>Send</Button>
 
                     </Box>
 
