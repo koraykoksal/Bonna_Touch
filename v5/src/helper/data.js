@@ -232,8 +232,8 @@ export const salesData = [
         "code": "TR",
         "country": "Turkey",
         "salesDept": "",
-        "salesPersonel": "KORAY KOKSAL",
-        "mail": "koray.koksal@bonna.com.tr"
+        "salesPersonel": "ARDA TEZEL",
+        "mail": "arda.tezel@bonna.com.tr"
     },
     {
         "code": "AE",
