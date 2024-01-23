@@ -19,7 +19,7 @@ const useDalleCall = () => {
 
     const dispatch = useDispatch()
     const { userInfo, currentUser } = useSelector((state) => state.auth)
-
+    const [loading, setLoading] = useState(false);
 
     const create_Leonardo_Image = async (data) => {
 
@@ -236,6 +236,10 @@ const useDalleCall = () => {
 
     const sendMail = async (mailInfo, imageInfo, mailSubject) => {
 
+        console.log("mailInfo: ", mailInfo)
+        console.log("imageInfo: ", imageInfo)
+        console.log("mailSubject: ", mailSubject)
+
         const config = {
             method: 'post',
             url: process.env.REACT_APP_MAIL_SERVER, // Eğer .env değişkeni yoksa, doğrudan URL
@@ -247,17 +251,20 @@ const useDalleCall = () => {
                 note: mailInfo?.note,
                 subject: mailSubject || "", //zorunlu alan
                 data: imageInfo || "" //zorunlu alan
-            }
+            },
+            timeout: 5000
         };
 
         try {
+
             const res = await axios(config);
 
-            if (res.data.response.status === 200) {
+            if (res?.data?.response?.status == 200) {
                 toastSuccessNotify('Mail Sent Successfully');
             } else {
                 toastWarnNotify('Mail Sending Failed');
             }
+
         } catch (error) {
             console.error('Send Mail Error:', error.message || error);
             toastErrorNotify('Error in Sending Mail');
