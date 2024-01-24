@@ -43,7 +43,7 @@ const PromptInfo = ({ handleChange, randomData, info, colors, setColors, handleC
                         Cuisine
                     </InputLabel>
                     <Select
-                        required
+                        
                         labelId="cuisineType"
                         id="cuisineType"
                         name='cuisineType'
@@ -72,7 +72,7 @@ const PromptInfo = ({ handleChange, randomData, info, colors, setColors, handleC
                         Color
                     </InputLabel>
                     <Select
-                        required
+                        
                         multiple
                         value={colors}
                         onChange={handleColorChange}
@@ -102,7 +102,7 @@ const PromptInfo = ({ handleChange, randomData, info, colors, setColors, handleC
 
                     </InputLabel>
                     <Select
-                        required
+                        
                         labelId="styleType"
                         id="styleType"
                         name='styleType'
