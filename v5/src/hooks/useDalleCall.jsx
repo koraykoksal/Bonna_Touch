@@ -23,8 +23,6 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        // const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " color a round flat porcelain plate. show only top view."
-
         const userPrompt = data?.cuisineType + "," + data?.styleType + " style, " + data?.prompt + " " + data?.colorType + " tones single porcelain plate. show only top view. Remove background, plate holder and interference. Don't show material or food."
     
 
@@ -68,16 +66,12 @@ const useDalleCall = () => {
                 "height": 512,
                 "highContrast": true,
                 "highResolution": false,
-                // "leonardoMagic": false,
                 "negative_prompt": "",
                 "nsfw": true,
                 "num_images": 2,
                 "num_inference_steps": 10,
                 "photoReal": true,
                 "photoRealStrength": 0.55,
-                // "photoRealVersion": "v1",
-                // "poseToImage": false,
-                // "poseToImageType": "POSE",
                 "presetStyle": "NONE",
                 "prompt": userPrompt,
                 "public": false,
@@ -87,18 +81,6 @@ const useDalleCall = () => {
                 "width": 768
             }
         };
-
-
-        // try {
-        //     const response = await axios.request(options);
-        //     const generationId = response?.data?.sdGenerationJob?.generationId;
-        //     if (generationId) {
-        //         dispatch(fetchSuccessLeonardoGeneration(generationId));
-        //     }
-        // } catch (error) {
-        //     console.error(error);
-        //     // Burada hata yönetimi için ek işlemler yapılabilir.
-        // }
 
         await axios
             .request(options)
@@ -158,15 +140,6 @@ const useDalleCall = () => {
             }
 
 
-            // const data = response?.data?.generations_by_pk?.generated_images.map(element => ({
-            //     url: element.url,
-            //     text: info,
-            //     id: element.id,
-
-            // }));
-            // dispatch(fetchSuccessLeonardoGenerationAllData(data))
-
-
         } catch (error) {
             console.log("get_Leonarda_Image: ", error)
         }
@@ -211,53 +184,6 @@ const useDalleCall = () => {
             console.error("Error in postImageDataToDB: ", error);
         }
 
-
-        // try {
-
-        //     const uID = uid()
-        //     const db = getDatabase()
-        //     const res = ref(db, 'customerLikeData')
-        //     const snapshot = await get(res)
-
-        //     if (likeStatus) {
-        //         await set(ref(db, `customerLikeData/${currentUser}/${uID}`), combinedObject)
-        //         toastSuccessNotify('Liked')
-        //     }
-        //     else {
-
-        //         if (snapshot.exists()) {
-
-        //             const dizi = []
-
-        //             Object.values(snapshot.val()).forEach(item => {
-
-        //                 if (typeof item == 'object' && item != null) {
-
-        //                     const result = Object.keys(item).map(key => { return { IDs: key, ...item[key] } })
-
-        //                     result.map(item => {
-        //                         dizi.push(item)
-        //                         return { ...item, item }
-        //                     })
-
-        //                 }
-
-        //             })
-
-        //             const unLikedData = dizi.filter(item => item.id == id)
-
-        //             if (unLikedData.length > 0) {
-        //                 await remove(ref(db, `customerLikeData/${currentUser}/${unLikedData[0].IDs}`))
-        //                 toastWarnNotify('Unliked')
-        //             }
-
-
-        //         }
-        //     }
-
-        // } catch (error) {
-        //     console.log("register, ", error)
-        // }
 
     }
 
