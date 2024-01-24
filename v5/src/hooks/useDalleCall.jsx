@@ -23,8 +23,11 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
+        // const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
 
+        const userPrompt = data?.prompt + " round flat porcelain plate. show only top view."
+
+        console.log(userPrompt)
 
         dispatch(fetchStartGeneration())
 
@@ -236,9 +239,6 @@ const useDalleCall = () => {
 
     const sendMail = async (mailInfo, imageInfo, mailSubject) => {
 
-        console.log("mailInfo: ", mailInfo)
-        console.log("imageInfo: ", imageInfo)
-        console.log("mailSubject: ", mailSubject)
 
         const config = {
             method: 'post',
