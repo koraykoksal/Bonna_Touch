@@ -25,6 +25,8 @@ const useDalleCall = () => {
 
         // const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
 
+        // const userPrompt = data?.prompt + " round flat porcelain plate. show only top view."
+        
         const userPrompt = data?.prompt + " round flat porcelain plate. show only top view."
 
         console.log(userPrompt)
@@ -52,7 +54,7 @@ const useDalleCall = () => {
                 "num_images": 2,
                 "num_inference_steps": 10,
                 "photoReal": false,
-                "presetStyle": "DYNAMIC",
+                "presetStyle": "NONE",
                 "prompt": userPrompt,
                 "public": false,
                 "scheduler": "LEONARDO",
