@@ -71,7 +71,7 @@ const useDalleCall = () => {
                 // "leonardoMagic": false,
                 "negative_prompt": "",
                 "nsfw": true,
-                "num_images": 3,
+                "num_images": 2,
                 "num_inference_steps": 10,
                 "photoReal": true,
                 "photoRealStrength": 0.55,
