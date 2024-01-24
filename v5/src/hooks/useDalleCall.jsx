@@ -23,13 +23,10 @@ const useDalleCall = () => {
 
     const create_Leonardo_Image = async (data) => {
 
-        // const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " soft color a round flat porcelain plate. show only top view."
+        // const userPrompt = data?.cuisineType + " pattern, handmade " + data?.styleType + " style theme, " + data?.prompt + " " + data?.colorType + " color a round flat porcelain plate. show only top view."
 
-        // const userPrompt = data?.prompt + " round flat porcelain plate. show only top view."
-        
-        const userPrompt = data?.prompt + " round flat porcelain plate. show only top view."
-
-        console.log(userPrompt)
+        const userPrompt = data?.cuisineType + "," + data?.styleType + " style, " + data?.prompt + " " + data?.colorType + " tones single porcelain plate. show only top view. Remove background, plate holder and interference. Don't show material or food."
+    
 
         dispatch(fetchStartGeneration())
 
@@ -42,23 +39,49 @@ const useDalleCall = () => {
                 'authorization': `Bearer ${process.env.REACT_APP_LEONARDO_APIKEY}`
             },
             data: {
+                // "alchemy": true,
+                // "elements": [],
+                // "expandedDomain": true,
+                // "guidance_scale": 7,
+                // "height": 512,
+                // "highContrast": false,
+                // "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
+                // "negative_prompt": "Remove background, noise, plate holder and interference.",
+                // "nsfw": true,
+                // "num_images": 2,
+                // "num_inference_steps": 10,
+                // "photoReal": false,
+                // "presetStyle": "NONE",
+                // "prompt": userPrompt,
+                // "public": false,
+                // "scheduler": "LEONARDO",
+                // "sd_version": "SDXL_0_9",
+                // "tiling": false,
+                // "weighting": 0.75,
+                // "width": 768
+
                 "alchemy": true,
+                "contrastRatio": 0.5,
                 "elements": [],
                 "expandedDomain": true,
-                "guidance_scale": 7,
+                "guidance_scale": 15,
                 "height": 512,
-                "highContrast": false,
-                "modelId": "1e60896f-3c26-4296-8ecc-53e2afecc132",
-                "negative_prompt": "Remove background, noise, plate holder and interference.",
+                "highContrast": true,
+                "highResolution": false,
+                // "leonardoMagic": false,
+                "negative_prompt": "",
                 "nsfw": true,
-                "num_images": 2,
+                "num_images": 3,
                 "num_inference_steps": 10,
-                "photoReal": false,
+                "photoReal": true,
+                "photoRealStrength": 0.55,
+                // "photoRealVersion": "v1",
+                // "poseToImage": false,
+                // "poseToImageType": "POSE",
                 "presetStyle": "NONE",
                 "prompt": userPrompt,
                 "public": false,
                 "scheduler": "LEONARDO",
-                "sd_version": "SDXL_0_9",
                 "tiling": false,
                 "weighting": 0.75,
                 "width": 768
