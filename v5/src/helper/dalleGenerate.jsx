@@ -39,7 +39,7 @@ export const generateData_cuisine = [
         cuisineType: "Middle East"
     },
     {
-        cuisineType: "World Cuisine"
+        cuisineType: "World"
     }
 ]
 
