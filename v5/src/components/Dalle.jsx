@@ -8,9 +8,8 @@ import BonnaTouchSlogan from '../assets/gift/BonnaTouchSlogan.gif'
 import { useState, useEffect } from 'react';
 import ImageDetail_Modal from './modals/ImageDetail_Modal';
 import bonna_bonnatouch from '../assets/img/bonna-touch-logo.png'
-import CircularProgress from '@mui/material/CircularProgress';
 import { fontStyle } from '../styles/GlobalStyle';
-
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 
@@ -71,14 +70,13 @@ export const Dalle = () => {
 
 
 
-
   return (
 
     <Box>
 
       {
         loadingGeneration ? (
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column',gap:5 }}>
 
             <Box sx={{ display: 'flex', justifyContent: 'center', height: '350px', p: 3 }} >
 
@@ -86,10 +84,19 @@ export const Dalle = () => {
 
             </Box>
 
-
-            <Box sx={{ display: 'flex', justifyContent: 'center', p: 3 }}>
+            {/* TIMER */}
+            {/* <Box sx={{ display: 'flex', justifyContent: 'center', p: 3, width: '100%' }}>
               <Typography variant='subtitle1' color={'#000000'} fontFamily={fontStyle}>Loading {timer / 1000}%</Typography>
-            </Box>
+            </Box> */}
+
+            {/* <Container sx={{ width: '50%',display:'flex',justifyContent:'center' }}>
+              <LinearProgress variant="determinate"  value={timer / 1000} color='inherit' sx={{height:'80px',width:'80px',borderRadius:'50%',backgroundColor:'grey',border:'1px solid'}}/>
+            </Container> */}
+
+            <Container sx={{ width: '50%'}}>
+            <Typography variant='subtitle2' color={'#818181'} fontFamily={fontStyle}>Loading {timer / 1000}%</Typography>
+              <LinearProgress variant="determinate"  value={timer / 1000} color='inherit' sx={{height:'8px',borderRadius:'5px',backgroundColor:'grey'}}/>
+            </Container>
 
           </Box>
 
