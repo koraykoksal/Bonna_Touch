@@ -51,7 +51,7 @@ export const generateData_colors = [
     "Yellow",
     "Beige",
     "Brown",
-    "Earth Tones",
+    "Earth",
     "Gray",
     "Black",
     "Colourful",
