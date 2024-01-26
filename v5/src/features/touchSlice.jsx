@@ -5,13 +5,6 @@ const initialState = {
     loadingGeneration: false,
     showLogo:true,
     error: false,
-    promptData: {},
-    user_PromptInfo: {
-        prompt: "",
-        cuisineType: "",
-        colorType: [],
-        styleType: ""
-    },
     leonardoGenerationID: "",
     leonardoGenerationData: [],
     leonardoGenerationAllData: [],
@@ -80,7 +73,7 @@ export const {
     fetchSuccessLeonardoGeneration,
     fetchSuccessLeonardoGenerationAllData,
     fetchLogOutLeonardoData,
-    fetchLikedData
+    fetchLikedData,
 
 
 } = touchSlice.actions

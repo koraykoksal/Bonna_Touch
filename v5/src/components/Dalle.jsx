@@ -20,6 +20,8 @@ export const Dalle = () => {
   const [urls, setUrls] = useState([])
   const [selectedData, setSelectedData] = useState([]);
 
+
+
   const [timer, setTimer] = useState(0);
   const [timerInterval, setTimerInterval] = useState(null);
 
@@ -44,7 +46,7 @@ export const Dalle = () => {
 
 
   const handleCardClick = (data) => {
-    setSelectedData(data || "");
+    setSelectedData(data);
     setOpen(true);
   };
 
@@ -69,6 +71,9 @@ export const Dalle = () => {
   }, [loadingStatus, timerInterval]);
 
 
+
+
+  
   return (
 
     <Box>

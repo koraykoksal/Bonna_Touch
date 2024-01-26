@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { typoStyle } from "../../styles/GlobalStyle"
+import { useSelector } from 'react-redux';
 
 const style = {
     position: 'absolute',
@@ -14,7 +15,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     maxWidth: '80%',
     height: 'auto',
-    borderRadius:'5px',
+    borderRadius: '5px',
     // bgcolor: 'background.paper',
     bgcolor: '#dddddd',
     // border: '2px solid #000',
@@ -26,10 +27,10 @@ const style = {
 
 const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
 
+
     const colors = selectedData?.text?.colorType ? selectedData.text.colorType.join('-') : '';
 
 
-    
     return (
         <div>
             <Modal
@@ -37,7 +38,7 @@ const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
                 onClose={() => { handleClose() }}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                
+
             >
                 <Box sx={style}>
 
@@ -52,8 +53,27 @@ const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
                         <Typography variant='subtitle2' style={typoStyle}>Colors: {colors}</Typography>
                     </Box>
 
+
+
+                    {/* {
+                        selectedData?.text?.cuisineType && selectedData?.text?.styleType && selectedData?.text?.colorType ?
+                            (
+                                <Box display={'flex'} justifyContent={'center'} gap={3} p={1}>
+                                    <Typography variant='subtitle2' style={typoStyle}>Cuisine Type: {selectedData?.text?.cuisineType}</Typography>
+
+                                    <Typography variant='subtitle2' style={typoStyle}>Style Type: {selectedData?.text?.styleType}</Typography>
+
+                                    <Typography variant='subtitle2' style={typoStyle}>Colors: {colors}</Typography>
+                                </Box>
+                            )
+                            :
+                            (
+                                ""
+                            )
+                    } */}
+
                     <Box display={'flex'} justifyContent={'center'}>
-                        <img src={selectedData.url}  style={{ display: 'flex', justifyContent: 'center',borderRadius:'5px' ,maxWidth:'100%',height:'auto' }} />
+                        <img src={selectedData.url} style={{ display: 'flex', justifyContent: 'center', borderRadius: '5px', maxWidth: '100%', height: 'auto' }} />
                     </Box>
 
 

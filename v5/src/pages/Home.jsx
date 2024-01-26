@@ -10,6 +10,7 @@ import { InputLabel, MenuItem } from '@mui/material'
 import Select from '@mui/material/Select';
 import PromptInfo from '../components/PromptInfo'
 import { generateData_cuisine, generateData_colors, generateData_style } from "../helper/dalleGenerate"
+import { fetchUserPromptData } from '../features/touchSlice'
 
 
 export const Home = () => {
@@ -18,6 +19,8 @@ export const Home = () => {
   const { leonardoGenerationID, promptData } = useSelector((state) => state.touch)
 
   const [colors, setColors] = useState([])
+
+  const dispatch = useDispatch()
 
   const [info, setInfo] = useState({
     prompt: "",
@@ -96,17 +99,15 @@ export const Home = () => {
   // enter tuşlandığınd çalıştır
   const handleEnterPress = (e) => {
     e.preventDefault()
-
     create_Leonardo_Image(info)
-
   }
+
+
 
   // submit butonu tuşlandığında çalıştır
   const handleSubmit = (e) => {
     e.preventDefault()
-
     create_Leonardo_Image(info)
-
   }
 
 
@@ -121,6 +122,8 @@ export const Home = () => {
   }, [leonardoGenerationID])
 
 
+
+
   // randomData bilgisine göre image generation işlemi yap
   useEffect(() => {
     if (randomData.cuisineType) {
@@ -130,7 +133,7 @@ export const Home = () => {
 
 
 
-
+ 
 
   return (
 
