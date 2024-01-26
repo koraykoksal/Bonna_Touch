@@ -26,8 +26,10 @@ const style = {
 
 const ImageDetail_Modal = ({ open, handleClose, selectedData }) => {
 
-    const colors = selectedData?.text?.colorType.join('-') || []
+    const colors = selectedData?.text?.colorType ? selectedData.text.colorType.join('-') : '';
 
+
+    
     return (
         <div>
             <Modal
