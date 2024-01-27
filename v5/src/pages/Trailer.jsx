@@ -31,7 +31,7 @@ const Trailer = () => {
                 />
 
 
-                <Box display={'flex'} justifyContent={'center'} width={'903px'} height={'508px'} p={3}>
+                <Box display={'flex'} justifyContent={'center'} width={'80%'} height={'640px'} p={3}>
 
                     <iframe
                         src={embedUrl}
