@@ -190,7 +190,6 @@ const useDalleCall = () => {
 
     const sendMail = async (mailInfo, imageInfo, mailSubject) => {
 
-
         const config = {
             method: 'post',
             url: process.env.REACT_APP_MAIL_SERVER, // Eğer .env değişkeni yoksa, doğrudan URL
