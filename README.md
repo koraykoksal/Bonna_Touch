@@ -21,3 +21,13 @@ Install Bonna_Touch
   npm start or yarn start or pnpm dev&start
 ```
     
+## Images
+
+![startPage](./pictures/startPage.png)
+![registerPage](./pictures/registerPage.png)
+![loginPage](./pictures/loginPage.png)
+![homePage](./pictures/homePage.png)
+![generating](./pictures/generating.png)
+![generatedImage](./pictures/generatedImage.png)
+![historyPage](./pictures/historyPage.png)
+![salesContact](./pictures/salesContact.png)
